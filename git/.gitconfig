@@ -21,6 +21,9 @@
     whitespace = red reverse
   [core]
     whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
+    autocrlf = true
+  [apply]
+      whitespace = nowarn
 
 
   [alias]
@@ -30,6 +33,7 @@
     co = checkout
     df = diff
     lg = log -p
-[user]
-	name = zhangqiuming
+
+  [user]
+ 	name = zhangqiuming
 	email = zhqm03@gmail.com
