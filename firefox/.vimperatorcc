@@ -1,0 +1,37 @@
+"2.1 (created: 2009/05/21 13:13:06)
+
+"map
+nnoremap e gt
+nnoremap w gT
+nnoremap x <c-o>
+nnoremap c <c-i>
+nnoremap <C-Down> :set go=nm<CR>
+nnoremap <C-Up> :set go=n<CR>
+noremap J <C-d>
+noremap K <C-u>
+map <BS> gu
+nnoremap gs :dia pagesource<cr>
+nnoremap gS :dia selectionsource<CR>
+nnoremap gcu :emenu View.Character Encoding.Unicode (UTF-8)<CR>
+nnoremap gcg :emenu View.Character Encoding.Chinese Simplified (GBK)<CR>
+nnoremap gm :dialog bookmarks<CR>
+
+"autocmd
+autocmd LocationChange .* :js modes.passAllKeys = /(mail|reader)\.google\.com/.test(buffer.URL) 
+autocmd LocationChange .* :js modes.passAllKeys = /www\.google\.com\/reader/.test(buffer.URL) 
+autocmd LocationChange .* :js modes.passAllKeys = /telnet:\/\/(new)?smth\.org/.test(buffer.URL) 
+
+"options
+set guioptions=nm
+set hlsearch
+set nextpattern=s*下一页|下一张|下一篇|下页|后页s*,^\bnext\b,\\bnext\\b,^>$,^(>>|»)$,^(>|»),(>|»)$,\\bmore\\b
+set previouspattern=s*上一页|上一张|上一篇|上页|前页s*,^\bprev|previous\b,\\bprev|previous\\b,^<$,^(<<|«)$,^(<|«),(<|«)$
+set runtimepath=C:\\Users\\weiye\\vimperator
+set scroll=3
+set wildmode=list:longlist
+"set laststatus=0
+set history=500
+"set titlestring=
+source! C:\\Users\\weiye\\_vimperatorrc.local
+
+" vim: set ft=vim:
