@@ -34,4 +34,4 @@ set history=500
 "set titlestring=
 source! C:\\Users\\weiye\\_vimperatorrc.local
 
-" vim: set ft=vim:
+"vim: set ft=vim:
