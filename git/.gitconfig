@@ -1,18 +1,22 @@
 [color]
     ui = auto
-[color "branch"]
-    current = yellow reverse
-    local = yellow
-    remote = green
-[color "diff"]
-    meta = yellow bold
-    frag = magenta bold
-    old = red bold
-    new = green bold
-[color "status"]
-    added = yellow
-    changed = green
-    untracked = cyan
+    diff = auto
+    status = auto
+    branch = auto
+    interactive = auto
+;[color "branch"]
+    ;current = yellow reverse
+    ;local = yellow
+    ;remote = green
+;[color "diff"]
+    ;meta = yellow bold
+    ;frag = magenta bold
+    ;old = red bold
+    ;new = green bold
+;[color "status"]
+    ;added = yellow
+    ;changed = green
+    ;untracked = cyan
 
 
 [color]
@@ -20,8 +24,8 @@
 [color "diff"]
     whitespace = red reverse
 [core]
-    whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
-    autocrlf=input
+    whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol     
+    autocrlf = input
 [apply]
     whitespace = nowarn
 
@@ -32,8 +36,17 @@
     br = branch
     co = checkout
     df = diff
-    lg = log -p
+    da = diff HEAD
+    ds = diff --staged
+    lf = log --oneline --no-merges --
+    rh = reset HEAD
+    gp = log --date=\"short\" --format=\"%C(yellow)%h%Creset [%cN] %C(white)%ad%Creset %s\" --graph
+    lp = log -p
 
 [user]
     name = zhangqiuming
     email = zhqm03@gmail.com
+[push]
+    default = matching
+[ampify]
+    branch-build = true
