@@ -1,0 +1,11 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =9
+let g:netrw_dirhist_1='/home/reedboat/vim-plugins/vim-addon-manager/autoload'
+let g:netrw_dirhist_2='/home/reedboat/vim-plugins/vim-addon-manager'
+let g:netrw_dirhist_3='/home/reedboat/vim-plugins/vim-addon-manager/autoload'
+let g:netrw_dirhist_4='/home/reedboat/.vim'
+let g:netrw_dirhist_5='/home/reedboat/.vim/plugin'
+let g:netrw_dirhist_6='/home/reedboat/.vim'
+let g:netrw_dirhist_7='/home/reedboat/.vim/autoload'
+let g:netrw_dirhist_8='/home/reedboat/.vim/autoload/neocomplcache'
+let g:netrw_dirhist_9='/home/reedboat/.vim/autoload/neocomplcache/plugin'

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" creationComplete="">
+    <mx:Script>
+    <![CDATA[
+    ]]>
+    </mx:Script>
+   <mx:Panel title="" width="" height="" x="" y="" layout="absolute">
+    </mx:Panel>
+</mx:Application>
+
