@@ -81,6 +81,9 @@ fi
 alias ll='ls -l'
 #alias la='ls -A'
 #alias l='ls -CF'
+alias ..="cd .."
+alias ...="cd ../.."
+alias vidf="vim diff -o"
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
