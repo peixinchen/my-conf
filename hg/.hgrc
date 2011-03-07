@@ -1,0 +1,9 @@
+[extensions]
+bookmarks =
+color =
+pager =
+fetch =
+[bookmarks]
+track.current = True
+[ui]
+username = zhangqm <zhqm03@gmail.com>
