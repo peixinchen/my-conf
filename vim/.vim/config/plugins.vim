@@ -279,5 +279,5 @@ let g:C_CCompiler     = "gcc-3.exe"
 let g:C_CplusCompiler = "g++-3.exe"
 
 " neocomplcache
-let g:NeoComplCache_EnableAtStartup = 1 
+"let g:NeoComplCache_EnableAtStartup = 1 
 "let g:NeoComplCache_DisableAutoComplete = 1
