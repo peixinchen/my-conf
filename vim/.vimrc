@@ -47,7 +47,6 @@ source $HOME/.vim/config/functions.vim
 "color evening
 "color darkblue
 "color delek
-color torte
 
 
 " vim:ts=4:foldmethod=marker
