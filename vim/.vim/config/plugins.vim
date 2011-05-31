@@ -281,3 +281,9 @@ let g:C_CplusCompiler = "g++-3.exe"
 " neocomplcache
 "let g:NeoComplCache_EnableAtStartup = 1 
 "let g:NeoComplCache_DisableAutoComplete = 1
+"
+""vimpress
+let g:vimpress_blog_username = 'reedboat'
+let g:vimpress_blog_password = '471203'
+let g:vimpress_enable_tags = 1
+let g:vimpress_blog_url = 'http://weiye.info/xmlrpc.php'

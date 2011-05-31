@@ -61,10 +61,10 @@ import urllib , urllib2 , vim , xml.dom.minidom , xmlrpclib , sys , string , re
 #      Settings     # 
 ##################### 
  
-enable_tags = g:vimpress_enable_tags
-blog_username = g:vimpress_blog_username
-blog_password = g:vimpress_blog_password
-blog_url = g:vimpress_blog_url
+enable_tags = 1
+blog_username = 'reedboat'
+blog_password = '471203'
+blog_url =  'http://weiye.info/xmlrpc.php'
 more_mark = '&more;' 
 more_code = '<!--more-->' 
  
