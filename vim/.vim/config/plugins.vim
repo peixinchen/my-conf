@@ -249,8 +249,8 @@ let showmarks_hiline_upper = 1
 
 " vimwiki
 let g:vimwiki_list = [{
-      \'path':'/media/data/webroot/cn/weiye/wiki/cocm/',
-      \'path_html':'/media/data/webroot/cn/weiye/wiki/cocm_html/',
+      \'path':'/Users/zhqm03/workspace/codes/cn/weiye/wiki/cocm/',
+      \'path_html':'/Users/zhqm03/workspace/codes/cn/weiye/wiki/cocm_html/',
       \'html_header':'',
       \'html_footer':'',
       \'maxhi':'1',
