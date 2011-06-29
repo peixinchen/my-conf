@@ -1,2 +1,8 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =0
+let g:netrw_dirhist_cnt =6
+let g:netrw_dirhist_1='/Users/zhqm03/workspace/dev100/workspace/funnel'
+let g:netrw_dirhist_2='/Users/zhqm03/workspace/dev100/workspace/funnel/app'
+let g:netrw_dirhist_3='/Users/zhqm03/workspace/dev100/workspace/funnel/app/access'
+let g:netrw_dirhist_4='/Users/zhqm03/workspace/dev100/workspace/funnel/app'
+let g:netrw_dirhist_5='/Users/zhqm03/workspace/dev100/workspace/funnel/app/api'
+let g:netrw_dirhist_6='/Users/zhqm03/workspace/weiye.info/twitter'
