@@ -64,7 +64,7 @@ import urllib , urllib2 , vim , xml.dom.minidom , xmlrpclib , sys , string , re
 enable_tags = 1
 blog_username = 'reedboat'
 blog_password = '471203'
-blog_url =  'http://weiye.info/xmlrpc.php'
+blog_url =  'http://weiye.info/blog/xmlrpc.php'
 more_mark = '&more;' 
 more_code = '<!--more-->' 
  
