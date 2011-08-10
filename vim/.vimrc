@@ -3,6 +3,7 @@ syntax on
 
 let $vim=$HOME 
 let $php=system("whereis -b php|awk '{print $2}'")
+let $ctags='/usr/bin/ctags'
 
 set runtimepath+=~/vim-plugins/vim-addon-manager
 set runtimepath+=~/vim-plugins/FuzzyFinder

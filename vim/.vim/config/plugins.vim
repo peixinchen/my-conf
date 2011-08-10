@@ -2,7 +2,7 @@
 """"""""""""""""""""""""""""""
 " About Ctags
 """"""""""""""""""""""""""""""
-let Tlist_Ctags_Cmd             = $vim."\/program\/ctags\/ctags.exe"
+let Tlist_Ctags_Cmd             = $ctags
 let Tlist_Sort_Type             = "name" "sort by the tags name
 let Tlist_Use_Right_Window      = 1 "show the tags window as right sidebar
 let Tlist_Compart_Format        = 1 "compart type
@@ -10,7 +10,7 @@ let Tlist_Exist_OnlyWindow      = 1 "close the tags with the only buffer
 let Tlist_File_Fold_Auto_Close  = 0 "don't close other file's tags
 let Tlist_Enable_Fold_Column    = 0 "don't show zhedieshu
 let tlist_actionscript_settings = 'actionscript;c:class;f:method;p:property;v:variable'
-"let Tlist_Show_One_File        = 1
+let Tlist_Show_One_File        = 1
 let Tlist_Auto_Update           = 0
 let tlist_php_settings          = 'php;c:class;d:constant;f:function'
 if exists('loaded_taglist')
@@ -21,7 +21,7 @@ endif
 " ctags
 " $home/ctags.conf
 function! CtagsR(language, ...)
-    let cmd = $vim."/program/ctags/ctags.exe -R --exclude=.svn "
+    let cmd = $ctags . " -R --exclude=.svn "
     if a:language == 'php'
       let cmd .= " --fields=+ailKSz --extra=+q --languages=".a:language 
     endif
