@@ -21,11 +21,14 @@ endif
 " ctags
 " $home/ctags.conf
 function! CtagsR(language, ...)
-    let cmd = $ctags . " -R --exclude=.svn "
+    let cmd = $ctags . " -R --exclude=.svn --exclude=.hg --exclude=.git "
     if a:language == 'php'
       let cmd .= " --fields=+ailKSz --extra=+q --languages=".a:language 
     endif
     if a:language == 'c'
+      let cmd .= " --fields=+lS --languages=".a:language
+    endif
+    if a:language == 'java'
       let cmd .= " --fields=+lS --languages=".a:language
     endif
     let i=0
