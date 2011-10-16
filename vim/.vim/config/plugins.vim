@@ -132,9 +132,11 @@ let g:netrw_list_hide       = "\.bak,\.ecgi"
 let g:netrw_menu            = 0
 let g:netrw_use_errorwindow = 0
 let g:netrw_browse_split    = 3
-let g:netrw_ftp_cmd         = '"' . $vim . '/program/ftp.exe"'
-let g:netrw_sftp_cmd        = '"' . $vim . '/program/putty/psftp.exe"'
-let g:netrw_scp_cmd         = '"' . $vim . '/program/putty/pscp.exe" -q -batch'
+if has("win32")
+  let g:netrw_ftp_cmd         = '"' . $vim . '/program/ftp.exe"'
+  let g:netrw_sftp_cmd        = '"' . $vim . '/program/putty/psftp.exe"'
+  let g:netrw_scp_cmd         = '"' . $vim . '/program/putty/pscp.exe" -q -batch'
+endif
 "NerdTree 
 map <F10> :NERDTreeToggle<CR>
 
@@ -241,8 +243,9 @@ let g:vjde_iab_exts      = '.cpp;.c;.vim;.rb'
 " Twitter
 
 let twitvim_login_b64 = "d2VpeWV6aG91QHFxLmNvbTo0NzEyMDM = "
+if has("win32")
 let twitvim_curl      = $vim."\/program\/curl\/curl.exe"
-
+endif
 " Showmarks
 let g:showmarks_enable     = 1
 let showmarks_include      = "123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
@@ -278,8 +281,10 @@ let g:FufOptions = { 'Base':{}, 'Buffer':{}, 'File':{'excluded_path':'\.bak$|\.s
             \                'CallbackFile':{}, 'CallbackItem':{}, }
 
 " cvim
-let g:C_CCompiler     = "gcc-3.exe"
-let g:C_CplusCompiler = "g++-3.exe"
+if has("win32")
+  let g:C_CCompiler     = "gcc-3.exe"
+  let g:C_CplusCompiler = "g++-3.exe"
+endif
 
 " neocomplcache
 "let g:NeoComplCache_EnableAtStartup = 1 
