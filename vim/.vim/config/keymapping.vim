@@ -17,6 +17,10 @@ nnoremap <unique> <c-k> <C-W><Up>
 nnoremap <unique> <c-j> <C-W><Down>
 nnoremap <unique> <c-h> <C-W><Left>
 nnoremap <unique> <c-l> <C-W><Right>
+nnoremap <unique> <leader>wl <C-W><Right>
+nnoremap <unique> <leader>wk <C-W><Up>
+nnoremap <unique> <leader>wj <C-W><Down>
+nnoremap <unique> <leader>wh <C-W><Left>
 
 inoremap <unique> <c-h> <Left>
 inoremap <unique> <c-l> <Right>
@@ -93,6 +97,8 @@ inoremap <expr> <C-U> pumvisible()?"\<C-E>":"\<C-U>"
 
 "plugins
 map <F12> <ESC>:Tlist<CR>^Wh^Ws:VTreeExplore<CR>:set nonu<CR>^Wl
+map <leader>tl <ESC>:Tlist<CR>^Wh^Ws:VTreeExplore<CR>:set nonu<CR>^Wl
+map <leader>tlr <ESC>:Tlist<CR><ESC>:Tlist<CR>
 
 function! GetFoo()
     call inputsave()
@@ -210,6 +216,10 @@ nnoremap <leader>pd :Phpdoc %<cr>
 
 inoremap jj <esc> 
 
+" make and run
+nnoremap <Leader>ru :!php -f <c-r>=expand('%:p')<cr><cr>
+nnoremap <Leader>mk :make<cr>
+
 let mapleader=oldleader
 
 " svn
@@ -231,5 +241,6 @@ nnoremap <Leader>cr :VCSReview<cr>
 nnoremap <Leader>cU :VCSUnlock<cr>
 
 vnoremap <c-insert> "*y
+
 
 ""
