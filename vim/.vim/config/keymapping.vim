@@ -52,8 +52,8 @@ cnoremap 4 <c-r>=expand('%:p:t:r')<cr>
 
 nnoremap <leader>ss   :so %<CR>
 nnoremap <leader>cd   :cd %:p:h<CR>
-nnoremap gf :e <c-r><c-a><cr>
-cnoremap gf :e <c-r>0<cr>
+nnoremap gf :e <c-r><c-f><cr>
+nnoremap <leader>nf :new <c-r><c-f><cr>
 
 nnoremap <leader>zz :x<cr>
 
@@ -219,6 +219,11 @@ inoremap jj <esc>
 " make and run
 nnoremap <Leader>ru :!php -f <c-r>=expand('%:p')<cr><cr>
 nnoremap <Leader>mk :make<cr>
+
+" encode
+nnoremap <leader>fv :FencView
+nnoremap <leader>fu :exec "edit! ++enc=utf-8"
+nnoremap <leader>fg :exec "edit! ++enc=gb18030"
 
 let mapleader=oldleader
 
