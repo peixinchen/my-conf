@@ -1,9 +1,21 @@
+[pager]
+pager = LESS='FSRX' less
+
 [extensions]
 bookmarks =
 color =
 pager =
 fetch =
+hgflow = /usr/local/hgflow.py
+hgshelve = /usr/local/hgshelve.py
+#hgflow = /home/zhangqm/hgflow/src/hgflow/hgflow.py
+#hgshelve = /home/zhangqm/hgshelve.py
+
 [bookmarks]
 track.current = True
 [ui]
-username = zhangqm <zhqm03@gmail.com>
+username = zhangqm <zhangqm@meixun.com>
+
+[alias]
+brs = branches
+br  = branch
