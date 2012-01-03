@@ -221,9 +221,9 @@ nnoremap <Leader>ru :!php -f <c-r>=expand('%:p')<cr><cr>
 nnoremap <Leader>mk :make<cr>
 
 " encode
-nnoremap <leader>fv :FencView
-nnoremap <leader>fu :exec "edit! ++enc=utf-8"
-nnoremap <leader>fg :exec "edit! ++enc=gb18030"
+nnoremap <leader>fv :FencView<cr>
+nnoremap <leader>fu :exec "edit! ++enc=utf-8"<cr>
+nnoremap <leader>fg :exec "edit! ++enc=gb18030"<cr>
 
 let mapleader=oldleader
 
