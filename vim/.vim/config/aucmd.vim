@@ -10,6 +10,7 @@ let g:autocmd_loaded = 1
 if has("autocmd") 
     "delete all autocmd for redefine
     au BufNewFile,BufRead *.plan                    setf plan
+    au BufNewFile,BufRead Makefile                  setlocal noexpandtab
     autocmd FileType xml,html,js,css,c,cs,java,perl,shell,bash,cpp,python,vim,php,ruby,as,mxml setlocal number 
     autocmd FileType xml,html,php vmap <C-o> <ESC>'<i<!--<ESC>o<ESC>'>o--> 
     autocmd BufRead,BufNewFile *.tpl let g:snippetsEmu_key = "<C-S-Tab>" |
@@ -20,6 +21,8 @@ if has("autocmd")
                 \ exe "normal g`\"" |               
                 \ endif
 " php autocmd 
+    autocmd BufRead,BufNewFile *.cpp  setlocal makeprg=/usr/bin/g++\ -m32\ -c\ %:p
+    autocmd BufRead,BufNewFile *.c  setlocal makeprg=/usr/bin/gcc\ -c\ %:p
     
     autocmd BufRead,BufNewFile *.php 
                \ setlocal makeprg     =/usr/bin/php\ -l\ -d\ html_errors=off\ -f\ %:p |
