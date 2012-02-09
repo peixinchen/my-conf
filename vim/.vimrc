@@ -35,6 +35,7 @@ set laststatus=2
 set cmdheight=2
 set acd
 set ff=unix
+"set paste
 
 
 source $HOME/.vim/config/plugins.vim
