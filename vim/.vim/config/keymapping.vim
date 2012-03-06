@@ -220,10 +220,18 @@ inoremap jj <esc>
 nnoremap <Leader>ru :!php -f <c-r>=expand('%:p')<cr><cr>
 nnoremap <Leader>mk :make<cr>
 
+" paste
+nnoremap <Leader>pa :set paste<cr>
+nnoremap <Leader>np :set nopaste<cr>
+
+nnoremap <Leader>ne :new<cr>
+
 " encode
 nnoremap <leader>fv :FencView<cr>
 nnoremap <leader>fu :exec "edit! ++enc=utf-8"<cr>
 nnoremap <leader>fg :exec "edit! ++enc=gb18030"<cr>
+nnoremap <leader>su :set fenc=utf-8<cr>
+
 
 let mapleader=oldleader
 
