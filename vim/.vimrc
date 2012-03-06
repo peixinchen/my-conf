@@ -5,8 +5,6 @@ let $vim=$HOME
 let $php=system("whereis -b php|awk '{print $2}'")
 let $ctags='/usr/bin/ctags'
 
-set runtimepath+=~/vim-plugins/vim-addon-manager
-set runtimepath+=~/vim-plugins/FuzzyFinder
 
 set number
 set history       =400
@@ -42,6 +40,18 @@ source $HOME/.vim/config/plugins.vim
 source $HOME/.vim/config/keymapping.vim
 source $HOME/.vim/config/aucmd.vim
 source $HOME/.vim/config/functions.vim
+
+set rtp+=$HOME/.vim/bundle/vundle/ 
+call vundle#rc()
+
+let plugins=["xptemplate","UltraBlog","SuperTab", "FencView.vim", "taglist-plus", "ZenCoding.vim", "vcscommand.vim", "Vimball", 
+      \"Align", "The-NERD-Commenter", "netrw.vim", "php-doc", "matchit.zip", "calendar.vim", "vimwiki", "snipMate", "surround.vim", 
+      \"xml.vim", "c.vim", "TxtBrowser", "neocomplcache","L9","FuzzyFinder", "vundle", "templates.vim", "cecutil", "tlib", "genutils",
+      \"word_complete.vim", "Command-T"]
+for $plugin in plugins
+  Bundle $plugin
+endfor
+
 
 
 "source $HOME/project.vim
