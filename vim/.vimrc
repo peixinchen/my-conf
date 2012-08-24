@@ -42,7 +42,7 @@ source $HOME/.vim/config/aucmd.vim
 source $HOME/.vim/config/functions.vim
 
 
-set rtp+=$HOME/.vim/bundle/vundle/ 
+set rtp+=$HOME/.vim/plugin/vundle/ 
 call vundle#rc()
 
 let plugins=["xptemplate","UltraBlog","SuperTab", "FencView.vim", "taglist-plus", "ZenCoding.vim", "vcscommand.vim", "Vimball", 
