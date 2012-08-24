@@ -179,7 +179,6 @@ let g:loaded_echofunc = 1
 " dbext plugin
 let g:dbext_default_type   = 'mysql'
 let g:dbext_default_host   = 'localhost'
-let g:dbext_default_passwd = '471203'
 let g:dbext_default_user   = 'weiye'
 let g:dbext_default_dbname = 'jquery'
 
@@ -292,7 +291,6 @@ endif
 "
 ""vimpress
 let g:vimpress_blog_username = 'reedboat'
-let g:vimpress_blog_password = '471203'
 let g:vimpress_enable_tags = 1
 let g:vimpress_blog_url = 'http://weiye.info/xmlrpc.php'
 
