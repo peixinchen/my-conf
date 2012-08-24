@@ -47,7 +47,7 @@ call vundle#rc()
 
 let plugins=["xptemplate","UltraBlog","SuperTab", "FencView.vim", "taglist-plus", "ZenCoding.vim", "vcscommand.vim", "Vimball", 
       \"Align", "The-NERD-Commenter", "netrw.vim", "php-doc", "matchit.zip", "calendar.vim", "vimwiki", "snipMate", "surround.vim", 
-      \"xml.vim", "c.vim", "TxtBrowser", "neocomplcache","L9","FuzzyFinder", "templates.vim", "cecutil", "tlib", "genutils",
+      \"xml.vim", "c.vim", "TxtBrowser", "neocomplcache","L9","FuzzyFinder", "cecutil", "tlib", "genutils",
       \"word_complete.vim", "Command-T"]
 for $plugin in plugins
   Bundle $plugin
