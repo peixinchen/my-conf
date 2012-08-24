@@ -22,7 +22,6 @@ set shiftwidth  =4
 set expandtab
 set smarttab
 set smartindent
-au FileType html,python,vim,javascript setlocal shiftwidth=2
 au FileType * setlocal ff=unix
 
 set hidden
@@ -33,7 +32,8 @@ set laststatus=2
 set cmdheight=2
 set acd
 set ff=unix
-"set paste
+set paste
+color desert
 
 
 source $HOME/.vim/config/plugins.vim
