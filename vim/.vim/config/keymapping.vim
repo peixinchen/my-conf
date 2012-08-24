@@ -54,6 +54,8 @@ nnoremap <leader>ss   :so %<CR>
 nnoremap <leader>cd   :cd %:p:h<CR>
 nnoremap gf :e <c-r><c-f><cr>
 nnoremap <leader>nf :new <c-r><c-f><cr>
+nnoremap <Leader>ne :new<cr>
+
 
 nnoremap <leader>zz :x<cr>
 
@@ -224,6 +226,14 @@ nnoremap <Leader>mk :make<cr>
 nnoremap <leader>fv :FencView<cr>
 nnoremap <leader>fu :exec "edit! ++enc=utf-8"<cr>
 nnoremap <leader>fg :exec "edit! ++enc=gb18030"<cr>
+nnoremap <leader>su :set fenc=utf-8<cr>
+
+" paste
+nnoremap <Leader>pa :set paste<cr>
+nnoremap <Leader>np :set nopaste<cr>
+
+
+
 
 let mapleader=oldleader
 
