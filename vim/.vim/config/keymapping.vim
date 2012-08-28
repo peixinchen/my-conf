@@ -98,9 +98,7 @@ inoremap <expr> <C-U> pumvisible()?"\<C-E>":"\<C-U>"
 
 
 "plugins
-map <F12> <ESC>:Tlist<CR>^Wh^Ws:VTreeExplore<CR>:set nonu<CR>^Wl
-map <leader>tl <ESC>:Tlist<CR>^Wh^Ws:VTreeExplore<CR>:set nonu<CR>^Wl
-map <leader>tlr <ESC>:Tlist<CR><ESC>:Tlist<CR>
+map <leader>tb <ESC>:TagbarToggle<cr>
 
 function! GetFoo()
     call inputsave()

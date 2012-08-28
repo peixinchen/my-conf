@@ -14,8 +14,11 @@ let Tlist_Show_One_File        = 1
 let Tlist_Auto_Update           = 0
 let tlist_php_settings          = 'php;c:class;d:constant;f:function'
 if exists('loaded_taglist')
-  nmap <silent><F8> :TlistToggle<cr>
+  nmap <silent><F8> :TagbarToggle<cr>
 endif
+
+" Tagbar
+let g:tagbar_width = 25
 
 
 " ctags
