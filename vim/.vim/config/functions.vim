@@ -236,6 +236,10 @@ function! g:ex_CustomHighlight()
 
 endfunction
 
+function! BigBracketBreakLine()
+    %s/) \?{$/)\r{/g
+endfunction
+
 "function! SqlKeywordToUpper()
   "let keywords = [
   "'int', 'varchar', 'timestamp', 'char', 'bigint', 'tinyint',
