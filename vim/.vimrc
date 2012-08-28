@@ -45,13 +45,28 @@ source $HOME/.vim/config/functions.vim
 set rtp+=$HOME/.vim/plugin/vundle/ 
 call vundle#rc()
 
+
+"" decrepted
+" FuzzyFinder replaced by command-t
+" TagList     replaced by Tagbar
+
 let plugins=["xptemplate","UltraBlog","SuperTab", "FencView.vim", "taglist-plus", "ZenCoding.vim", "vcscommand.vim", "Vimball", 
       \"Align", "The-NERD-Commenter", "netrw.vim", "php-doc", "matchit.zip", "calendar.vim", "vimwiki", "snipMate", "surround.vim", 
-      \"xml.vim", "c.vim", "TxtBrowser", "neocomplcache","L9","FuzzyFinder", "cecutil", "tlib", "genutils",
-      \"word_complete.vim", "Command-T"]
+      \"xml.vim", "c.vim", "TxtBrowser", "neocomplcache","L9", "cecutil", "tlib", "genutils",
+      \"word_complete.vim", "Command-T", "Tagbar"]
 for $plugin in plugins
   Bundle $plugin
 endfor
+
+"colors
+Bundle "color-sampler-pack"
+"Bundle "Powerline"
+"Bundle "easytags.vim"
+"Bundle "SingleCompile"
+"Bundle "EasyMotion"
+"Bundle "Proj"
+"Bundle "srcExpl"
+"phpvim, vim-signature
 
 "source $HOME/project.vim
 "color shine
