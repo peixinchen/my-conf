@@ -32,7 +32,7 @@ set laststatus=2
 set cmdheight=2
 set acd
 set ff=unix
-set paste
+"set paste
 color desert
 
 
@@ -50,17 +50,18 @@ call vundle#rc()
 " FuzzyFinder replaced by command-t
 " TagList     replaced by Tagbar
 
-let plugins=["xptemplate","UltraBlog","SuperTab", "FencView.vim", "taglist-plus", "ZenCoding.vim", "vcscommand.vim", "Vimball", 
+let plugins=["xptemplate","UltraBlog","SuperTab", "FencView.vim", "ZenCoding.vim", "vcscommand.vim", "Vimball", 
       \"Align", "The-NERD-Commenter", "netrw.vim", "php-doc", "matchit.zip", "calendar.vim", "vimwiki", "snipMate", "surround.vim", 
       \"xml.vim", "c.vim", "TxtBrowser", "neocomplcache","L9", "cecutil", "tlib", "genutils",
-      \"word_complete.vim", "Command-T", "Tagbar"]
+      \"word_complete.vim", "Command-T", "Tagbar", "FuzzyFinder", "vim-powerline"]
 for $plugin in plugins
   Bundle $plugin
 endfor
 
 "colors
 Bundle "color-sampler-pack"
-"Bundle "Powerline"
+Bundle "FuzzyFinder"
+Bundle "vim-powerline"
 "Bundle "easytags.vim"
 "Bundle "SingleCompile"
 "Bundle "EasyMotion"

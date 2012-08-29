@@ -298,11 +298,22 @@ let g:vimpress_enable_tags = 1
 let g:vimpress_blog_url = 'http://weiye.info/xmlrpc.php'
 
 ""zencoding
-let g:user_zen_expandabbr_key = '<c-e>' 
-let g:use_zen_complete_tag = 1
-
+"let g:user_zen_expandabbr_key = '<c-a-e>' 
+let g:user_zen_leader_key = '<c-y>'
+let g:use_zen_complete_tag = 1 
 ""xptemplate
 let g:xptemplate_brace_complete=1
 let g:xptemplate_vars = 'SPop=&SParg='
 let g:xptemplate_vars = "author=reedboat&email=zhqm03@gmail.com&..."
 
+""Powerline
+let g:Powerline_symbols = 'fancy'
+
+""Command-t
+let g:CommandTMatchWindowAtTop = 1
+
+""surround
+""yss-
+let g:surround_45 = "<{\r}>"
+""yss=
+let g:surround_61 = "['\r']"
