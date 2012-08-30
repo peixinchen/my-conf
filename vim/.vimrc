@@ -51,17 +51,18 @@ call vundle#rc()
 " TagList     replaced by Tagbar
 
 let plugins=["xptemplate","UltraBlog","SuperTab", "FencView.vim", "ZenCoding.vim", "vcscommand.vim", "Vimball", 
-      \"Align", "The-NERD-Commenter", "netrw.vim", "php-doc", "matchit.zip", "calendar.vim", "vimwiki", "snipMate", "surround.vim", 
+      \"Align", "The-NERD-Commenter", "netrw.vim", "PDV--phpDocumentor-for-Vim", "matchit.zip", "calendar.vim", "vimwiki", "snipMate", "surround.vim", 
       \"xml.vim", "c.vim", "TxtBrowser", "neocomplcache","L9", "cecutil", "tlib", "genutils",
-      \"word_complete.vim", "Command-T", "Tagbar", "FuzzyFinder", "vim-powerline"]
+      \"word_complete.vim", "Command-T", "Tagbar", "FuzzyFinder"]
 for $plugin in plugins
   Bundle $plugin
 endfor
 
 "colors
-Bundle "color-sampler-pack"
+Bundle "Color-Sampler-Pack"
 Bundle "FuzzyFinder"
-Bundle "vim-powerline"
+Bundle "https://github.com/Lokaltog/vim-powerline"
+Bundle "tagbar-phpctags"
 "Bundle "easytags.vim"
 "Bundle "SingleCompile"
 "Bundle "EasyMotion"

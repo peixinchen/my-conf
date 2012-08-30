@@ -317,3 +317,6 @@ let g:CommandTMatchWindowAtTop = 1
 let g:surround_45 = "<{\r}>"
 ""yss=
 let g:surround_61 = "['\r']"
+
+""vundle
+let g:vundle_log_file = "/tmp/vundle.log"
