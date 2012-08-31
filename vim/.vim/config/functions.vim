@@ -236,17 +236,19 @@ function! g:ex_CustomHighlight()
 
 endfunction
 
-function! BigBracketBreakLine()
+function! BraceFormatBreakLine()
     %s/) \?{$/)\r{/g
 endfunction
 
-"function! SqlKeywordToUpper()
-  "let keywords = [
-  "'int', 'varchar', 'timestamp', 'char', 'bigint', 'tinyint',
-  "'index', 'primary key', 'unique',
-  "'not null', 'default', 'commment',
-  "'select', 'from', 'table', 'where', 'group by', 'order by', 'limit',
-  "'update', 'delete', 'insert', 'into', 'alter'
-  "];
-  "exec "%s/str"
-"endfunction
+function! SqlKeywordToUpper()
+    let kws=['int', 'varchar', 'timestamp', 'char', 'bigint', 'tinyint'
+                \'index', 'primary key', 'unique',
+                \'not null', 'default', 'commment',
+                \'select', 'from', 'table', 'where', 'group by', 'order by', 'limit',
+                \'update', 'delete', 'insert', 'into', 'alter'
+                \]
+    for kw in kws
+        let cmd = "%s/".kw."/".toupper(kw)."/g"
+        silent! execute cmd
+    endfor
+endfunction
