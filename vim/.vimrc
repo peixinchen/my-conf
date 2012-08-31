@@ -62,7 +62,11 @@ endfor
 Bundle "Color-Sampler-Pack"
 Bundle "FuzzyFinder"
 Bundle "https://github.com/Lokaltog/vim-powerline"
-Bundle "tagbar-phpctags"
+""Bundle "tagbar-phpctags"
+Bundle "fakeclip"
+Bundle "web-indent"
+Bundle "AutoComplPop"
+
 "Bundle "easytags.vim"
 "Bundle "SingleCompile"
 "Bundle "EasyMotion"
@@ -76,5 +80,7 @@ Bundle "tagbar-phpctags"
 "color darkblue
 "color delek
 
-
+if filereadable($HOME . "/project.vim")
+    source $HOME/project.vim
+endif
 " vim:ts=4:foldmethod=marker
