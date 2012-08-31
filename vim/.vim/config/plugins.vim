@@ -303,8 +303,7 @@ let g:user_zen_leader_key = '<c-y>'
 let g:use_zen_complete_tag = 1 
 ""xptemplate
 let g:xptemplate_brace_complete=1
-let g:xptemplate_vars = 'SPop=&SParg='
-let g:xptemplate_vars = "author=reedboat&email=zhqm03@gmail.com&..."
+let g:xptemplate_vars = "SPop=&SParg=&author=reedboat&email=zhqm03@gmail.com&..."
 
 ""Powerline
 let g:Powerline_symbols = 'fancy'
