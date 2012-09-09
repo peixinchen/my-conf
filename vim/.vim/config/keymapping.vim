@@ -230,6 +230,13 @@ nnoremap <leader>su :set fenc=utf-8<cr>
 nnoremap <Leader>pa :set paste<cr>
 nnoremap <Leader>np :set nopaste<cr>
 
+"" surround
+nnoremap <leader>,' ysiw'
+nnoremap <leader>,] ysiw]
+nnoremap <leader>,[ ysiw]
+nnoremap <leader>," ysiw"
+
+
 
 
 
@@ -254,6 +261,7 @@ nnoremap <Leader>cr :VCSReview<cr>
 nnoremap <Leader>cU :VCSUnlock<cr>
 
 vnoremap <c-insert> "*y
+vnoremap cp         "*y
 
 
 ""

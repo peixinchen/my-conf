@@ -38,43 +38,84 @@ color desert
 
 source $HOME/.vim/config/plugins.vim
 source $HOME/.vim/config/keymapping.vim
-source $HOME/.vim/config/aucmd.vim
+"source $HOME/.vim/config/aucmd.vim
 source $HOME/.vim/config/functions.vim
 
 
 set rtp+=$HOME/.vim/plugin/vundle/ 
 call vundle#rc()
 
+""""""""""""""""""""""""""""""""""""""""""
+"" plugins base functions
+""""""""""""""""""""""""""""""""""""""""""
+Bundle "L9"
+Bundle "cecutil"
+Bundle "tlib"
+Bundle "genutils"
+Bundle "DfrankUtil"
 
-"" decrepted
-" FuzzyFinder replaced by command-t
-" TagList     replaced by Tagbar
-
-let plugins=["xptemplate","UltraBlog","SuperTab", "FencView.vim", "ZenCoding.vim", "vcscommand.vim", "Vimball", 
-      \"Align", "The-NERD-Commenter", "netrw.vim", "PDV--phpDocumentor-for-Vim", "matchit.zip", "calendar.vim", "vimwiki", "snipMate", "surround.vim", 
-      \"xml.vim", "c.vim", "TxtBrowser", "neocomplcache","L9", "cecutil", "tlib", "genutils",
-      \"word_complete.vim", "Command-T", "Tagbar", "FuzzyFinder"]
-for $plugin in plugins
-  Bundle $plugin
-endfor
-
-"colors
-Bundle "Color-Sampler-Pack"
+""""""""""""""""""""""""""""""""""""""""""
+"" plugins that cannot been dropped
+""""""""""""""""""""""""""""""""""""""""""
+Bundle "xptemplate"
+Bundle "SuperTab"
+Bundle "FencView.vim"
+Bundle "ZenCoding.vim"
+Bundle "Align"
+Bundle "The-NERD-Commenter"
+Bundle "matchit.zip"
+Bundle "surround.vim"
+Bundle "xml.vim"
 Bundle "FuzzyFinder"
+Bundle "surround.vim"
 Bundle "https://github.com/Lokaltog/vim-powerline"
-""Bundle "tagbar-phpctags"
-Bundle "fakeclip"
-Bundle "web-indent"
 Bundle "AutoComplPop"
 
-"Bundle "easytags.vim"
+""""""""""""""""""""""""""""""""""""""""""
+"" useful plugins
+""""""""""""""""""""""""""""""""""""""""""
+Bundle "netrw.vim"
+Bundle "UltraBlog"
+Bundle "vcscommand.vim"
+Bundle "Vimball"
+Bundle "calendar.vim"
+Bundle "vimwiki"
+Bundle "snipMate"
+Bundle "c.vim"
+Bundle "TxtBrowser"
+Bundle "neocomplcache"
+Bundle "word_complete.vim"
+Bundle "Command-T"
+Bundle "Tagbar"
+
+""""""""""""""""""""""""""""""""""""""""""
+"" test plugins
+""""""""""""""""""""""""""""""""""""""""""
+Bundle "Color-Sampler-Pack"
+Bundle "JavaScript-Indent"
+
+""Bundle "pyflakes.vim" " 
+""Bundle "python.vim"
+""Bundle "easytags.vim"
+Bundle "undotree.vim"
+""Bundle "indentpython.vim"
+""Bundle "grep.vim"
+""Bundle "taskpaper.vim"
+""Bundle 'jslint.vim'
+""Bundle 'vimprj'
+""Bundle 'project.tar.gz'
+
+"use cp in visual mode directly in macos #Bundle "fakeclip" 
+"has vsccommand with same functions #Bundle "fugitive.vim"
+""Bundle "tagbar-phpctags"
 "Bundle "SingleCompile"
 "Bundle "EasyMotion"
 "Bundle "Proj"
 "Bundle "srcExpl"
 "phpvim, vim-signature
 
-"source $HOME/project.vim
+
+"colors
 "color shine
 "color evening
 "color darkblue

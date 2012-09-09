@@ -16,10 +16,11 @@ if has("autocmd")
     autocmd BufRead,BufNewFile *.tpl let g:snippetsEmu_key = "<C-S-Tab>" |
                                     \ setlocal filetype=html
     autocmd FileType html,text,php,vim,c,java,xml,bash,shell,perl,python setlocal textwidth=100 
-    autocmd BufReadPost * 
-                \ if line("'\"") > 0 && line("'\"") <= line("$") | 
-                \ exe "normal g`\"" |               
-                \ endif
+    "autocmd BufReadPost * 
+    "            \ if line("'\"") > 0 && line("'\"") <= line("$") | 
+    "            \ exe "normal g`\"" |               
+    "            \ endif
+    
 " php autocmd 
     autocmd BufRead,BufNewFile *.cpp  setlocal makeprg=/usr/bin/g++\ -m32\ -c\ %:p
     autocmd BufRead,BufNewFile *.c  setlocal makeprg=/usr/bin/gcc\ -c\ %:p
