@@ -38,7 +38,7 @@ color desert
 
 source $HOME/.vim/config/plugins.vim
 source $HOME/.vim/config/keymapping.vim
-"source $HOME/.vim/config/aucmd.vim
+source $HOME/.vim/config/aucmd.vim
 source $HOME/.vim/config/functions.vim
 
 
@@ -87,6 +87,7 @@ Bundle "neocomplcache"
 Bundle "word_complete.vim"
 Bundle "Command-T"
 Bundle "Tagbar"
+Bundle 'project.tar.gz'
 
 """"""""""""""""""""""""""""""""""""""""""
 "" test plugins
@@ -103,7 +104,6 @@ Bundle "undotree.vim"
 ""Bundle "taskpaper.vim"
 ""Bundle 'jslint.vim'
 ""Bundle 'vimprj'
-""Bundle 'project.tar.gz'
 
 "use cp in visual mode directly in macos #Bundle "fakeclip" 
 "has vsccommand with same functions #Bundle "fugitive.vim"

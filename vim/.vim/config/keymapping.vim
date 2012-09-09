@@ -231,10 +231,10 @@ nnoremap <Leader>pa :set paste<cr>
 nnoremap <Leader>np :set nopaste<cr>
 
 "" surround
-nnoremap <leader>,' ysiw'
-nnoremap <leader>,] ysiw]
-nnoremap <leader>,[ ysiw]
-nnoremap <leader>," ysiw"
+nnoremap <leader>' ysiw'
+nnoremap <leader>] ysiw]
+nnoremap <leader>[ ysiw]
+nnoremap <leader>" ysiw"
 
 
 
