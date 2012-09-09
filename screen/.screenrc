@@ -3,7 +3,7 @@ chdir
 autodetach on
 defscrollback 2000
 vbell off
-escape x
+escape l
 
 #caption always "%{= dd}%-w%{+bu}%n %t%{-}%+w"
 
