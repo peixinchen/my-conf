@@ -241,14 +241,16 @@ function! BraceFormatBreakLine()
 endfunction
 
 function! SqlKeywordToUpper()
-    let kws=['int', 'varchar', 'timestamp', 'char', 'bigint', 'tinyint'
-                \'index', 'primary key', 'unique',
+    let kws=['int', 'varchar', 'timestamp', 'char', 'bigint', 'tinyint', 'datetime', 'unsigned', 'text', 'blob',
+                \'index', 'primary key', 'unique','forigen','key', 'on'
                 \'not null', 'default', 'commment',
-                \'select', 'from', 'table', 'where', 'group by', 'order by', 'limit',
-                \'update', 'delete', 'insert', 'into', 'alter'
+                \'left', 'inner', 'right', 'join',
+                \'select', 'from', 'table', 'where', 'group by', 'order by', 'limit', 'have',
+                \'update', 'delete', 'insert', 'into', 'alter','create', 'if', 'exists', 'drop'
                 \]
     for kw in kws
-        let cmd = "%s/".kw."/".toupper(kw)."/g"
-        silent! execute cmd
+        let cmd = "%s/\\<".kw."\\>/".toupper(kw)."/g"
+        "silent! execute cmd
+        execute cmd
     endfor
 endfunction
