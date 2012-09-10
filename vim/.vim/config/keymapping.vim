@@ -75,6 +75,8 @@ nnoremap <F11> :call ToggleFullScreen()<CR>
 " Align
 vnoremap <leader>al :Align 
 nnoremap <leader>ac :AlignCtrl 
+vnoremap <leader>a= :Align = <cr>
+vnoremap <leader>a> :Align => <cr>
 
 
 " vertically split and generate a previewwindow
@@ -231,10 +233,10 @@ nnoremap <Leader>pa :set paste<cr>
 nnoremap <Leader>np :set nopaste<cr>
 
 "" surround
-nnoremap <leader>' ysiw'
-nnoremap <leader>] ysiw]
-nnoremap <leader>[ ysiw]
-nnoremap <leader>" ysiw"
+nnoremap <Leader>'  ysiw'
+nnoremap <Leader>"  ysiw"
+nnoremap <Leader>[  ysiw[
+nnoremap <Leader>]  ysiw]
 
 
 
