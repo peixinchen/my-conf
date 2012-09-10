@@ -88,6 +88,7 @@ Bundle "word_complete.vim"
 Bundle "Command-T"
 Bundle "Tagbar"
 Bundle 'project.tar.gz'
+Bundle "PDV--phpDocumentor-for-Vim"
 
 """"""""""""""""""""""""""""""""""""""""""
 "" test plugins
