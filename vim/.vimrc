@@ -95,15 +95,17 @@ Bundle "PDV--phpDocumentor-for-Vim"
 """"""""""""""""""""""""""""""""""""""""""
 Bundle "Color-Sampler-Pack"
 Bundle "JavaScript-Indent"
+Bundle "CmdlineComplete"
 
 ""Bundle "pyflakes.vim" " 
 ""Bundle "python.vim"
 ""Bundle "easytags.vim"
-Bundle "undotree.vim"
+""Bundle "undotree.vim"
 ""Bundle "indentpython.vim"
 ""Bundle "grep.vim"
 ""Bundle "taskpaper.vim"
-""Bundle 'jslint.vim'
+Bundle 'jslint.vim'
+Bundle 'haml.zip'
 ""Bundle 'vimprj'
 
 "use cp in visual mode directly in macos #Bundle "fakeclip" 
@@ -113,6 +115,7 @@ Bundle "undotree.vim"
 "Bundle "EasyMotion"
 "Bundle "Proj"
 "Bundle "srcExpl"
+Bundle "jsbeautify"
 "phpvim, vim-signature
 
 
