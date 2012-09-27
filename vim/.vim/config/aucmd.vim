@@ -40,11 +40,14 @@ if has("autocmd")
     autocmd BufRead,BufNewFile *.phtml set filetype=php
 " xml autocmd
     autocmd BufRead,BufNewFile *.xml,*.mxml
-                \ exe 'setlocal equalprg =tidy\ -imq\ -raw\ -xml\ -f\ ' . &errorfile
+                \ exe 'setlocal equalprg =tidy\ -imq\ -raw\ -xml\ --tidy-mark\ 0\ -f\ ' . &errorfile
 " html autocmd
     autocmd BufRead,BufNewFile *.html
-                \ exe 'setlocal equalprg =tidy\ -imq\ -raw\ -asxhtml\ -f\ ' . &errorfile |
-                \ setlocal omnifunc=htmlcomplete#CompleteTags
+                \ setlocal omnifunc=htmlcomplete#CompleteTags|
+                \ setlocal makeprg=tidy\ -quiet\ -errors\ %|
+                \ setlocal errorformat=line\ %l\ column\ %v\ -\ %m|
+                \ setlocal equalprg =tidy\ -imq\ -raw\ -asxhtml\ --indent\ 1\ --tidy-mark\ 0\ --show-errors\ 0\ --drop-empty-elements\ 0\ -wrap\ 300
+
     " About FileType autocmd BufEnter * call CHANGE_CURR_DIR() " same as ":set autochdir"
     autocmd BufRead,BufNewFile *.c,*.cpp compiler gcc
     autocmd BufRead,BufNewFile *.tcl  compiler tcl
@@ -56,7 +59,12 @@ if has("autocmd")
     autocmd BufRead,BufNewFile *.viki setlocal filetype=viki |
       \ setlocal makeprg=$vim/program/deplate/deplate\ -m\ lang-zh_CN-autospace\ -c\ code\ -X\ %
     "autocmd BufWritePre,FileWritePre [._]vimrc ks|call LastModified()|'s
-    au BufRead,BufNewFile *.js set ft=javascript.jquery
+    au BufRead,BufNewFile *.js set ft=javascript.jquery |
+        \ setlocal makeprg=jslint\ %|
+        \ setlocal errorformat=%-P%f,
+                    \%E%>\ #%n\ %m,%Z%.%#Line\ %l\\,\ Pos\ %c,
+                    \%-G%f\ is\ OK.,%-Q
+    
 
     autocmd FileType python set omnifunc=pythoncomplete#Complete
     autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
