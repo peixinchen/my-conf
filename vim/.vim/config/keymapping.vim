@@ -239,7 +239,14 @@ nmap <Leader>[  ysiw[
 nmap <Leader>]  ysiw]
 
 
+""jslint
+noremap <leader>jl :call JsonLint()<cr>
 
+""diff
+nnoremap <Leader>dt :diffthis<cr>
+nnoremap <Leader>do :diffoff <cr>
+
+""tidy
 
 
 let mapleader=oldleader
