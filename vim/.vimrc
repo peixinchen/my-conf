@@ -42,8 +42,10 @@ source $HOME/.vim/config/aucmd.vim
 source $HOME/.vim/config/functions.vim
 
 
-set rtp+=$HOME/.vim/plugin/vundle/ 
+set rtp+=$HOME/.vim/bundle/vundle/ 
 call vundle#rc()
+Bundle 'gmarik/vundle'
+
 
 """"""""""""""""""""""""""""""""""""""""""
 "" plugins base functions
@@ -68,7 +70,7 @@ Bundle "surround.vim"
 Bundle "xml.vim"
 Bundle "FuzzyFinder"
 Bundle "surround.vim"
-Bundle "https://github.com/Lokaltog/vim-powerline"
+Bundle "Lokaltog/vim-powerline"
 Bundle "AutoComplPop"
 
 """"""""""""""""""""""""""""""""""""""""""
@@ -109,7 +111,8 @@ Bundle 'haml.zip'
 ""Bundle 'vimprj'
 
 "use cp in visual mode directly in macos #Bundle "fakeclip" 
-"has vsccommand with same functions #Bundle "fugitive.vim"
+"has vsccommand with same functions 
+Bundle "tpope/vim-fugitive"
 ""Bundle "tagbar-phpctags"
 "Bundle "SingleCompile"
 "Bundle "EasyMotion"
