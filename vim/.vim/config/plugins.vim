@@ -20,6 +20,22 @@ endif
 " Tagbar
 let g:tagbar_width = 25
 
+if has('cscope')
+  set cscopetag cscopeverbose
+
+  if has('quickfix')
+    set cscopequickfix=s-,c-,d-,i-,t-,e-
+  endif
+
+  ""cnoreabbrev csa cs add
+  ""cnoreabbrev csf cs find
+  ""cnoreabbrev csk cs kill
+  ""cnoreabbrev csr cs reset
+  ""cnoreabbrev css cs show
+  ""cnoreabbrev csh cs help
+
+  command -nargs=0 Cscope cs add $VIMSRC/src/cscope.out $VIMSRC/src
+endif
 
 " ctags
 " $home/ctags.conf
@@ -319,3 +335,7 @@ let g:surround_61 = "['\r']"
 
 ""vundle
 let g:vundle_log_file = "/tmp/vundle.log"
+
+""django
+let g:project_directory=expand('~/workspace/python-dev')
+let g:django_projects=expand('~/workspace/python-dev')

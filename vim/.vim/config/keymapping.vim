@@ -63,7 +63,7 @@ nnoremap <silent> <leader>rc :call SwitchToBuf($vim."/.vimrc")<cr>
 nnoremap <silent> <leader>ec :call SwitchToBuf($trash.'/scratch.txt')<cr>
 
 nnoremap <silent> <leader>nu :call ToogleOption('nu')<cr>
-inoremap <silent> <leader>sw <esc>:set wrap! <cr>0
+nnoremap <silent> <leader>sw <esc>:set wrap! <cr>0
 
 
 nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<cr>
@@ -171,7 +171,6 @@ nnoremap <silent><C-Right> :<C-u>cal search('\<\<Bar>\U\@<=\u\<Bar>\u\ze\%(\U\&\
 inoremap <silent><C-Left> <C-o>:cal search('\<\<Bar>\U\@<=\u\<Bar>\u\ze\%(\U\&\>\@!\)\<Bar>\%^','bW')<CR>
 inoremap <silent><C-Right> <C-o>:cal search('\<\<Bar>\U\@<=\u\<Bar>\u\ze\%(\U\&\>\@!\)\<Bar>\%$','W')<CR>
 
-" expand the abbrev 
 
 nnoremap <leader>ef :call EchoFunc("<cword>")<cr>
 nnoremap <leader>tr :tag <c-r>"<cr>
@@ -216,7 +215,6 @@ nnoremap <silent> <C-f><C-r> :FufRenewCache<CR>
 " pdv 
 nnoremap <leader>pd :Phpdoc %<cr>
 
-inoremap jj <esc> 
 
 " make and run
 nnoremap <Leader>ru :!php -f <c-r>=expand('%:p')<cr><cr>

@@ -6,3 +6,4 @@
 *~
 .netrwhist
 Powerline_distinguished_distinguished_compatible.cache
+#git config --global core.excludesfile ~/.gitignore_global

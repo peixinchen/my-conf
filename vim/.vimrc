@@ -9,7 +9,7 @@ let $ctags='/usr/bin/ctags'
 set number
 set history       =400
 set ignorecase
-set tags           =./tags,tags,./../tags,./**/tags;
+set tags           =./tags,tags,./../tags
 set sessionoptions -=curdir
 set sessionoptions +=sesdir
 set cul
@@ -62,7 +62,13 @@ Bundle "DfrankUtil"
 Bundle "xptemplate"
 Bundle "SuperTab"
 Bundle "FencView.vim"
-Bundle "ZenCoding.vim"
+"Bundle "ZenCoding.vim"
+"" more powerful than zencoding written in python
+Bundle "rstacruz/sparkup"
+set rtp+=$HOME/.vim/bundle/sparkup/vim/ 
+"" syntax check for many program languages
+Bundle "scrooloose/syntastic"
+
 Bundle "Align"
 Bundle "The-NERD-Commenter"
 Bundle "matchit.zip"
@@ -99,7 +105,6 @@ Bundle "Color-Sampler-Pack"
 Bundle "JavaScript-Indent"
 Bundle "CmdlineComplete"
 
-""Bundle "pyflakes.vim" " 
 ""Bundle "python.vim"
 ""Bundle "easytags.vim"
 ""Bundle "undotree.vim"
@@ -119,7 +124,14 @@ Bundle "tpope/vim-fugitive"
 "Bundle "Proj"
 "Bundle "srcExpl"
 Bundle "jsbeautify"
+"Bundle "chazy/cscope_maps"
 "phpvim, vim-signature
+
+"python"
+Bundle "vim-django"
+""Bundle "kevinw/pyflakes-vim"
+Bundle "indentpython.vim"
+Bundle "vim-coffee-script"
 
 
 "colors

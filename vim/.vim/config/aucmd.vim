@@ -24,6 +24,8 @@ if has("autocmd")
 " php autocmd 
     autocmd BufRead,BufNewFile *.cpp  setlocal makeprg=/usr/bin/g++\ -m32\ -c\ %:p
     autocmd BufRead,BufNewFile *.c  setlocal makeprg=/usr/bin/gcc\ -c\ %:p
+
+    autocmd BufRead,BufNewFile *.coffee setlocal filetype=coffee
     
     autocmd BufRead,BufNewFile *.php 
                \ setlocal makeprg     =/usr/bin/php\ -l\ -d\ html_errors=off\ -f\ %:p |
