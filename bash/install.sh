@@ -1,5 +1,5 @@
 #!/bin/bash
-alias apti='apti'
+
 install_ruby(){
     curl -L https://get.rvm.io | bash -s stable --autolibs=3 --ruby
     gem install rails
@@ -7,67 +7,103 @@ install_ruby(){
 }
 
 install_python(){
-    apti python python-pip python-virtualenv
+    apt-get install -y python python-pip python-virtualenv
     pip install ipython
     pip install django<5.0
 }
 
 install_php(){
-    apti php5 php5-cgi php5-cli php5-fpm php5-pear php5-curl php5-dev php5-mysql
-    curl -s http://getcomposer.org/installer | php
+    apt-get install -y php5 php5-cgi php5-cli php5-fpm php-pear php5-curl php5-dev php5-mysql
+    if [[ ! -f /usr/bin/composer ]];then
+        curl -s http://getcomposer.org/installer | php
+        mv ./composer.phar /usr/bin/composer
+    fi
 }
 
 install_git(){
-    apti git git-flow git-svn
+    apt-get install -y git 
+    apt-get install -y git-flow git-svn
 }
 
 install_dev(){
-    apti build_essential
+    apt-get install -y build_essential
     install_php
     install_python
     insta_ruby
 }
 
 install_db(){
-    apti sqlite3 
-    apti mysql-cli mysql-server mysql-common
-    apti memcache
-    apti redis-server
+    apt-get install -y sqlite3 
+    apt-get install -y mysql-cli mysql-server mysql-common
+    apt-get install -y memcache
+    apt-get install -y redis-server
 }
 
 install_nginx(){
-    apti nginx
+    apt-get install nginx
     nginx
 }
 
-install_operate(){
-    apti tree, lsof
-    apti cscope, exuberant-ctags
-    apti wget, curl, openssl, w3m
-    apti expect, lrzsz, tcl8.5 tcl8.5-dev
-    apti strace
-    apti zsh
+install_shell(){
+    apt-get install tree, lsof
+    apt-get install cscope, exuberant-ctags
+    apt-get install wget, curl, openssl, w3m
+    apt-get install expect, lrzsz, tcl8.5 tcl8.5-dev
+    apt-get install strace
+    apt-get install zsh
 }
 
 install_front(){
-    apti coffeescript
-    apti nodejs, npm
+    apt-get install coffeescript
+    apt-get install nodejs, npm
 }
 
 install_cpp(){
-    apti gcc
-    apti libboost
+    apt-get install gcc
+    apt-get install libboost
 }
 
 usage(){
-    cat > '/tmp/a.txt' << EOF
-    Usage: bash $0 <command> <options>
-EOF
-exit;
+    echo
+    echo "  Usage: bash $0 <command> <options>"
+    echo "  Avaiable commands:"
+    echo "      front"
+    echo "      php"
+    echo "      python"
+    echo "      ruby"
+    echo "      front"
+    echo "      shell"
+    echo "      git"
+    echo "      db"
+    echo
+    exit
 }
 
-if [[  $# -eq 2 ]];then
-    install_nginx
+if [[  $# -eq 1 ]];then
+    command=$1
+    case $command in
+        cpp)
+            install_cpp
+            ;;
+        python)
+            install_python
+            ;;
+        php)
+            install_php
+            ;;
+        ruby)
+            install_ruby;;
+        shell)
+            install_shell;;
+        help)
+            usage;;
+        *)
+            echo
+            echo "invalid command \"$command\""
+            usage
+    esac
 else
+    echo
+    echo "invalid parameters \"$@\""
     usage
 fi
