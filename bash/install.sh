@@ -1,5 +1,16 @@
 #!/bin/bash
 
+shopt -s expand_aliases
+alias apti='apt-get install -y'
+
+if [[ -f "cbl.sh" ]]
+then
+    source cbl.sh
+else
+    alias rmsg="echo"
+    alias gmsg="echo"
+fi
+
 install_ruby(){
     curl -L https://get.rvm.io | bash -s stable --autolibs=3 --ruby
     gem install rails
@@ -64,18 +75,18 @@ install_cpp(){
 }
 
 usage(){
-    echo
-    echo "  Usage: bash $0 <command> <options>"
-    echo "  Avaiable commands:"
-    echo "      front"
-    echo "      php"
-    echo "      python"
-    echo "      ruby"
-    echo "      front"
-    echo "      shell"
-    echo "      git"
-    echo "      db"
-    echo
+    gmsg
+    gmsg "  Usage: bash $0 <command> <options>"
+    gmsg "  Avaiable commands:"
+    gmsg "      front"
+    gmsg "      php"
+    gmsg "      python"
+    gmsg "      ruby"
+    gmsg "      front"
+    gmsg "      shell"
+    gmsg "      git"
+    gmsg "      db"
+    gmsg
     exit
 }
 
@@ -99,11 +110,11 @@ if [[  $# -eq 1 ]];then
             usage;;
         *)
             echo
-            echo "invalid command \"$command\""
+            rmsg "invalid command \"$command\""
             usage
     esac
 else
     echo
-    echo "invalid parameters \"$@\""
+    rmsg "invalid parameters \"$@\""
     usage
 fi
