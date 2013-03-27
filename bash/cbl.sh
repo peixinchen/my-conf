@@ -999,1151 +999,1148 @@ get_mountpoint_for_pathname()
     df "$path" 2>/dev/null | awk 'NR == 2 { print $NF }'
 }
     
-    ## try to find the mountpoint for a pathname
-    get_devname_for_mountpoint()
-    {
-        local path=$1
-    
-        [[ -n $path ]] || return 1
-        [[ -d $path ]] || return 1
-    
-        df "$path" 2>/dev/null | awk 'NR == 2 { print $1 }'
-    }
-    
-    ## get the file's owner
-    get_file_owner()
-    {
-        local f=$1
-    
-        \ls -ld "$f" 2>/dev/null |
-            awk '{ print $3 }'
-    }
-    
-    ## get the file's group
-    get_file_group()
-    {
-        local f=$1
-    
-        \ls -ld "$f" 2>/dev/null |
-            awk '{ print $4 }'
-    }
-    
-    ## get the file's permission
-    get_file_permission()
-    {
-        local f=$1
-    
-        [[ -e  $f ]]             || return 1
-        [[ -r $( dirname $f ) ]] || return 1
-    
-        perl -we '
-            $a = (stat $ARGV[0])[2];
-            printf "%04o\n", $a & 07777;
-         ' "$f"
-    }
-    
-    ## ---------------------------------------------------------
-    
-    
-    
-    
-    
-    
-    ## --------------------- OS / HW info ----------------------
-    
-    ## check if running on SUSE OS
-    ## return true / false
-    check_suseos()
-    {
-        if [[ -f "/etc/SuSE-release" ]]; then
-            grep -wqF 'SUSE' /etc/SuSE-release && return 0
-        fi
-    
-        [[ -x /sbin/yast2 ]]  && return 0 || :
-        
+## try to find the mountpoint for a pathname
+get_devname_for_mountpoint()
+{
+    local path=$1
+
+    [[ -n $path ]] || return 1
+    [[ -d $path ]] || return 1
+
+    df "$path" 2>/dev/null | awk 'NR == 2 { print $1 }'
+}
+
+## get the file's owner
+get_file_owner()
+{
+    local f=$1
+
+    \ls -ld "$f" 2>/dev/null |
+    awk '{ print $3 }'
+}
+
+## get the file's group
+get_file_group()
+{
+    local f=$1
+
+    \ls -ld "$f" 2>/dev/null |
+    awk '{ print $4 }'
+}
+
+## get the file's permission
+get_file_permission()
+{
+    local f=$1
+
+    [[ -e  $f ]]             || return 1
+    [[ -r $( dirname $f ) ]] || return 1
+
+    perl -we '
+    $a = (stat $ARGV[0])[2];
+    printf "%04o\n", $a & 07777;
+    ' "$f"
+}
+
+## ---------------------------------------------------------
+
+
+
+
+
+
+## --------------------- OS / HW info ----------------------
+
+## check if running on SUSE OS
+## return true / false
+check_suseos()
+{
+    if [[ -f "/etc/SuSE-release" ]]; then
+        grep -wqF 'SUSE' /etc/SuSE-release && return 0
+    fi
+
+    [[ -x /sbin/yast2 ]]  && return 0 || :
+
+    return 1
+}
+
+## check if running on Slackware OS
+## return true / false
+check_slkos()
+{
+    if [[ -f "/etc/slackware-version" ]]; then
+        grep -wqF 'Slackware' /etc/slackware-version &>/dev/null && return 0
+    fi
+
+    [[ -x /sbin/installpkg ]]  && return 0 || :
+
+    return 1
+}
+
+## check if running on RedHat OS
+## return true / false
+check_rhos()
+{
+    if [[ -f /etc/redhat-release ]]; then
+        grep -wqi red /etc/redhat-release &>/dev/null && return 0
+    fi
+
+    return 1
+}
+
+## print OS info, now just os version 
+get_osinfo()
+{
+    ## use xargs to delete '\n', I love xargs!
+    if check_suseos; then
+        xargs < /etc/SuSE-release
+    elif check_slkos; then
+        xargs < /etc/slackware-version
+    elif check_rhos; then
+        xargs < /etc/redhat-release
+    else
+        ## lsb_release may be found on ubuntu, debian, etc.
+        lsb_release -d 2>/dev/null || echo 'UNKNOWD OS'
+    fi
+}
+
+## print OS name
+get_osname()
+{
+    if check_suseos; then
+        echo SUSE
+    elif check_slkos; then
+        echo SLK
+    elif check_rhos; then
+        echo RH
+    else
+        echo UNKNOWN
         return 1
-    }
-    
-    ## check if running on Slackware OS
-    ## return true / false
-    check_slkos()
+    fi
+}
+
+## with bit flag
+get_osname2()
+{
+    echo $( get_osver )_$( get_cputype )
+}
+
+## return 32/64, based on OS but not hardware
+get_cputype()
+{
+    if uname -a | grep -Fq 'x86_64'; then
+        echo 64
+    else
+        echo 32
+    fi
+}
+
+get_osver()
+{
+    if grep -Eq 'Slackware[[:blank:]]+8\.[0-9]'  /etc/slackware-version; then
+        echo slk8
+    elif grep -Eq 'Slackware[[:blank:]]+10\.[0-9]'  /etc/slackware-version; then
+        echo slk10
+    elif check_suseos; then
+        echo "suse$( get_cputype )"
+    elif check_rhos; then
+        echo "rh$( get_cputype   )"
+    else
+        echo "UNKNOWN"
+    fi 2>/dev/null
+}
+
+## return kernel version: 2.4 / 2.6
+get_kernver()
+{
+    /sbin/kernelversion 2>/dev/null ||
+    uname -r | grep -o '^2\..'
+}
+
+## get free capacity of a partition by a filename/pathname
+get_free_cap()
+{
+    local path=$1
+
+    if [[ ! -e "$path" ]]; then
+        echo 0B
+        return
+    fi
+
+    ## df so cool!
+    df -h "$path" | awk 'NR==2 { print $4 }'
+}
+
+
+## get the size of files by du
+## example: get_file_size "/var/log"
+get_file_size()
+{
+    ## do not quote [$file], may contain more than one filename
+    local file=$1
+    local size=$( du -sh $file 2>/dev/null | awk '{ print $1; exit }' || echo 0B )
+
+    echo ${size: -1} | grep -q '^[0-9]$' && size=${size}B
+    echo ${size:-0B}
+}
+
+## get the size of physical mem
+get_mem_size()
+{
+    local unit=$1
+    local resut dividend
+
+    case $unit in 
+    k|K)
+        dividend=1
+        ;;
+    m|M)
+        dividend=1000
+        ;;
+    g|G)
+        dividend=1000000
+        ;;
+    t|T)
+        dividend=1000000000
+        ;;
+    *)
+        dividend=1  ## default, K
+        ;;
+    esac
+
+    resut=$( awk '/^MemTotal/ { print $2 }' /proc/meminfo )
+    calculate2 "$resut / $dividend"
+}
+
+## get the size of all hard disks
+get_hdd_size()
+{
+    local unit=$1
+    local resut dividend
+
+    case $unit in 
+    k|K)
+        dividend=1
+        ;;
+    m|M)
+        dividend=1000
+        ;;
+    g|G)
+        dividend=1000000
+        ;;
+    t|T)
+        dividend=1000000000
+        ;;
+    *)
+        dividend=1  ## default, K
+        ;;
+    esac
+
+    ## check /proc/partitions, fdisk -l not reliable
+    resut=$( 
+    awk 'BEGIN{ total = 0 }
     {
-        if [[ -f "/etc/slackware-version" ]]; then
-            grep -wqF 'Slackware' /etc/slackware-version &>/dev/null && return 0
-        fi
-    
-        [[ -x /sbin/installpkg ]]  && return 0 || :
-    
-        return 1
+        if ( $1 !~ /^[[:space:]]*[0-9]+/ ) {
+            next
+        }
+
+        if ( $NF ~ /cciss\/c[0-9]d[0-9][[:space:]]*$/ || $NF ~ /[sh]d[a-z][[:space:]]*$/ ) {
+            total += $3
+        }
     }
-    
-    ## check if running on RedHat OS
-    ## return true / false
-    check_rhos()
+    END { printf("%d", total) }' /proc/partitions
+    )
+
+    calculate2 "$resut / $dividend"
+}
+
+## get cpu name: intel/amd x $core_num
+get_cpu_name()
+{
+    awk 'BEGIN{ num = 0; name = "unknow"; FS = ":" }
     {
-        if [[ -f /etc/redhat-release ]]; then
-            grep -wqi red /etc/redhat-release &>/dev/null && return 0
-        fi
-    
-        return 1
+        if ( $1 !~ /^model name/ ) {
+            next
+        }
+        if ( $0 ~ /[Ii]ntel/ ) {
+            name = "Intel"
+        }
+    else if ( $0 ~ /AMD/ ) {
+        name = "Amd"
     }
-    
-    ## print OS info, now just os version 
-    get_osinfo()
-    {
-        ## use xargs to delete '\n', I love xargs!
-        if check_suseos; then
-            xargs < /etc/SuSE-release
-        elif check_slkos; then
-            xargs < /etc/slackware-version
-        elif check_rhos; then
-            xargs < /etc/redhat-release
-        else
-            ## lsb_release may be found on ubuntu, debian, etc.
-            lsb_release -d 2>/dev/null || echo 'UNKNOWD OS'
-        fi
+    else {
+        name = 'unknow'
     }
-    
-    ## print OS name
-    get_osname()
-    {
-        if check_suseos; then
-            echo SUSE
-        elif check_slkos; then
-            echo SLK
-        elif check_rhos; then
-            echo RH
-        else
-            echo UNKNOWN
-            return 1
-        fi
+    num++
     }
-    
-    ## with bit flag
-    get_osname2()
+    END { print name"x"num }' /proc/cpuinfo
+}
+
+## get cpu cache sizes
+get_cpu_cachesize()
+{
+    awk 'BEGIN{ num = 0; size = 0; FS = ":"; }
     {
-        echo $( get_osver )_$( get_cputype )
-    }
-    
-    ## return 32/64, based on OS but not hardware
-    get_cputype()
-    {
-        if uname -a | grep -Fq 'x86_64'; then
-            echo 64
-        else
-            echo 32
-        fi
-    }
-    
-    get_osver()
-    {
-        if grep -Eq 'Slackware[[:blank:]]+8\.[0-9]'  /etc/slackware-version; then
-            echo slk8
-        elif grep -Eq 'Slackware[[:blank:]]+10\.[0-9]'  /etc/slackware-version; then
-            echo slk10
-        elif check_suseos; then
-            echo "suse$( get_cputype )"
-        elif check_rhos; then
-            echo "rh$( get_cputype   )"
-        else
-            echo "UNKNOWN"
-        fi 2>/dev/null
-    }
-    
-    ## return kernel version: 2.4 / 2.6
-    get_kernver()
-    {
-        /sbin/kernelversion 2>/dev/null ||
-            uname -r | grep -o '^2\..'
-    }
-    
-    ## get free capacity of a partition by a filename/pathname
-    get_free_cap()
-    {
-        local path=$1
-    
-        if [[ ! -e "$path" ]]; then
-            echo 0B
-            return
-        fi
-    
-        ## df so cool!
-        df -h "$path" | awk 'NR==2 { print $4 }'
-    }
-    
-    
-    ## get the size of files by du
-    ## example: get_file_size "/var/log"
-    get_file_size()
-    {
-        ## do not quote [$file], may contain more than one filename
-        local file=$1
-        local size=$( du -sh $file 2>/dev/null | awk '{ print $1; exit }' || echo 0B )
-    
-        echo ${size: -1} | grep -q '^[0-9]$' && size=${size}B
-        echo ${size:-0B}
-    }
-    
-    ## get the size of physical mem
-    get_mem_size()
-    {
-        local unit=$1
-        local resut dividend
-    
-        case $unit in 
-        k|K)
-            dividend=1
-            ;;
-        m|M)
-            dividend=1000
-            ;;
-        g|G)
-            dividend=1000000
-            ;;
-        t|T)
-            dividend=1000000000
-            ;;
-        *)
-            dividend=1  ## default, K
-            ;;
-        esac
-    
-        resut=$( awk '/^MemTotal/ { print $2 }' /proc/meminfo )
-        calculate2 "$resut / $dividend"
-    }
-    
-    ## get the size of all hard disks
-    get_hdd_size()
-    {
-        local unit=$1
-        local resut dividend
-    
-        case $unit in 
-        k|K)
-            dividend=1
-            ;;
-        m|M)
-            dividend=1000
-            ;;
-        g|G)
-            dividend=1000000
-            ;;
-        t|T)
-            dividend=1000000000
-            ;;
-        *)
-            dividend=1  ## default, K
-            ;;
-        esac
-    
-        ## check /proc/partitions, fdisk -l not reliable
-        resut=$( 
-            awk 'BEGIN{ total = 0 }
-            {
-                if ( $1 !~ /^[[:space:]]*[0-9]+/ ) {
-                    next
-                }
-            
-                if ( $NF ~ /cciss\/c[0-9]d[0-9][[:space:]]*$/ || $NF ~ /[sh]d[a-z][[:space:]]*$/ ) {
-                    total += $3
-                }
-            }
-            END { printf("%d", total) }' /proc/partitions
-        )
-    
-        calculate2 "$resut / $dividend"
-    }
-    
-    ## get cpu name: intel/amd x $core_num
-    get_cpu_name()
-    {
-        awk 'BEGIN{ num = 0; name = "unknow"; FS = ":" }
-        {
-            if ( $1 !~ /^model name/ ) {
-                next
-            }
-            if ( $0 ~ /[Ii]ntel/ ) {
-                name = "Intel"
-            }
-            else if ( $0 ~ /AMD/ ) {
-                name = "Amd"
-            }
-            else {
-                name = 'unknow'
-            }
+        if ( $1 ~ /^cache size/ ) {
             num++
+            size = $2 + 0
         }
-        END { print name"x"num }' /proc/cpuinfo
     }
-    
-    ## get cpu cache sizes
-    get_cpu_cachesize()
+    END { print size"Kx"num }' /proc/cpuinfo
+}
+
+## cnt of cpu core
+get_cpu_core_cnt()
+{
+    grep -c cores /proc/cpuinfo
+}
+
+get_cpu_modename()
+{
+    awk -F: '/^model name/ { print $2 }' /proc/cpuinfo | sed 1q | trim
+}
+
+
+## 2009-01-14 samli, check if a partition readonly
+## argv: $mountpoint / $pathname
+## return true / false
+is_partition_readonly()
+{
+    local p=$1
+    local mountpoint
+    local rw_flag
+
+    mountpoint=$( get_mountpoint_for_pathname "$p" )
+
+    ## rw_flag: ro / rw
+    rw_flag=$(
+    awk -vp=$mountpoint '
     {
-        awk 'BEGIN{ num = 0; size = 0; FS = ":"; }
-        {
-            if ( $1 ~ /^cache size/ ) {
-                num++
-                size = $2 + 0
-            }
+        if ( $1 != "/dev/root" && $2 == p ) {
+            str=$4
+            gsub(",.*", "", str)
+            print str
+            exit
         }
-        END { print size"Kx"num }' /proc/cpuinfo
+    }' /proc/mounts )
+
+    if [[ $rw_flag == "ro" ]]; then
+        return 0
+    else
+        return 1
+    fi
+}
+
+## 2009-01-14 samli, check if a partition no space left
+## argv: $mountpoint / $pathname
+## return true / false
+is_partition_full()
+{
+    local p=$1
+    local full_flag
+
+    case $p in
+    /*)
+        ;;
+    *)
+        return 1
+        ;;
+    esac
+
+    ## check inode and data area
+    full_flag=$( 
+    { df -Pi "$p"; df -Pk "$p"; } |
+        awk '! /^Filesystem/ {
+        usage = $(NF-1) + 0
+        if ( usage == 100 ) {
+            print "Y"
+            exit
+        }
+    }'
+    )
+
+    if [[ $full_flag == "Y" ]]; then
+        return 0
+    else
+        return 1
+    fi
+}  
+
+## find the username we added manually
+## see man shadow to find the detail of the policy
+find_non_sys_user()
+{
+
+    # need root privilege to access '/etc/shadow'
+    (( UID == 0 )) || return 1
+
+    perl -we '
+    use strict;
+    my @users;
+    my $fd;
+    my ( $user, $pass, $uid );
+
+    ## find the username having password
+    open ($fd, "<", "/etc/shadow") or die "Can not open /etc/shadow\n";
+    while (<$fd>) {
+        ($user, $pass ) = (split ":")[0,1];
+        next if $user eq "root";
+
+        if ( $pass =~ m{ [a-zA-Z0-9/\$] }x ) {
+            push @users, $user;
+        }            
+        elsif ( $pass eq "" ) {
+        push @users, $user;
     }
-    
-    ## cnt of cpu core
-    get_cpu_core_cnt()
-    {
-        grep -c cores /proc/cpuinfo
+}
+close $fd or die "Can not close $fd\n";
+
+## find the username having uid >= normal uid
+open ($fd, "<", "/etc/passwd") or die "Can not open /etc/passwd\n";
+while (<$fd>) {
+    ($user, $uid ) = (split ":")[0,2];
+    next if $user eq "root";
+    next if $user eq "nobody";
+
+    if ( $uid >= 1000 ) { ## should  read this val from /etc/login.defs
+        push @users, $user unless grep { /\b$user\b/ }  @users;
     }
-    
-    get_cpu_modename()
-    {
-        awk -F: '/^model name/ { print $2 }' /proc/cpuinfo | sed 1q | trim
-    }
-    
-    
-    ## 2009-01-14 samli, check if a partition readonly
-    ## argv: $mountpoint / $pathname
-    ## return true / false
-    is_partition_readonly()
-    {
-        local p=$1
-        local mountpoint
-        local rw_flag
-        
-        mountpoint=$( get_mountpoint_for_pathname "$p" )
-    
-        ## rw_flag: ro / rw
-        rw_flag=$(
-          awk -vp=$mountpoint '
-          {
-              if ( $1 != "/dev/root" && $2 == p ) {
-                  str=$4
-                  gsub(",.*", "", str)
-                  print str
-                  exit
-              }
-          }' /proc/mounts )
-          
-          if [[ $rw_flag == "ro" ]]; then
-              return 0
-          else
-              return 1
-          fi
-    }
-    
-    ## 2009-01-14 samli, check if a partition no space left
-    ## argv: $mountpoint / $pathname
-    ## return true / false
-    is_partition_full()
-    {
-        local p=$1
-        local full_flag
-    
-        case $p in
-        /*)
+    elsif ( $uid == 0 ) { ## make sure dangerous user with uid = 0
+    push @users, $user unless grep { /\b$user\b/ }  @users;
+}
+}
+close $fd or die "Can not close $fd\n";
+
+for my $u (sort @users) {
+    print "$u", " ";
+}
+'
+}
+
+## ---------------------------------------------------------
+
+
+
+
+
+
+## ------------------------ KERNELL ------------------------
+## check if kernel supports iptables
+## return true / false
+kernel_support_iptables()
+{
+    iptables -L -n &> /dev/null
+}
+
+## check if kernel supports ip conntrack
+## return true / false
+kernel_support_state()
+{
+    ## [[ -f /proc/sys/net/ipv4/ip_conntrack_max ]]
+    [[ -f /proc/net/ip_conntrack ]]
+}
+
+## check if kernel supports lvs-rs by checking tunl interface 
+## return true / false
+kernel_support_rs()
+{
+    /sbin/ifconfig tunl0 &> /dev/null
+}
+
+## check if kernel supports lvs-ld
+## return true / false
+kernel_support_ld()
+{
+    kernel_support_rs        || return 1
+    [[ -f /proc/net/ip_vs ]] || return 1
+
+    return 0
+}
+
+## 2009-03-25, get the label name of stateful kernel from lilo.conf
+#+ but do not change 2.4->2.6 or 2.6->2.4 unthinkingly, nic name may change after reboot
+## argv: 2.4 / 2.6
+get_state_label_for_slk()
+{
+    ver=$1
+
+    case $ver in
+    2.4)    ##
+        grep -m1 -E 'vmlinuz-2\.4.*STATE' /etc/lilo.conf -A4 |
+        awk -F= '/label/{ print $2 }'                      |
+        trim
+        ;;
+    2.6)
+        grep -m1 -E 'vmlinuz-2\.6.*STATE' /etc/lilo.conf -A4 |
+        awk -F= '/label/{ print $2 }'                      |
+        trim
+        ;;
+    *)
+        return 1
+        ;;
+    esac
+}
+
+## ---------------------------------------------------------
+
+
+
+
+
+
+## ------------------------ tarball ------------------------
+
+## get tarball dirname,  /1/2/3/abc.tar.bz -> abc
+## argv: $path_to_tarballname
+## return dirname
+get_tarball_dirname()
+{
+    local tb="$1"
+    case $tb in
+    *.tar.bz2|*.tar.gz)
+        echo $tb | sed -e 's@.*/@@g' -e 's@\.tar\.\(bz2\|gz\)$@@'
+        ;;
+    *.tgz|*.tbz)
+        echo $tb | sed -e 's@.*/@@g' -e 's@\.\(tbz\|tgz\)$@@'
+        ;;
+    *.tar)
+        echo $tb | sed -e 's@.*/@@g' -e 's@\.tar$@@'
+        ;;
+    *)
+        echo $tb
+        return 1
+        ;;
+    esac
+}
+
+## argv: $path_to_tarballname
+## return bzip2 / gzip / tar
+get_tarball_type()
+{
+    if file   "$1" | grep -Fq 'bzip2 compressed data'; then
+        echo bzip2 
+    elif file "$1" | grep -Fq 'gzip compressed data'; then
+        echo gzip
+    elif file "$1" | grep -Fq "POSIX tar archive"; then
+        echo tar
+    else
+        return 1
+    fi
+}
+
+untar()
+{
+    local tarball=$1
+    local tmpf=/tmp/.tmp_untar.aa
+    local tardir
+
+    [[ -f $tarball ]] || return 1
+    touch "$tmpf"     || return 1
+
+    if   tar tf "$tarball"  > "$tmpf" 2>/dev/null; then
+        tar xf "$tarball"
+    elif tar tzf "$tarball" > "$tmpf" 2>/dev/null; then
+        tar xzf "$tarball"
+    elif tjf "$tarball"     > "$tmpf" 2>/dev/null; then
+        tar xjf "$tarball"
+    fi
+
+    if [[ -s $tmpf ]]; then
+        tardir=$( head -n1 "$tmpf" )
+
+        case "$tardir" in
+        /)
+            echo "$tardir"
             ;;
         *)
-            return 1
+            echo "$( pwd )/$tardir"
             ;;
         esac
-        
-        ## check inode and data area
-        full_flag=$( 
-          { df -Pi "$p"; df -Pk "$p"; } |
-           awk '! /^Filesystem/ {
-             usage = $(NF-1) + 0
-             if ( usage == 100 ) {
-               print "Y"
-               exit
-             }
-           }'
-         )
-    
-        if [[ $full_flag == "Y" ]]; then
-            return 0
-        else
-            return 1
-        fi
-    }  
-    
-    ## find the username we added manually
-    ## see man shadow to find the detail of the policy
-    find_non_sys_user()
-    {
-    
-        # need root privilege to access '/etc/shadow'
-        (( UID == 0 )) || return 1
-    
-        perl -we '
-        use strict;
-        my @users;
-        my $fd;
-        my ( $user, $pass, $uid );
-        
-        ## find the username having password
-        open ($fd, "<", "/etc/shadow") or die "Can not open /etc/shadow\n";
-        while (<$fd>) {
-            ($user, $pass ) = (split ":")[0,1];
-            next if $user eq "root";
-        
-            if ( $pass =~ m{ [a-zA-Z0-9/\$] }x ) {
-                push @users, $user;
-            }            
-            elsif ( $pass eq "" ) {
-                push @users, $user;
-            }
-        }
-        close $fd or die "Can not close $fd\n";
-    
-        ## find the username having uid >= normal uid
-        open ($fd, "<", "/etc/passwd") or die "Can not open /etc/passwd\n";
-        while (<$fd>) {
-            ($user, $uid ) = (split ":")[0,2];
-            next if $user eq "root";
-            next if $user eq "nobody";
-        
-            if ( $uid >= 1000 ) { ## should  read this val from /etc/login.defs
-                push @users, $user unless grep { /\b$user\b/ }  @users;
-            }
-            elsif ( $uid == 0 ) { ## make sure dangerous user with uid = 0
-                push @users, $user unless grep { /\b$user\b/ }  @users;
-            }
-        }
-        close $fd or die "Can not close $fd\n";
-    
-        for my $u (sort @users) {
-            print "$u", " ";
-        }
-        '
-    }
-    
-    ## ---------------------------------------------------------
-    
-    
-    
-    
-    
-    
-    ## ------------------------ KERNELL ------------------------
-    ## check if kernel supports iptables
-    ## return true / false
-    kernel_support_iptables()
-    {
-        iptables -L -n &> /dev/null
-    }
-    
-    ## check if kernel supports ip conntrack
-    ## return true / false
-    kernel_support_state()
-    {
-        ## [[ -f /proc/sys/net/ipv4/ip_conntrack_max ]]
-        [[ -f /proc/net/ip_conntrack ]]
-    }
-    
-    ## check if kernel supports lvs-rs by checking tunl interface 
-    ## return true / false
-    kernel_support_rs()
-    {
-        /sbin/ifconfig tunl0 &> /dev/null
-    }
-    
-    ## check if kernel supports lvs-ld
-    ## return true / false
-    kernel_support_ld()
-    {
-        kernel_support_rs        || return 1
-        [[ -f /proc/net/ip_vs ]] || return 1
-    
+
         return 0
-    }
-    
-    ## 2009-03-25, get the label name of stateful kernel from lilo.conf
-    #+ but do not change 2.4->2.6 or 2.6->2.4 unthinkingly, nic name may change after reboot
-    ## argv: 2.4 / 2.6
-    get_state_label_for_slk()
-    {
-        ver=$1
-    
-        case $ver in
-            2.4)    ##
-                grep -m1 -E 'vmlinuz-2\.4.*STATE' /etc/lilo.conf -A4 |
-                  awk -F= '/label/{ print $2 }'                      |
-                  trim
-                ;;
-            2.6)
-                grep -m1 -E 'vmlinuz-2\.6.*STATE' /etc/lilo.conf -A4 |
-                  awk -F= '/label/{ print $2 }'                      |
-                  trim
-                ;;
-            *)
-                return 1
-                ;;
-        esac
-    }
-    
-    ## ---------------------------------------------------------
-    
-    
-    
-    
-    
-    
-    ## ------------------------ tarball ------------------------
-    
-    ## get tarball dirname,  /1/2/3/abc.tar.bz -> abc
-    ## argv: $path_to_tarballname
-    ## return dirname
-    get_tarball_dirname()
-    {
-        local tb="$1"
-        case $tb in
-            *.tar.bz2|*.tar.gz)
-                echo $tb | sed -e 's@.*/@@g' -e 's@\.tar\.\(bz2\|gz\)$@@'
-                ;;
-            *.tgz|*.tbz)
-                echo $tb | sed -e 's@.*/@@g' -e 's@\.\(tbz\|tgz\)$@@'
-                ;;
-            *.tar)
-                echo $tb | sed -e 's@.*/@@g' -e 's@\.tar$@@'
-                ;;
-            *)
-                echo $tb
-                return 1
-                ;;
-        esac
-    }
-    
-    ## argv: $path_to_tarballname
-    ## return bzip2 / gzip / tar
-    get_tarball_type()
-    {
-        if file   "$1" | grep -Fq 'bzip2 compressed data'; then
-            echo bzip2 
-        elif file "$1" | grep -Fq 'gzip compressed data'; then
-            echo gzip
-        elif file "$1" | grep -Fq "POSIX tar archive"; then
-            echo tar
-        else
-            return 1
-        fi
-    }
-    
-    untar()
-    {
-        local tarball=$1
-        local tmpf=/tmp/.tmp_untar.aa
-        local tardir
-    
-        [[ -f $tarball ]] || return 1
-        touch "$tmpf"     || return 1
-    
-        if   tar tf "$tarball"  > "$tmpf" 2>/dev/null; then
-             tar xf "$tarball"
-        elif tar tzf "$tarball" > "$tmpf" 2>/dev/null; then
-             tar xzf "$tarball"
-        elif tjf "$tarball"     > "$tmpf" 2>/dev/null; then
-             tar xjf "$tarball"
-        fi
-    
-        if [[ -s $tmpf ]]; then
-            tardir=$( head -n1 "$tmpf" )
-    
-            case "$tardir" in
-            /)
-                echo "$tardir"
-                ;;
-            *)
-                echo "$( pwd )/$tardir"
-                ;;
-            esac
-            
+    fi
+
+    return 1
+}
+
+## ---------------------------------------------------------
+
+
+
+
+
+
+## ----------------------- TNM Agent ------------------------
+
+## report data to nm using agentRepNum
+## argv1: $ID  from tnm
+## argv2: $num to report
+## argv3: $ip  for who to report, optional
+## example: send_report_data "10000" "123456" "1.1.1.1"
+send_report_data()
+{
+    local id=$1
+    local num=$2
+    local ip=$3     ## optional
+
+    ## old version not support "ip"
+    if [[ -n "$ip" ]]; then
+        /usr/local/agenttools/agent/agentRepNum "$ip" "$id" "$num"  &> /dev/null ||
+        /usr/local/agenttools/agent/agentRepNum "$id" "$num"        &> /dev/null 
+    else
+        /usr/local/agenttools/agent/agentRepNum "$id" "$num"        &> /dev/null
+    fi
+}
+
+## send alert msg using agentRepStr
+## argv1: $ID  from nm
+## argv2: $str to send out
+## argv3: $ip  for who to report, optional
+## example: send_alert_msg "10000" "port 3306 not found, check ASAP" "$ip"
+send_alert_msg()
+{
+    local id=$1
+    local str=$2
+    local ip=$3     ## optional
+
+    ## old version not support "ip"
+    if [[ -n "$ip" ]]; then
+        /usr/local/agenttools/agent/agentRepStr "$ip" "$id" "$str" &> /dev/null ||
+        /usr/local/agenttools/agent/agentRepStr "$id" "$str"       &> /dev/null 
+    else
+        /usr/local/agenttools/agent/agentRepStr "$id" "$str"       &> /dev/null
+    fi
+}
+
+## ---------------------------------------------------------
+
+
+
+
+
+
+## --------------------------- NUM -------------------------
+
+## a simple int calculater
+## argv: "$math_expression"
+## example: calculate "10 / 2"
+calculate()
+{
+    local expr=$@
+
+    if which bc &>/dev/null; then
+        echo "scale = 0; $expr" | bc
+    elif which perl &>/dev/null; then
+        echo "$expr" | perl -lne ' print int (eval) '
+    else
+        echo $(( $expr ))
+    fi
+}
+
+## support float
+calculate2()
+{
+    local expr=$@
+
+    if which bc &>/dev/null; then
+        echo "scale = 2; $expr" | bc
+    elif which perl &>/dev/null; then
+        echo "$expr" | perl -lne ' printf ("%0.2f",  (eval) ) '
+    else    ## may try awk here
+        return 1
+    fi
+}
+## check if argv1 >= argv2
+## argv1: $num_1
+## argv2: $num_2
+compare_two_num()
+{
+    if (( $# != 2 )); then
+        return 1
+    fi
+
+    ## hope perl is install in every OS ...
+    perl -we ' my ($v1, $v2) = @ARGV; exit ( $v1 >= $v2 ? 0 : 1 ) ' $1 $2
+}
+
+## get a random num
+## argv: $max, optionall
+get_a_random_num()
+{
+    local max=$1
+    local rand=0
+
+    if [[ -z $max ]]; then
+        echo $(( RANDOM + 1 ))   ## 1 ~ 32768, see man bash
+    else
+        # echo $RANDOM$RANDOM % $1 | perl -lne ' print eval '
+        while (( rand == 0 )); do
+            ## 3276732767 < ( 2^32 = 4294967296 )
+            rand=$( calculate "( $RANDOM$RANDOM + $RANDOM + $RANDOM ) % $max" )
+        done
+        echo $rand
+    fi
+}
+
+## get ntp time offset
+## sorry to hear that ntpdate is deprecated in opensuse 11.1
+get_ntp_offset()
+{
+    ## local NTP_SERVER="172.23.32.142 172.24.18.141 172.24.147.11 172.16.58.40 172.16.58.14"
+    local NTP_SERVER_="172.23.32.142 172.24.18.141 172.24.147.11"
+    local offset
+
+    [[ -n $NTP_SERVER ]] && NTP_SERVER_="$NTP_SERVER"
+
+    if [[ -n $1 ]]; then
+        NTP_SERVER="$@"
+    fi
+
+    ## to speed up, just query one server every time
+    ## so , the ntp server must be reliable
+    for srv in $NTP_SERVER_; do
+        offset=$( 
+        /usr/sbin/ntpdate -q $srv 2> /dev/null  |
+        awk '/time server.*sec$/ { print $( NF -1 ) }' |
+        sed 's/-//' ## get abs val
+        )
+
+        if [[ -n $offset ]]; then
+            echo $offset
             return 0
         fi
-    
-        return 1
-    }
-    
-    ## ---------------------------------------------------------
-    
-    
-    
-    
-    
-    
-    ## ----------------------- TNM Agent ------------------------
-    
-    ## report data to nm using agentRepNum
-    ## argv1: $ID  from tnm
-    ## argv2: $num to report
-    ## argv3: $ip  for who to report, optional
-    ## example: send_report_data "10000" "123456" "1.1.1.1"
-    send_report_data()
-    {
-        local id=$1
-        local num=$2
-        local ip=$3     ## optional
-    
-        ## old version not support "ip"
-        if [[ -n "$ip" ]]; then
-            /usr/local/agenttools/agent/agentRepNum "$ip" "$id" "$num"  &> /dev/null ||
-            /usr/local/agenttools/agent/agentRepNum "$id" "$num"        &> /dev/null 
-        else
-            /usr/local/agenttools/agent/agentRepNum "$id" "$num"        &> /dev/null
-        fi
-    }
-    
-    ## send alert msg using agentRepStr
-    ## argv1: $ID  from nm
-    ## argv2: $str to send out
-    ## argv3: $ip  for who to report, optional
-    ## example: send_alert_msg "10000" "port 3306 not found, check ASAP" "$ip"
-    send_alert_msg()
-    {
-        local id=$1
-        local str=$2
-        local ip=$3     ## optional
-    
-        ## old version not support "ip"
-        if [[ -n "$ip" ]]; then
-            /usr/local/agenttools/agent/agentRepStr "$ip" "$id" "$str" &> /dev/null ||
-            /usr/local/agenttools/agent/agentRepStr "$id" "$str"       &> /dev/null 
-        else
-            /usr/local/agenttools/agent/agentRepStr "$id" "$str"       &> /dev/null
-        fi
-    }
-    
-    ## ---------------------------------------------------------
-    
-    
-    
-    
-    
-    
-    ## --------------------------- NUM -------------------------
-    
-    ## a simple int calculater
-    ## argv: "$math_expression"
-    ## example: calculate "10 / 2"
-    calculate()
-    {
-        local expr=$@
-    
-        if which bc &>/dev/null; then
-            echo "scale = 0; $expr" | bc
-        elif which perl &>/dev/null; then
-            echo "$expr" | perl -lne ' print int (eval) '
-        else
-            echo $(( $expr ))
-        fi
-    }
-    
-    ## support float
-    calculate2()
-    {
-        local expr=$@
-    
-        if which bc &>/dev/null; then
-            echo "scale = 2; $expr" | bc
-        elif which perl &>/dev/null; then
-            echo "$expr" | perl -lne ' printf ("%0.2f",  (eval) ) '
-        else    ## may try awk here
+    done
+
+    return 1
+}
+
+## ---------------------------------------------------------
+
+
+
+
+
+
+## ------------------------- MISC --------------------------
+
+dump_cron()
+{
+    local user=$1
+
+    local user_flag
+
+    if [[ -n $user ]]; then
+        if (( UID != 0 )); then
             return 1
         fi
-    }
-    ## check if argv1 >= argv2
-    ## argv1: $num_1
-    ## argv2: $num_2
-    compare_two_num()
-    {
-        if (( $# != 2 )); then
+
+        user_flag="-u $user"
+    fi
+
+    crontab $user_flag -l | 
+    perl -lne ' print if ( ( $. > 3 ) || ( $. <= 3 && /^[^#] /) ) ' 
+}
+
+## add a cron jobs line to crontab, with 'force' arg to add a comment line
+## example: add_cron "### sync clock every hour" "force"
+## example: add_cron "30 * * * * /usr/sbin/ntpdate 172.23.32.142 &> /dev/null"
+## example: add_cron "30 * * * * /usr/sbin/ntpdate 172.23.32.142 &> /dev/null" "mqq"
+add_cron()
+{
+    local cmd=$1
+    local force=$2
+    local user=$3
+    local key
+    local is_comment
+
+    local user_flag
+
+    if [[ -n $user ]]; then
+        if (( UID != 0 )); then
             return 1
         fi
-    
-        ## hope perl is install in every OS ...
-        perl -we ' my ($v1, $v2) = @ARGV; exit ( $v1 >= $v2 ? 0 : 1 ) ' $1 $2
-    }
-    
-    ## get a random num
-    ## argv: $max, optionall
-    get_a_random_num()
-    {
-        local max=$1
-        local rand=0
-    
-        if [[ -z $max ]]; then
-            echo $(( RANDOM + 1 ))   ## 1 ~ 32768, see man bash
-        else
-            # echo $RANDOM$RANDOM % $1 | perl -lne ' print eval '
-            while (( rand == 0 )); do
-                ## 3276732767 < ( 2^32 = 4294967296 )
-                rand=$( calculate "( $RANDOM$RANDOM + $RANDOM + $RANDOM ) % $max" )
-            done
-            echo $rand
-        fi
-    }
-    
-    ## get ntp time offset
-    ## sorry to hear that ntpdate is deprecated in opensuse 11.1
-    get_ntp_offset()
-    {
-        ## local NTP_SERVER="172.23.32.142 172.24.18.141 172.24.147.11 172.16.58.40 172.16.58.14"
-        local NTP_SERVER_="172.23.32.142 172.24.18.141 172.24.147.11"
-        local offset
-    
-        [[ -n $NTP_SERVER ]] && NTP_SERVER_="$NTP_SERVER"
-    
-        if [[ -n $1 ]]; then
-            NTP_SERVER="$@"
-        fi
-    
-        ## to speed up, just query one server every time
-        ## so , the ntp server must be reliable
-        for srv in $NTP_SERVER_; do
-            offset=$( 
-                /usr/sbin/ntpdate -q $srv 2> /dev/null  |
-                awk '/time server.*sec$/ { print $( NF -1 ) }' |
-                sed 's/-//' ## get abs val
-            )
-    
-            if [[ -n $offset ]]; then
-                echo $offset
-                return 0
-            fi
-        done
-    
-        return 1
-    }
-    
-    ## ---------------------------------------------------------
-    
-    
-    
-    
-    
-    
-    ## ------------------------- MISC --------------------------
-    
-    dump_cron()
-    {
-        local user=$1
-    
-        local user_flag
-    
-        if [[ -n $user ]]; then
-            if (( UID != 0 )); then
-                return 1
-            fi
-    
-            user_flag="-u $user"
-        fi
-    
-        crontab $user_flag -l | 
-         perl -lne ' print if ( ( $. > 3 ) || ( $. <= 3 && /^[^#] /) ) ' 
-    }
-    
-    ## add a cron jobs line to crontab, with 'force' arg to add a comment line
-    ## example: add_cron "### sync clock every hour" "force"
-    ## example: add_cron "30 * * * * /usr/sbin/ntpdate 172.23.32.142 &> /dev/null"
-    ## example: add_cron "30 * * * * /usr/sbin/ntpdate 172.23.32.142 &> /dev/null" "mqq"
-    add_cron()
-    {
-        local cmd=$1
-        local force=$2
-        local user=$3
-        local key
-        local is_comment
-    
-        local user_flag
-    
-        if [[ -n $user ]]; then
-            if (( UID != 0 )); then
-                return 1
-            fi
-    
-            user_flag="-u $user"
-        fi
-    
-        # good to use absolute path in crontab
-        local c
-        for c in $cmd; do
-            case $c in
-                /*)
-                    ## key=$( basename $c )
-                    key=$c
-                    break
-                    ;;
-            esac
-        done
-    
-        if ! [[ $force == "force" || $force == "FORCE" ]]; then
-            if [[ -z "$key" ]]; then
-                warn "failed, [$cmd] not use abs_path to command"
-                return 1
-            fi
-    
-            if [[ ! -x "$c" ]]; then
-                warn "failed, [$c] not executable"
-                return 1
-            fi
-    
-            if crontab $user_flag -l | grep -F -v '#' | grep -Fqw -- "$key"; then
-                warn "failed, keyword [$key] found in crontab already"
-                return 1
-            fi
-        fi
-    
-        if echo "$cmd" | grep -Eq '^[[:blank:]]+#'; then
-            is_comment=yes
-        fi
-    
-        # update crontab
-        # crontab $user_flag -l | perl -lne ' print if ( ( $. > 3 ) || ( $. <= 3 && /^[^#] /) ) ' |
-        dump_cron "$user" |
-        {   
-          cat 
-          [[ $is_comment == "yes" ]] || echo "## [$( basename $key )], $(date '+%F %T')"
-          echo  "$cmd"
-        } | crontab - $user_flag
-    }    
-    
-    comment_cron()
-    {
-        local key=$1
-        local user=$2
-    
-        local user_flag
-    
-        [[ -n $key ]] || return 1
-    
-        if [[ -n $user ]]; then
-            if (( UID != 0 )); then
-                return 1
-            fi
-    
-            user_flag="-u $user"
-        fi
-    
-        # crontab $user_flag -l | perl -lne ' print if ( ( $. > 3 ) || ( $. <= 3 && /^[^#] /) ) ' |
-        dump_cron "$user" |
-         sed "/$key/ s/^/## /" | crontab - $user_flag
-    }
-    
-    del_cron()
-    {
-        local key=$1
-        local user=$2
-    
-        local user_flag
-    
-        [[ -n $key ]] || return 1
-    
-        if [[ -n $user ]]; then
-            if (( UID != 0 )); then
-                return 1
-            fi
-    
-            user_flag="-u $user"
-        fi
-    
-        ## nonsense 3 lines header
-        # crontab $user_flag -l | perl -lne ' print if ( ( $. > 3 ) || ( $. <= 3 && /^[^#] /) ) ' |
-        dump_cron "$user" |
-         grep -v -- "$key" | crontab - $user_flag
-    }
-    
-    ## trim leading space and tailing space
-    ## example: iptables -nvL | trim
-    ## example: trim < file
-    trim()
-    {
-        sed -e 's/^[[:space:]]\+//' -e 's/[[:space:]]\+$//'
-    }
-    
-    ## check if a string already in a file which is not commented
-    ## argv1: $str
-    ## argv2: $filename
-    ## return true / false
-    is_str_infile()
-    {
-        local str="$1"
-        local file="$2"
-    
-        grep -Fv '#' "$file" | grep -Fwq -- "$str"
-    }
-    
-    ## kill a process if it's running
-    ## argv: $app_name
-    try_kill_proc()
-    {
-        local proc="$1"
-    
-        if killall -0 "$proc" &>/dev/null; then
-            if killall -9 "$proc"; then
-                logmsg "found old "$proc" running, kill OK"
-            else
-                die "found old "$proc" running, kill FAILED"
-            fi
-        fi
-    }
-    
-    ## to grep multipul times, supposed to be used after a pipe or with read redirection
-    ## example: ps -ef | mgrep samli ssh
-    mgrep()
-    {
-        local key="$1"
-        local opt=
-    
+
+        user_flag="-u $user"
+    fi
+
+    # good to use absolute path in crontab
+    local c
+    for c in $cmd; do
+        case $c in
+        /*)
+            ## key=$( basename $c )
+            key=$c
+            break
+            ;;
+        esac
+    done
+
+    if ! [[ $force == "force" || $force == "FORCE" ]]; then
         if [[ -z "$key" ]]; then
-            cat     
-            return  
-        fi
-    
-        while [[ ${key:0:1} == '-' ]]; do
-            opt="$opt $key"
-            shift
-            key="$1"
-        done
-    
-        shift   
-        grep $opt $key | mgrep "$@"
-    }
-    
-    
-    ## thanks kangkang 
-    dectobin()
-    {
-        local s=$1
-        local n 
-    
-        while (( $s != 0 )); do
-            n=$(( s % 2 ))$n
-            s=$(( s / 2 ))
-        done    
-    
-        echo $n 
-    }
-    
-    ## thanks kangkang 
-    cidr_mask()
-    {
-        
-        local mask=$1
-        local out i
-    
-        for i in $( echo $mask | tr '.' ' ' ); do
-            out=$out$(dectobin $i)
-        done
-        
-        out=$(echo $out | sed 's/0*$//g' )
-    
-        if echo $out | grep -q 0; then
+            warn "failed, [$cmd] not use abs_path to command"
             return 1
         fi
-    
-        echo -n $out | wc -c
-    }
-    
-    
-    
-    ## a better cidr_mask func, from dearvoid@eden.com
-    ## mask2bits()
-    ## {
-    ##     local aMask i nBits=0
-    ##     
-    ##     aMask=( ${1//./\ } )
-    ##     for ((i = 0; i < 4; ++i)); do
-    ##         while (( aMask[i] )); do
-    ##             ((++nBits, aMask[i] *= 2, aMask[i] &= 255))
-    ##         done
-    ##     done
-    ##     
-    ##     echo $nBits
-    ## }
-    
-    
-    ## xor op, usring P$1" 
-    ## argv[1]: key to xor with
-    ## argv[2]: str to xor
-    myxor()
-    {
-        local key=$1
-        local str=$2
-    
-        perl -lwe ' 
-            my $key = shift;
-            $_ = shift;
-            my @new;
-            for my $s ( split( "" ) ) {
-                push @new, chr( (ord $s) ^ $key );
-            }
-            print join "", @new;
-        ' "$key" "$str"
-    }
-    
-    ## get_name_of_pid()
-    ## {
-    ##     local pid=$1
-    ## 
-    ##     /bin/ls -l "/proc/$pid/exe" 2>/dev/null
-    ## }
-    
-    is_dos_file()
-    {
-        local file=$1
-    
-        file "$file" | grep -q 'CRLF'
-    }
-    
-    ## dos2unix is lost on some servers -_-!
-    my_dos2unix()
-    {
-        local file=$1
-    
-        if which dos2unix ; then
-            ## some strange dosunix will not work with abs-path
-            (
-                cd "$( dirname $file )"
-                dos2unix "$file"
-            )
-        else
-            perl -pi -e 's/\r$//' "$file"
-        fi &> /dev/null
-    }
-    
-    dos2unix_if_necessary()
-    {
-        local file=$1
-    
-        [[ -f $file ]] || return 1
-    
-        if is_dos_file "$file"; then
-            my_dos2unix "$file"
-        else
-            return 0
-        fi
-    }
-    
-    ## find the java dirname without unpacking jdk*.bin
-    ## we may return [jdk1.5.0_06] for [jdk-1_5_0_06-linux-i586.bin]
-    get_javadir_from_javabin()
-    {
-        javabin=$1  ## such as [jdk-1_5_0_06-linux-i586.bin]
-    
-        if [[ -z $javabin ]] || [[ ! -f $javabin ]]; then
+
+        if [[ ! -x "$c" ]]; then
+            warn "failed, [$c] not executable"
             return 1
         fi
-    
-        grep -m1 -a '^javahome=jdk.*' "$javabin" |
-          awk -F= '{ print $2 }'
+
+        if crontab $user_flag -l | grep -F -v '#' | grep -Fqw -- "$key"; then
+            warn "failed, keyword [$key] found in crontab already"
+            return 1
+        fi
+    fi
+
+    if echo "$cmd" | grep -Eq '^[[:blank:]]+#'; then
+        is_comment=yes
+    fi
+
+    # update crontab
+    # crontab $user_flag -l | perl -lne ' print if ( ( $. > 3 ) || ( $. <= 3 && /^[^#] /) ) ' |
+    dump_cron "$user" |
+    {   
+        cat 
+        [[ $is_comment == "yes" ]] || echo "## [$( basename $key )], $(date '+%F %T')"
+        echo  "$cmd"
+    } | crontab - $user_flag
+}    
+
+comment_cron()
+{
+    local key=$1
+    local user=$2
+
+    local user_flag
+
+    [[ -n $key ]] || return 1
+
+    if [[ -n $user ]]; then
+        if (( UID != 0 )); then
+            return 1
+        fi
+
+        user_flag="-u $user"
+    fi
+
+    # crontab $user_flag -l | perl -lne ' print if ( ( $. > 3 ) || ( $. <= 3 && /^[^#] /) ) ' |
+    dump_cron "$user" |
+    sed "/$key/ s/^/## /" | crontab - $user_flag
+}
+
+del_cron()
+{
+    local key=$1
+    local user=$2
+
+    local user_flag
+
+    [[ -n $key ]] || return 1
+
+    if [[ -n $user ]]; then
+        if (( UID != 0 )); then
+            return 1
+        fi
+
+        user_flag="-u $user"
+    fi
+
+    ## nonsense 3 lines header
+    # crontab $user_flag -l | perl -lne ' print if ( ( $. > 3 ) || ( $. <= 3 && /^[^#] /) ) ' |
+    dump_cron "$user" |
+    grep -v -- "$key" | crontab - $user_flag
+}
+
+## trim leading space and tailing space
+## example: iptables -nvL | trim
+## example: trim < file
+trim()
+{
+    sed -e 's/^[[:space:]]\+//' -e 's/[[:space:]]\+$//'
+}
+
+## check if a string already in a file which is not commented
+## argv1: $str
+## argv2: $filename
+## return true / false
+is_str_infile()
+{
+    local str="$1"
+    local file="$2"
+
+    grep -Fv '#' "$file" | grep -Fwq -- "$str"
+}
+
+## kill a process if it's running
+## argv: $app_name
+try_kill_proc()
+{
+    local proc="$1"
+
+    if killall -0 "$proc" &>/dev/null; then
+        if killall -9 "$proc"; then
+            logmsg "found old "$proc" running, kill OK"
+        else
+            die "found old "$proc" running, kill FAILED"
+        fi
+    fi
+}
+
+## to grep multipul times, supposed to be used after a pipe or with read redirection
+## example: ps -ef | mgrep samli ssh
+mgrep()
+{
+    local key="$1"
+    local opt=
+
+    if [[ -z "$key" ]]; then
+        cat     
+        return  
+    fi
+
+    while [[ ${key:0:1} == '-' ]]; do
+        opt="$opt $key"
+        shift
+        key="$1"
+    done
+
+    shift   
+    grep $opt $key | mgrep "$@"
+}
+
+
+## thanks kangkang 
+dectobin()
+{
+    local s=$1
+    local n 
+
+    while (( $s != 0 )); do
+        n=$(( s % 2 ))$n
+        s=$(( s / 2 ))
+    done    
+
+    echo $n 
+}
+
+## thanks kangkang 
+cidr_mask()
+{
+
+    local mask=$1
+    local out i
+
+    for i in $( echo $mask | tr '.' ' ' ); do
+        out=$out$(dectobin $i)
+    done
+
+    out=$(echo $out | sed 's/0*$//g' )
+
+    if echo $out | grep -q 0; then
+        return 1
+    fi
+
+    echo -n $out | wc -c
+}
+
+
+
+## a better cidr_mask func, from dearvoid@eden.com
+## mask2bits()
+## {
+##     local aMask i nBits=0
+##     
+##     aMask=( ${1//./\ } )
+##     for ((i = 0; i < 4; ++i)); do
+##         while (( aMask[i] )); do
+##             ((++nBits, aMask[i] *= 2, aMask[i] &= 255))
+##         done
+##     done
+##     
+##     echo $nBits
+## }
+
+
+## xor op, usring P$1" 
+## argv[1]: key to xor with
+## argv[2]: str to xor
+myxor()
+{
+    local key=$1
+    local str=$2
+
+    perl -lwe ' 
+    my $key = shift;
+    $_ = shift;
+    my @new;
+    for my $s ( split( "" ) ) {
+        push @new, chr( (ord $s) ^ $key );
     }
-    
-    ## ---------------------------------------------------------
-    
-    
-    
-    
-    ## ----------------------- PROCESS -------------------------
-    
-    ## check if a given pid/appname running
-    ## argv: pid / appname
-    is_app_running()
-    {
-        local $p=$1
-        local RC
-    
-        [[ -n $p ]] || return 1
-        
-        ## pid
-        if [[ -z $( echo $p | tr -d '[0-9]') ]]; then
-            kill -0 "$p" &> /dev/null
-            RC=$?
+    print join "", @new;
+    ' "$key" "$str"
+}
+
+## get_name_of_pid()
+## {
+##     local pid=$1
+## 
+##     /bin/ls -l "/proc/$pid/exe" 2>/dev/null
+## }
+
+is_dos_file()
+{
+    local file=$1
+
+    file "$file" | grep -q 'CRLF'
+}
+
+## dos2unix is lost on some servers -_-!
+my_dos2unix()
+{
+    local file=$1
+
+    if which dos2unix ; then
+        ## some strange dosunix will not work with abs-path
+        ( cd "$( dirname $file )"; dos2unix "$file" )
+    else
+        perl -pi -e 's/\r$//' "$file"
+    fi &> /dev/null
+}
+
+dos2unix_if_necessary()
+{
+    local file=$1
+
+    [[ -f $file ]] || return 1
+
+    if is_dos_file "$file"; then
+        my_dos2unix "$file"
+    else
+        return 0
+    fi
+}
+
+## find the java dirname without unpacking jdk*.bin
+## we may return [jdk1.5.0_06] for [jdk-1_5_0_06-linux-i586.bin]
+get_javadir_from_javabin()
+{
+    javabin=$1  ## such as [jdk-1_5_0_06-linux-i586.bin]
+
+    if [[ -z $javabin ]] || [[ ! -f $javabin ]]; then
+        return 1
+    fi
+
+    grep -m1 -a '^javahome=jdk.*' "$javabin" |
+    awk -F= '{ print $2 }'
+}
+
+## ---------------------------------------------------------
+
+
+
+
+## ----------------------- PROCESS -------------------------
+
+## check if a given pid/appname running
+## argv: pid / appname
+is_app_running()
+{
+    local $p=$1
+    local RC
+
+    [[ -n $p ]] || return 1
+
+    ## pid
+    if [[ -z $( echo $p | tr -d '[0-9]') ]]; then
+        kill -0 "$p" &> /dev/null
+        RC=$?
         ## app name
-        else
-            killall -0 "$p" &> /dev/null
-            RC=$?
-        fi
-    
-        return $RC
-    }
-    
-    lock_on()
-    {
-        local f=$1
-        local freefd=6  ## do not use fd 5
-    
-        ## make sure the file be there
-        mkdir -p "$( dirname $f )"
-        touch "$f"
-    
-        ## find a free fd
-        while (( freefd <= 1024 )); do
-            [[ -L /dev/fd/$freefd ]] || break
-            (( freefd++ ))
-        done
-    
-        ## (( freefd == 10 )) && return 1
-    
-        ## open the lock file, may fail, caller should chek $?
-        eval "exec $freefd< \"$f\""
-    }
-    
-    is_locked()
-    {
-        local f=$1
-    
-        fuser "$f" &> /dev/null
-    }
-    
-    
-    ## ------------------------ strings ------------------------
-    upper()
-    {
-        local str
-    
-        if [[ -n "$@" ]]; then
-            str="$@"
+    else
+        killall -0 "$p" &> /dev/null
+        RC=$?
+    fi
+
+    return $RC
+}
+
+lock_on()
+{
+    local f=$1
+    local freefd=6  ## do not use fd 5
+
+    ## make sure the file be there
+    mkdir -p "$( dirname $f )"
+    touch "$f"
+
+    ## find a free fd
+    while (( freefd <= 1024 )); do
+        [[ -L /dev/fd/$freefd ]] || break
+        (( freefd++ ))
+    done
+
+    ## (( freefd == 10 )) && return 1
+
+    ## open the lock file, may fail, caller should chek $?
+    eval "exec $freefd< \"$f\""
+}
+
+is_locked()
+{
+    local f=$1
+
+    fuser "$f" &> /dev/null
+}
+
+
+## ------------------------ strings ------------------------
+upper()
+{
+    local str
+
+    if [[ -n "$@" ]]; then
+        str="$@"
         ## read from pipe
-        elif [[ -p /dev/fd/0 ]] || [[ $1 == "-" ]]; then
-            str=$( cat - )
-        
+    elif [[ -p /dev/fd/0 ]] || [[ $1 == "-" ]]; then
+        str=$( cat - )
+
         ## readirected input
-        elif [[ -f /dev/fd/0 ]]; then
-            str=$( cat - )
-        fi
-    
-        echo "$str" | tr 'a-z' 'A-Z'
-    }
-    
-    lower()
-    {
-        local str
-    
-        if [[ -n "$@" ]]; then
-            str="$@"
+    elif [[ -f /dev/fd/0 ]]; then
+        str=$( cat - )
+    fi
+
+    echo "$str" | tr 'a-z' 'A-Z'
+}
+
+lower()
+{
+    local str
+
+    if [[ -n "$@" ]]; then
+        str="$@"
         ## read from pipe
-        elif [[ -p /dev/fd/0 ]] || [[ $1 == "-" ]]; then
-            str=$( cat - )
-        
+    elif [[ -p /dev/fd/0 ]] || [[ $1 == "-" ]]; then
+        str=$( cat - )
+
         ## readirected input
-        elif [[ -f /dev/fd/0 ]]; then
-            str=$( cat - )
-        fi
-    
-        echo "$str" | tr 'A-Z' 'a-z'
-    }
-    
-    ## -------------------- init global vars -------------------
-    
-    ## init LLLOCALIP, do not delete following line, logmsg/warn/die use this val
-    LLLOCALIP=$( get_localip )
-    
-    ## init WORKDIR
-    #[[ -n $WORKDIR ]]  || WORKDIR=$( get_workdir )
-    WORKDIR=$( get_workdir )
-    
-    ## init LLLOG, LLLOGDIR 
-    ## this val must be used after the logdir created in func logmsg/logmsg_/warn/die
-    [[ -n $LLLOG    ]] || LLLOG="$WORKDIR/log.d/log.$LLLOCALIP"
-    [[ -n $LLLOGDIR ]] || LLLOGDIR=${LLLOG%/*}
-    
-    ## ---------------------------------------------------------
+    elif [[ -f /dev/fd/0 ]]; then
+        str=$( cat - )
+    fi
+
+    echo "$str" | tr 'A-Z' 'a-z'
+}
+
+## -------------------- init global vars -------------------
+
+## init LLLOCALIP, do not delete following line, logmsg/warn/die use this val
+LLLOCALIP=$( get_localip )
+
+## init WORKDIR
+#[[ -n $WORKDIR ]]  || WORKDIR=$( get_workdir )
+WORKDIR=$( get_workdir )
+
+## init LLLOG, LLLOGDIR 
+## this val must be used after the logdir created in func logmsg/logmsg_/warn/die
+[[ -n $LLLOG    ]] || LLLOG="$WORKDIR/log.d/log.$LLLOCALIP"
+[[ -n $LLLOGDIR ]] || LLLOGDIR=${LLLOG%/*}
+
+## ---------------------------------------------------------
