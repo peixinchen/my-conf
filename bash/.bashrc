@@ -12,3 +12,5 @@ export EDITOR=vim
 export PATH=~/bin:~/local/bin:$PATH
 export PYTHONDONTWRITEBYTECODE=1
 export PATH=$PATH:~/bin
+
+export ONEPAGECMS_RUNMODE='devel'
