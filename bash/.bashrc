@@ -14,3 +14,25 @@ export PYTHONDONTWRITEBYTECODE=1
 export PATH=$PATH:~/bin
 
 export ONEPAGECMS_RUNMODE='devel'
+
+function run_cmd_with_password {
+    expect -c "\
+    set timeout 90
+    set env(TERM)
+    spawn $1
+    expect \"password:\"
+    send $2\r
+    expect eof
+  "
+}
+
+function interact_cmd_with_password {
+    expect -c "\
+    set timeout 90
+    set env(TERM)
+    spawn $1
+    expect \"password:\"
+    send $2\r
+    interact
+  "
+}
