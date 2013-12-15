@@ -111,7 +111,7 @@ Bundle "CmdlineComplete"
 ""Bundle "indentpython.vim"
 ""Bundle "grep.vim"
 ""Bundle "taskpaper.vim"
-Bundle 'jslint.vim'
+""Bundle 'jslint.vim'
 Bundle 'haml.zip'
 ""Bundle 'vimprj'
 
