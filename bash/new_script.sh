@@ -91,17 +91,17 @@ insert_license() {
     fi
     cat <<- _EOF_
     
-    # This program is free software: you can redistribute it and/or modify
-    # it under the terms of the GNU General Public License as published by
-    # the Free Software Foundation, either version 3 of the License, or
-    # (at your option) any later version.
-
-    # This program is distributed in the hope that it will be useful,
-    # but WITHOUT ANY WARRANTY; without even the implied warranty of
-    # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    # GNU General Public License at (http://www.gnu.org/licenses/) for
-    # more details.
-_EOF_
+	# This program is free software: you can redistribute it and/or modify
+	# it under the terms of the GNU General Public License as published by
+	# the Free Software Foundation, either version 3 of the License, or
+	# (at your option) any later version.
+	
+	# This program is distributed in the hope that it will be useful,
+	# but WITHOUT ANY WARRANTY; without even the implied warranty of
+	# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	# GNU General Public License at (http://www.gnu.org/licenses/) for
+	# more details.
+	_EOF_
 }
 
 insert_usage() {
@@ -169,66 +169,66 @@ write_script() {
 #############################################################################
 # START SCRIPT TEMPLATE
 #############################################################################
-cat << _EOF_
-#! $SCRIPT_SHELL
-# ---------------------------------------------------------------------------
-# $script_name - $script_purpose
+	cat <<- _EOF_
+	#! $SCRIPT_SHELL
+	# ---------------------------------------------------------------------------
+	# $script_name - $script_purpose
 
-# Copyright $YEAR, $AUTHOR $EMAIL_ADDRESS
-$(insert_license)
+	# Copyright $YEAR, $AUTHOR $EMAIL_ADDRESS
+	$(insert_license)
 
-# Usage: $script_name$usage_message
+	# Usage: $script_name$usage_message
 
-# Revision history:
-# $DATE Created by $PROGNAME ver. $VERSION
-# ---------------------------------------------------------------------------
+	# Revision history:
+	# $DATE Created by $PROGNAME ver. $VERSION
+	# ---------------------------------------------------------------------------
 
-PROGNAME=\${0##*/}
-VERSION="0.1"
+	PROGNAME=\${0##*/}
+	VERSION="0.1"
 
-clean_up() { # Perform pre-exit housekeeping
-    return
-}
+	clean_up() { # Perform pre-exit housekeeping
+	    return
+	}
 
-error_exit() {
-    echo -e "\${PROGNAME}: \${1:-"Unknown Error"}" >&2
-    clean_up
-    exit 1
-}
+	error_exit() {
+	    echo -e "\${PROGNAME}: \${1:-"Unknown Error"}" >&2
+	    clean_up
+	    exit 1
+	}
 
-graceful_exit() {
-    clean_up
-    exit
-}
+	graceful_exit() {
+	    clean_up
+	    exit
+	}
 
-signal_exit() { # Handle trapped signals
-    case \$1 in
-        INT)    error_exit "Program interrupted by user" ;;
-        TERM)   echo -e "\n\$PROGNAME: Program terminated" >&2 ; graceful_exit ;;
-        *)      error_exit "\$PROGNAME: Terminating on unknown signal" ;;
-    esac
-}
+	signal_exit() { # Handle trapped signals
+	    case \$1 in
+	        INT)    error_exit "Program interrupted by user" ;;
+	        TERM)   echo -e "\n\$PROGNAME: Program terminated" >&2 ; graceful_exit ;;
+	        *)      error_exit "\$PROGNAME: Terminating on unknown signal" ;;
+	    esac
+	}
 
-usage() {
-    echo -e "Usage: \$PROGNAME$usage_message"
-}
+	usage() {
+	    echo -e "Usage: \$PROGNAME$usage_message"
+	}
 
-$(insert_help_message)
+	$(insert_help_message)
 
-# Trap signals
-trap "signal_exit TERM" TERM HUP
-trap "signal_exit INT"  INT
+	# Trap signals
+	trap "signal_exit TERM" TERM HUP
+	trap "signal_exit INT"  INT
 
-$(insert_root_check)
+	$(insert_root_check)
 
-# Parse command-line
-$(insert_parser)
+	# Parse command-line
+	$(insert_parser)
 
-# Main logic
+	# Main logic
 
-graceful_exit
+	graceful_exit
 
-_EOF_
+	_EOF_
 #############################################################################
 # END SCRIPT TEMPLATE
 #############################################################################
