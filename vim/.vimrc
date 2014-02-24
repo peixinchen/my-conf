@@ -40,6 +40,7 @@ source $HOME/.vim/config/plugins.vim
 source $HOME/.vim/config/keymapping.vim
 source $HOME/.vim/config/aucmd.vim
 source $HOME/.vim/config/functions.vim
+source $HOME/.vim/config/abbreviation.vim
 
 
 set rtp+=$HOME/.vim/bundle/vundle/ 
