@@ -45,11 +45,11 @@ source $HOME/.vim/config/functions.vim
 set rtp+=$HOME/.vim/bundle/vundle/ 
 call vundle#rc()
 Bundle 'gmarik/vundle'
-
-
-""""""""""""""""""""""""""""""""""""""""""
-"" plugins base functions
-""""""""""""""""""""""""""""""""""""""""""
+"
+"
+"""""""""""""""""""""""""""""""""""""""""""
+""" plugins base functions
+"""""""""""""""""""""""""""""""""""""""""""
 Bundle "L9"
 Bundle "cecutil"
 Bundle "tlib"
@@ -62,9 +62,9 @@ Bundle "DfrankUtil"
 Bundle "xptemplate"
 Bundle "SuperTab"
 Bundle "FencView.vim"
-"Bundle "ZenCoding.vim"
+Bundle "mattn/emmet-vim"
 "" more powerful than zencoding written in python
-Bundle "rstacruz/sparkup"
+""Bundle "rstacruz/sparkup"
 set rtp+=$HOME/.vim/bundle/sparkup/vim/ 
 "" syntax check for many program languages
 Bundle "scrooloose/syntastic"
@@ -113,7 +113,7 @@ Bundle "CmdlineComplete"
 ""Bundle "taskpaper.vim"
 Bundle 'jslint.vim'
 Bundle 'haml.zip'
-""Bundle 'vimprj'
+"Bundle 'vimprj'
 
 "use cp in visual mode directly in macos #Bundle "fakeclip" 
 "has vsccommand with same functions 
