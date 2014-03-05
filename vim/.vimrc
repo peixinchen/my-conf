@@ -40,6 +40,7 @@ source $HOME/.vim/config/plugins.vim
 source $HOME/.vim/config/keymapping.vim
 source $HOME/.vim/config/aucmd.vim
 source $HOME/.vim/config/functions.vim
+source $HOME/.vim/config/abbreviation.vim
 
 
 set rtp+=$HOME/.vim/bundle/vundle/ 
@@ -111,7 +112,7 @@ Bundle "CmdlineComplete"
 ""Bundle "indentpython.vim"
 ""Bundle "grep.vim"
 ""Bundle "taskpaper.vim"
-Bundle 'jslint.vim'
+""Bundle 'jslint.vim'
 Bundle 'haml.zip'
 "Bundle 'vimprj'
 

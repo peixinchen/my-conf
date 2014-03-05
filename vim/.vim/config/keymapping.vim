@@ -218,6 +218,7 @@ nnoremap <leader>pd :Phpdoc %<cr>
 
 " make and run
 nnoremap <Leader>ru :!php -f <c-r>=expand('%:p')<cr><cr>
+nnoremap <Leader>ru2 :!python <c-r>=expand('%:p')<cr><cr>
 nnoremap <Leader>mk :make<cr>
 
 " encode

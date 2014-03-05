@@ -24,6 +24,7 @@ if has("autocmd")
 " php autocmd 
     autocmd BufRead,BufNewFile *.cpp  setlocal makeprg=/usr/bin/g++\ -m32\ -c\ %:p
     autocmd BufRead,BufNewFile *.c  setlocal makeprg=/usr/bin/gcc\ -c\ %:p
+    autocmd BufRead,BufNewFile *.py setlocal makeprg=python\ -c\ \"import\ py_compile,sys;sys.stderr=sys.stdout;py_compile.compile(r'%')\"
 
     autocmd BufRead,BufNewFile *.coffee setlocal filetype=coffee
     
