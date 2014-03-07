@@ -60,12 +60,12 @@ Bundle "DfrankUtil"
 """"""""""""""""""""""""""""""""""""""""""
 "" plugins that cannot been dropped
 """"""""""""""""""""""""""""""""""""""""""
-Bundle "xptemplate"
+""Bundle "xptemplate"
 Bundle "SuperTab"
 Bundle "FencView.vim"
-"Bundle "ZenCoding.vim"
+Bundle "ZenCoding.vim"
 "" more powerful than zencoding written in python
-Bundle "rstacruz/sparkup"
+"Bundle "rstacruz/sparkup"
 set rtp+=$HOME/.vim/bundle/sparkup/vim/ 
 "" syntax check for many program languages
 Bundle "scrooloose/syntastic"
@@ -133,6 +133,7 @@ Bundle "vim-django"
 ""Bundle "kevinw/pyflakes-vim"
 Bundle "indentpython.vim"
 Bundle "vim-coffee-script"
+Bundle 'less'
 
 
 "colors
