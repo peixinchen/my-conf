@@ -1,5 +1,11 @@
 " Last Change: 2009-06-28 00:08:09
 " mapleader setting
+
+if exists("g:loaded_keymapping")
+    finish
+endif
+let g:loaded_keymapping = "v100" 
+
 let oldleader=mapleader 
 let mapleader= ","
 " Buffers
@@ -246,6 +252,9 @@ nnoremap <Leader>dt :diffthis<cr>
 nnoremap <Leader>do :diffoff <cr>
 
 ""tidy
+
+nmap <S-CR> O<Esc>j
+nmap <CR> o<Esc>k
 
 
 let mapleader=oldleader

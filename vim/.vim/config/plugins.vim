@@ -122,6 +122,7 @@ let g:TemplatePath=$vim."/vimfiles/template"
 
 " Fencview plugin
 let g:fencview_autodetect = 1
+let g:fencview_checklines=20
 
 " SuperTab
 "let g:SuperTabDefaultCompletionType="context"

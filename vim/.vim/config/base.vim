@@ -23,3 +23,7 @@ set laststatus=2
 set cmdheight=2
 set acd
 set foldmethod=syntax
+set foldlevel=6
+set foldcolumn=0
+set fileformat=unix
+set fileformats=unix,dos,mac

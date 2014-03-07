@@ -11,10 +11,13 @@ Bundle "DfrankUtil"
 """"""""""""""""""""""""""""""""""""""""""
 "" plugins that cannot been dropped
 """"""""""""""""""""""""""""""""""""""""""
+"textmate like snipptes AutoComplete plugins
 ""Bundle "xptemplate"
+Bundle 'UltiSnips'
+"" alterated snipmate ultisnips neo
 Bundle "SuperTab"
 Bundle "FencView.vim"
-Bundle "ZenCoding.vim"
+""Bundle "ZenCoding.vim"
 "" more powerful than zencoding written in python
 "Bundle "rstacruz/sparkup"
 "set rtp+=$HOME/.vim/bundle/sparkup/vim/ 
@@ -77,17 +80,21 @@ Bundle "tpope/vim-fugitive"
 "Bundle "srcExpl"
 Bundle "jsbeautify"
 "Bundle "chazy/cscope_maps"
+Bundle 'undotree.vim'
 "phpvim, vim-signature
+Bundle 'xptemplate'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " color
 """"""""""""""""""""""""""""""""""""""""""""""""""
 Bundle "altercation/vim-colors-solarized"
+Bundle "molokai"
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
 "php"
 """"""""""""""""""""""""""""""""""""""""""""""""""
+Bundle 'tagbar-phpctags'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
 "python"
@@ -101,5 +108,12 @@ Bundle "indentpython.vim"
 """"""""""""""""""""""""""""""""""""""""""""""""""
 Bundle "vim-coffee-script"
 Bundle 'vim-less'
+Bundle 'Markdown'
+Bundle 'coffee.vim'
+Bundle 'emmet-vim'
+Bundle 'jslint.vim'
+Bundle 'vim-javascript'
+Bundle 'w3m.vim'
+Bundle 'JSON.vim'
 
 filetype plugin indent on 
