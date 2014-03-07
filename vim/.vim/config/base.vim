@@ -14,7 +14,6 @@ set shiftwidth  =4
 set expandtab
 set smarttab
 set smartindent
-au FileType * setlocal ff=unix
 
 set hidden
 set encoding=utf8
@@ -23,4 +22,4 @@ set termencoding=utf-8,gb2312
 set laststatus=2
 set cmdheight=2
 set acd
-set ff=unix
+set foldmethod=syntax
