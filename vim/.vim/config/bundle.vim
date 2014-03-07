@@ -8,45 +8,121 @@ Bundle "tlib"
 Bundle "genutils"
 Bundle "DfrankUtil"
 
+
 """"""""""""""""""""""""""""""""""""""""""
-"" plugins that cannot been dropped
+"" for basic
 """"""""""""""""""""""""""""""""""""""""""
-"textmate like snipptes AutoComplete plugins
-""Bundle "xptemplate"
-Bundle 'UltiSnips'
-"" alterated snipmate ultisnips neo
+Bundle 'surround.vim'
+Bundle 'matchit.zip'
+Bundle 'EasyMotion'
+Bundle 'Algin'
+Bundle 'dimasg/vim-mark'
+
+
+
+
+""""""""""""""""""""""""""""""""""""""""""
+"" for auto complete
+""""""""""""""""""""""""""""""""""""""""""
 Bundle "SuperTab"
-Bundle "FencView.vim"
+Bundle "AutoComplPop"
+Bundle "neocomplcache"
+Bundle "CmdlineComplete"
+Bundle 'UltiSnips'
+Bundle 'emmet-vim'
+"textmate like snipptes AutoComplete plugins
+"Bundle "xptemplate"
+"Bundle "snipMate"
 ""Bundle "ZenCoding.vim"
 "" more powerful than zencoding written in python
-"Bundle "rstacruz/sparkup"
-"set rtp+=$HOME/.vim/bundle/sparkup/vim/ 
-"" syntax check for many program languages
-Bundle "scrooloose/syntastic"
+"Bundle "rstacruz/sparkup" {'rtp' : 'vim/'}
 
-Bundle "Align"
+
+
+
+""""""""""""""""""""""""""""""""""""""""""
+"" for coding
+""""""""""""""""""""""""""""""""""""""""""
 Bundle "The-NERD-Commenter"
-Bundle "matchit.zip"
-Bundle "surround.vim"
-Bundle "xml.vim"
-Bundle "FuzzyFinder"
-Bundle "surround.vim"
-Bundle "Lokaltog/vim-powerline"
-Bundle "AutoComplPop"
+Bundle "scrooloose/syntastic"
+"Bundle 'camelcasemotion'
+Bundle "FencView.vim"
+
+
+
+
 
 """"""""""""""""""""""""""""""""""""""""""
-"" useful plugins
+"" for file structure
 """"""""""""""""""""""""""""""""""""""""""
+" -- user ctrlp to replace FuzzyFinder
+"Bundle "FuzzyFinder"
+Bundle "ctrlp.vim"
+Bundle "Lokaltog/vim-powerline"
 Bundle "netrw.vim"
+
+
+
+""""""""""""""""""""""""""""""""""""""""""
+"" for filetype 
+""""""""""""""""""""""""""""""""""""""""""
+Bundle "c.vim"
+Bundle 'Markdown'
+Bundle "xml.vim"
+Bundle 'w3m.vim'
+Bundle 'JSON.vim'
+
+" -- web
+"Bundle "vim-coffee-script"
+Bundle "JavaScript-Indent"
+Bundle 'vim-less'
+Bundle 'coffee.vim'
+Bundle 'jslint.vim'
+Bundle 'vim-javascript'
+Bundle 'haml.zip'
+
+"" -- php
+Bundle 'tagbar-phpctags'
+"" -- python
+"Bundle "vim-django"
+""Bundle "kevinw/pyflakes-vim"
+Bundle "indentpython.vim"
+
+
+
+
+""""""""""""""""""""""""""""""""""""""""""
+"" network tools 
+""""""""""""""""""""""""""""""""""""""""""
 Bundle "UltraBlog"
+" -- edit encrypted files
+Bundle openssl.vim
+
+
+""""""""""""""""""""""""""""""""""""""""""
+"" for coding
+""""""""""""""""""""""""""""""""""""""""""
+Bundle "The-NERD-Commenter"
+Bundle "scrooloose/syntastic"
+"Bundle 'camelcasemotion'
+Bundle "FencView.vim"
+
+
+
+
+
+""""""""""""""""""""""""""""""""""""""""""
+"" for file structure
+""""""""""""""""""""""""""""""""""""""""""
+Bundle "FuzzyFinder"
+Bundle "Lokaltog/vim-powerline"
+Bundle "netrw.vim"
+
 Bundle "vcscommand.vim"
 Bundle "Vimball"
 Bundle "calendar.vim"
 Bundle "vimwiki"
-Bundle "snipMate"
-Bundle "c.vim"
 Bundle "TxtBrowser"
-Bundle "neocomplcache"
 Bundle "word_complete.vim"
 Bundle "Command-T"
 Bundle "Tagbar"
@@ -57,8 +133,6 @@ Bundle "PDV--phpDocumentor-for-Vim"
 "" test plugins
 """"""""""""""""""""""""""""""""""""""""""
 Bundle "Color-Sampler-Pack"
-Bundle "JavaScript-Indent"
-Bundle "CmdlineComplete"
 
 ""Bundle "python.vim"
 ""Bundle "easytags.vim"
@@ -67,22 +141,19 @@ Bundle "CmdlineComplete"
 ""Bundle "grep.vim"
 ""Bundle "taskpaper.vim"
 ""Bundle 'jslint.vim'
-Bundle 'haml.zip'
 ""Bundle 'vimprj'
 
 "use cp in visual mode directly in macos #Bundle "fakeclip" 
 "has vsccommand with same functions 
+" vimdiff for three- merge
 Bundle "tpope/vim-fugitive"
 ""Bundle "tagbar-phpctags"
 "Bundle "SingleCompile"
-"Bundle "EasyMotion"
 "Bundle "Proj"
 "Bundle "srcExpl"
 Bundle "jsbeautify"
 "Bundle "chazy/cscope_maps"
 Bundle 'undotree.vim'
-"phpvim, vim-signature
-""Bundle 'xptemplate'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " color
@@ -90,30 +161,5 @@ Bundle 'undotree.vim'
 Bundle "altercation/vim-colors-solarized"
 Bundle "molokai"
 
-
-""""""""""""""""""""""""""""""""""""""""""""""""""
-"php"
-""""""""""""""""""""""""""""""""""""""""""""""""""
-Bundle 'tagbar-phpctags'
-
-""""""""""""""""""""""""""""""""""""""""""""""""""
-"python"
-""""""""""""""""""""""""""""""""""""""""""""""""""
-"Bundle "vim-django"
-""Bundle "kevinw/pyflakes-vim"
-Bundle "indentpython.vim"
-
-""""""""""""""""""""""""""""""""""""""""""""""""""
-" web frontend
-""""""""""""""""""""""""""""""""""""""""""""""""""
-Bundle "vim-coffee-script"
-Bundle 'vim-less'
-Bundle 'Markdown'
-Bundle 'coffee.vim'
-Bundle 'emmet-vim'
-Bundle 'jslint.vim'
-Bundle 'vim-javascript'
-Bundle 'w3m.vim'
-Bundle 'JSON.vim'
 
 filetype plugin indent on 
