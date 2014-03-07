@@ -82,7 +82,7 @@ Bundle "jsbeautify"
 "Bundle "chazy/cscope_maps"
 Bundle 'undotree.vim'
 "phpvim, vim-signature
-Bundle 'xptemplate'
+""Bundle 'xptemplate'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " color
