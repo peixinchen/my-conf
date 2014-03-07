@@ -337,5 +337,5 @@ let g:surround_61 = "['\r']"
 let g:vundle_log_file = "/tmp/vundle.log"
 
 ""django
-let g:project_directory=expand('~/workspace/python-dev')
-let g:django_projects=expand('~/workspace/python-dev')
+"let g:project_directory=expand('~/workspace/python-dev')
+"let g:django_projects=expand('~/workspace/python-dev')
