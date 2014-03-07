@@ -323,6 +323,7 @@ let g:xptemplate_vars = "SPop=&SParg=&author=reedboat&email=zhqm03@gmail.com&...
 
 ""Powerline
 let g:Powerline_symbols = 'fancy'
+let g:Powerline_cache_dir=$tmp 
 
 ""Command-t
 let g:CommandTMatchWindowAtTop = 1
@@ -334,7 +335,7 @@ let g:surround_45 = "<{\r}>"
 let g:surround_61 = "['\r']"
 
 ""vundle
-let g:vundle_log_file = "/tmp/vundle.log"
+let g:vundle_log_file = $tmp . "/vundle.log"
 
 ""django
 "let g:project_directory=expand('~/workspace/python-dev')
