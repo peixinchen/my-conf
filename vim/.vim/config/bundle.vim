@@ -49,6 +49,8 @@ Bundle "word_complete.vim"
 """"""""""""""""""""""""""""""""""""""""""
 "" for coding and project
 """"""""""""""""""""""""""""""""""""""""""
+" -- commentary.vim to replace nerd-commenter
+Bundle 'commentary.vim'
 Bundle "The-NERD-Commenter"
 Bundle "scrooloose/syntastic"
 "Bundle 'camelcasemotion'

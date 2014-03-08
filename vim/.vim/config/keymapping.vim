@@ -48,16 +48,12 @@ nnoremap <silent> <leader>qp :cp<cr>
 
 
 " Paths & File
-cnoremap 1 <c-r>=expand('%:p:h').'/'<cr>
-cnoremap 2 <c-r>=expand('%:p:t')<cr>
-cnoremap 3 <c-r>=expand('%:p')<cr>
-cnoremap 4 <c-r>=expand('%:p:t:r')<cr>
+cnoremap d <c-r>=expand('%:p:h').'/'<cr>
+cnoremap p <c-r>=expand('%:p')<cr>
 
 nnoremap <leader>ss   :so %<CR>
 nnoremap <leader>cd   :cd %:p:h<CR>
 "nnoremap gf :e <c-r><c-f><cr>
-nnoremap <leader>nf :new <c-r><c-f><cr>
-nnoremap <Leader>ne :new<cr>
 
 
 
@@ -99,7 +95,8 @@ nnoremap <leader>qa  :qa<cr>
 nnoremap <leader>wf  :w!<cr>
 nnoremap <unique> <c-x> :q<cr>
 nnoremap <leader>zz :x<cr>
-nnoremap ,q :q<cr>
+nnoremap <leader>q :q<cr>
+nnoremap <leader>n :new<cr>
 "autocmd! bufwritepost _vimrc source $vim/_vimrc
 
 
@@ -230,6 +227,9 @@ cnoremap <C-k> <t_ku>
 cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
 
+nnoremap ,hp :help<space> 
+nnoremap ,hw :help<space><c-r><c-w>
+
 
 
 let mapleader=oldleader
@@ -254,6 +254,8 @@ nnoremap <Leader>cr :VCSReview<cr>
 vnoremap <c-insert> "*y
 vnoremap cp         "*y
 
+nmap + <c-a>
+nmap - <c-x>
 
 "" disable arrows
 map <up>    <nop>
