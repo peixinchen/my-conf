@@ -10,14 +10,19 @@ Bundle "DfrankUtil"
 
 
 """"""""""""""""""""""""""""""""""""""""""
-"" for basic
+"" plugin for core functions
 """"""""""""""""""""""""""""""""""""""""""
+" -- add repeat.vim to make (.) works for cs,ds,ys
+Bundle 'repeat.vim' 
 Bundle 'surround.vim'
 Bundle 'matchit.zip'
 Bundle 'EasyMotion'
-Bundle 'Algin'
+Bundle 'Align'
 Bundle 'dimasg/vim-mark'
-
+Bundle "easygrep"
+Bundle "textobj-user"
+Bundle "textobj-line"
+Bundle "textobj-indent"
 
 
 
@@ -29,37 +34,32 @@ Bundle "AutoComplPop"
 Bundle "neocomplcache"
 Bundle "CmdlineComplete"
 Bundle 'UltiSnips'
-Bundle 'emmet-vim'
+Bundle 'Emmet.vim'
 "textmate like snipptes AutoComplete plugins
 "Bundle "xptemplate"
 "Bundle "snipMate"
 ""Bundle "ZenCoding.vim"
 "" more powerful than zencoding written in python
 "Bundle "rstacruz/sparkup" {'rtp' : 'vim/'}
+Bundle "word_complete.vim"
 
 
 
 
 """"""""""""""""""""""""""""""""""""""""""
-"" for coding
+"" for coding and project
 """"""""""""""""""""""""""""""""""""""""""
 Bundle "The-NERD-Commenter"
 Bundle "scrooloose/syntastic"
 "Bundle 'camelcasemotion'
-Bundle "FencView.vim"
+"use tagbar to replace taglist
+Bundle "tagbar"
+Bundle 'vimprj'
+"Bundle "chazy/cscope_maps"
 
 
 
 
-
-""""""""""""""""""""""""""""""""""""""""""
-"" for file structure
-""""""""""""""""""""""""""""""""""""""""""
-" -- user ctrlp to replace FuzzyFinder
-"Bundle "FuzzyFinder"
-Bundle "ctrlp.vim"
-Bundle "Lokaltog/vim-powerline"
-Bundle "netrw.vim"
 
 
 
@@ -69,10 +69,9 @@ Bundle "netrw.vim"
 Bundle "c.vim"
 Bundle 'Markdown'
 Bundle "xml.vim"
-Bundle 'w3m.vim'
 Bundle 'JSON.vim'
 
-" -- web
+"" -- web
 "Bundle "vim-coffee-script"
 Bundle "JavaScript-Indent"
 Bundle 'vim-less'
@@ -80,9 +79,11 @@ Bundle 'coffee.vim'
 Bundle 'jslint.vim'
 Bundle 'vim-javascript'
 Bundle 'haml.zip'
+Bundle "jsbeautify"
 
 "" -- php
 Bundle 'tagbar-phpctags'
+
 "" -- python
 "Bundle "vim-django"
 ""Bundle "kevinw/pyflakes-vim"
@@ -96,7 +97,10 @@ Bundle "indentpython.vim"
 """"""""""""""""""""""""""""""""""""""""""
 Bundle "UltraBlog"
 " -- edit encrypted files
-Bundle openssl.vim
+Bundle 'openssl.vim'
+Bundle "calendar.vim"
+Bundle "vimwiki"
+Bundle "TxtBrowser"
 
 
 """"""""""""""""""""""""""""""""""""""""""
@@ -106,58 +110,36 @@ Bundle "The-NERD-Commenter"
 Bundle "scrooloose/syntastic"
 "Bundle 'camelcasemotion'
 Bundle "FencView.vim"
+Bundle "vcscommand.vim"
+Bundle "tpope/vim-fugitive"
 
 
 
+""""""""""""""""""""""""""""""""""""""""""
+"" for vim native settings
+""""""""""""""""""""""""""""""""""""""""""
+Bundle "Lokaltog/vim-powerline"
+Bundle "Vimball"
 
 
 """"""""""""""""""""""""""""""""""""""""""
 "" for file structure
 """"""""""""""""""""""""""""""""""""""""""
-Bundle "FuzzyFinder"
-Bundle "Lokaltog/vim-powerline"
 Bundle "netrw.vim"
+" -- user ctrlp to replace FuzzyFinder
+Bundle "ctrlp.vim"
+Bundle "FuzzyFinder"
 
-Bundle "vcscommand.vim"
-Bundle "Vimball"
-Bundle "calendar.vim"
-Bundle "vimwiki"
-Bundle "TxtBrowser"
-Bundle "word_complete.vim"
-Bundle "Command-T"
-Bundle "Tagbar"
+"Bundle "Command-T"
+"Bundle "Tagbar"
 Bundle 'project.tar.gz'
 Bundle "PDV--phpDocumentor-for-Vim"
 
-""""""""""""""""""""""""""""""""""""""""""
-"" test plugins
-""""""""""""""""""""""""""""""""""""""""""
-Bundle "Color-Sampler-Pack"
-
-""Bundle "python.vim"
-""Bundle "easytags.vim"
-""Bundle "undotree.vim"
-""Bundle "indentpython.vim"
-""Bundle "grep.vim"
-""Bundle "taskpaper.vim"
-""Bundle 'jslint.vim'
-""Bundle 'vimprj'
-
-"use cp in visual mode directly in macos #Bundle "fakeclip" 
-"has vsccommand with same functions 
-" vimdiff for three- merge
-Bundle "tpope/vim-fugitive"
-""Bundle "tagbar-phpctags"
-"Bundle "SingleCompile"
-"Bundle "Proj"
-"Bundle "srcExpl"
-Bundle "jsbeautify"
-"Bundle "chazy/cscope_maps"
-Bundle 'undotree.vim'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " color
 """"""""""""""""""""""""""""""""""""""""""""""""""
+Bundle "Color-Sampler-Pack"
 Bundle "altercation/vim-colors-solarized"
 Bundle "molokai"
 

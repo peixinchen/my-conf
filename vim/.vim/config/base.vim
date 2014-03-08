@@ -1,7 +1,7 @@
 set number
 set history       =400
 set ignorecase
-set tags           =./tags,tags,./../tags
+set tags           +=tags;
 set sessionoptions -=curdir
 set sessionoptions +=sesdir
 set cul
@@ -27,3 +27,7 @@ set foldlevel=6
 set foldcolumn=0
 set fileformat=unix
 set fileformats=unix,dos,mac
+
+set list
+set listchars=tab:▸\ ,eol:¬,trail:⋅,extends:❯,precedes:❮
+set showbreak=↪

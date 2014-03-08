@@ -1,5 +1,6 @@
 alias tmuxt='tmux attach -t'
 alias jslint='~/.npm/jslint/0.1.9/package/bin/jslint.js'
+alias v='vim'
 
 alias svm='ssh reedboat@172.16.157.128'
 alias goagent='python ~/codes/goagent2/local/proxy.py'

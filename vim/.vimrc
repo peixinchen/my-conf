@@ -6,6 +6,8 @@ let $php=system("whereis -b php|awk '{print $2}'")
 let $ctags='/usr/bin/ctags'
 let $tmp='/tmp'
 
+" myhelp 
+" $HOME/.vim/config/help.md
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " plugins
@@ -33,7 +35,6 @@ colorscheme solarized
 
 
 
-
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " project
 """"""""""""""""""""""""""""""""""""""""""""""""""
@@ -41,3 +42,5 @@ if filereadable($HOME . "/project.vim")
     source $HOME/project.vim
 endif
 """"""""""""""""""""""""""""""""""""""""""""""""""
+
+

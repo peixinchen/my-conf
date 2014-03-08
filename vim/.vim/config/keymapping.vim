@@ -1,13 +1,19 @@
 " Last Change: 2009-06-28 00:08:09
-" mapleader setting
 
 if exists("g:loaded_keymapping")
     finish
 endif
 let g:loaded_keymapping = "v100" 
 
-let oldleader=mapleader 
-let mapleader= ","
+" mapleader setting
+if !exists("mapleader")
+    let oldleader='\'
+    let mapleader=','
+else
+    let oldleader=mapleader
+    let mapleader=','
+endif
+
 " Buffers
 nnoremap <silent> <leader>bp :bprev<cr>
 nnoremap <silent> <leader>bn :bnext<cr>
@@ -15,8 +21,6 @@ nnoremap <silent> <leader>bl :blast<cr>
 nnoremap <silent> <leader>bf :bfirst<cr>
 nnoremap <silent> <leader>b3 :b #<cr>
 nnoremap <silent> <leader>bd :bdelete<cr>
-
-"nnoremap <leader>mb :MiniBufExplorer<cr>
 
 " Windows
 nnoremap <unique> <c-k> <C-W><Up>
@@ -28,13 +32,6 @@ nnoremap <unique> <leader>wk <C-W><Up>
 nnoremap <unique> <leader>wj <C-W><Down>
 nnoremap <unique> <leader>wh <C-W><Left>
 
-inoremap <unique> <c-h> <Left>
-inoremap <unique> <c-l> <Right>
-
-nnoremap <unique> <c-x> :q<cr>
-nnoremap <c-tab> :bn<cr>
-nnoremap <c-s-tab> :bp<cr>
-nnoremap  <leader>be :BufExplorer<cr>
 
 " Tabs 
 nnoremap <leader>tn   :tabnew <CR>
@@ -58,15 +55,17 @@ cnoremap 4 <c-r>=expand('%:p:t:r')<cr>
 
 nnoremap <leader>ss   :so %<CR>
 nnoremap <leader>cd   :cd %:p:h<CR>
-nnoremap gf :e <c-r><c-f><cr>
+"nnoremap gf :e <c-r><c-f><cr>
 nnoremap <leader>nf :new <c-r><c-f><cr>
 nnoremap <Leader>ne :new<cr>
 
 
-nnoremap <leader>zz :x<cr>
 
 nnoremap <silent> <leader>rc :call SwitchToBuf($vim."/.vimrc")<cr>
-nnoremap <silent> <leader>ec :call SwitchToBuf($trash.'/scratch.txt')<cr>
+nnoremap <silent> <leader>erb :call SwitchToBuf($vim."/.vim/config/bundle.vim")<cr>
+nnoremap <silent> <leader>erk :call SwitchToBuf($vim."/.vim/config/keymapping.vim")<cr>
+nnoremap <silent> <leader>erh :call SwitchToBuf($vim."/.vim/config/help.md")<cr>
+nnoremap <silent> <leader>ec :call SwitchToBuf($tmp.'/scratch.txt')<cr>
 
 nnoremap <silent> <leader>nu :call ToogleOption('nu')<cr>
 nnoremap <silent> <leader>sw <esc>:set wrap! <cr>0
@@ -90,45 +89,19 @@ vnoremap <leader>a> :Align => <cr>
 ":vert resize 15 \| exec "normal m"<cr>
 
 
-""""""""""""""""""""""""""""""
-".html
-""""""""""""""""""""""""""""""
-autocmd BufRead,BufNewFile *.html 
-            \inoremap <buffer> <s-cr> <br /><cr> |
-            \nnoremap <buffer> <leader><Space> i&nbsp;<esc>
-
-
-"Key mapping
-inoremap <C-CR> <C-P>
-inoremap <expr> <C-J> pumvisible()?"\<C-N>":"\<C-X><C-O>"
-inoremap <expr> <C-K> pumvisible()?"\<C-P>":"\<C-K>"
-inoremap <expr> <C-U> pumvisible()?"\<C-E>":"\<C-U>"
-
 
 "plugins
 map <leader>tb <ESC>:TagbarToggle<cr>
-
-function! GetFoo()
-    call inputsave()
-    let g:Foo=getchar()
-    if(g:Foo>31&&g:Foo<127)
-        let g:Foo=nr2char(g:Foo)
-    else
-        let g:Foo='';
-    endif
-    call inputrestore()
-endfunction
-nnoremap <silent> s :call GetFoo()<cr>:exe "normal a" . Foo<Esc>
-
 
 " Save & Exit
 nnoremap <leader>qf  :q!<cr>
 nnoremap <leader>qa  :qa<cr>
 nnoremap <leader>wf  :w!<cr>
+nnoremap <unique> <c-x> :q<cr>
+nnoremap <leader>zz :x<cr>
+nnoremap ,q :q<cr>
 "autocmd! bufwritepost _vimrc source $vim/_vimrc
 
-
-nnoremap <leader>vk  :!deplate -m zh-cn %<CR>
 
 " Search
 vnoremap <silent> * :call VisualSearch('f')<CR>
@@ -136,12 +109,7 @@ vnoremap <silent> # :call VisualSearch('b')<CR>
 
 
 " Spell check
-"nnoremap <leader>so :setl spell spelllang=en_us
-"nnoremap <leader>sn ]s
-"nnoremap <leader>sp [s
-"nnoremap <leader>sa zg
-"nnoremap <leader>s? z=
-"
+nnoremap <leader>sc :setl spell spelllang=en_us
 
 " Search in Files
 nnoremap <leader>gr :grep <cword> *<cr>   
@@ -151,13 +119,7 @@ nnoremap <leader>GR :grep \b<cword>\b %:p:h/*<cr>
 
 
 
-"Comments
-nnoremap <leader>cx :Dox<cr>
-nnoremap <leader>cw :DoxAuthor<cr>
-nnoremap <leader>cp :call PhpDoc()<cr>
 
-" Visual Block
-nnoremap <leader>b1 :silent !"%"<cr> 
 
 vnoremap <unique> < <gv
 vnoremap <unique> > >gv
@@ -172,10 +134,6 @@ noremap <unique> <Down> gj
 
 " CamelCase
 nnoremap <leader>gu gUw
-nnoremap <silent><C-Left> :<C-u>cal search('\<\<Bar>\U\@<=\u\<Bar>\u\ze\%(\U\&\>\@!\)\<Bar>\%^','bW')<CR>
-nnoremap <silent><C-Right> :<C-u>cal search('\<\<Bar>\U\@<=\u\<Bar>\u\ze\%(\U\&\>\@!\)\<Bar>\%$','W')<CR>
-inoremap <silent><C-Left> <C-o>:cal search('\<\<Bar>\U\@<=\u\<Bar>\u\ze\%(\U\&\>\@!\)\<Bar>\%^','bW')<CR>
-inoremap <silent><C-Right> <C-o>:cal search('\<\<Bar>\U\@<=\u\<Bar>\u\ze\%(\U\&\>\@!\)\<Bar>\%$','W')<CR>
 
 
 nnoremap <leader>ef :call EchoFunc("<cword>")<cr>
@@ -195,21 +153,19 @@ nnoremap <leader>wp :VimwikiGoBackWord<cr>
         \ }
 let g:fuf_mrufile_maxItem = 300
 let g:fuf_mrucmd_maxItem = 400
-nnoremap <silent> <C-n>      :FufBuffer<CR>
 nnoremap <silent> <leader>fb :FufBuffer<CR>
-nnoremap <silent> <C-p>      :FufFileWithCurrentBufferDir<CR>
-nnoremap <silent> <C-f><C-p> :FufFileWithFullCwd<CR>
 nnoremap <silent> <leader>ff :FufFile<CR>
-nnoremap <silent> <C-f><C-d> :FufDirWithCurrentBufferDir<CR>
-nnoremap <silent> <C-f>d     :FufDirWithFullCwd<CR>
-nnoremap <silent> <C-f>D     :FufDir<CR>
 nnoremap <silent> <leader>mr :FufMruFile<CR>
 nnoremap <silent> <leader>mc :FufMruCmd<CR>
 nnoremap <silent> <leader>mb :FufBookmark<CR>
-nnoremap <silent> <leader>ma: FufAddBookmark<CR>
+nnoremap <silent> <leader>ma :FufBookmarkFileAdd<CR>
+nnoremap <silent> <C-p>      :FufFileWithCurrentBufferDir<CR>
+nnoremap <silent> <C-f><C-p> :FufFileWithFullCwd<CR>
+nnoremap <silent> <C-f><C-d> :FufDirWithCurrentBufferDir<CR>
+nnoremap <silent> <C-f>d     :FufDirWithFullCwd<CR>
+nnoremap <silent> <C-f>D     :FufDir<CR>
 nnoremap <silent> <C-f><C-t> :FufTag<CR>
-nnoremap <silent> <C-f>t     :FufTag!<CR>
-noremap  <silent> g]         :FufTagWithCursorWord!<CR>
+nnoremap <silent> <C-f>t     :FufTag!<CR> noremap  <silent> g]         :FufTagWithCursorWord!<CR>
 "nnoremap <silent> <C-f><C-f> :FufTaggedFile<CR>
 nnoremap <silent> <C-f><C-j> :FufJumpList<CR>
 nnoremap <silent> <C-f><C-g> :FufChangeList<CR>
@@ -218,13 +174,17 @@ nnoremap <silent> <C-f><C-q> :FufQuickfix<CR>
 nnoremap <silent> <C-f><C-e> :FufEditInfo<CR>
 nnoremap <silent> <C-f><C-r> :FufRenewCache<CR>
 
-" pdv 
-nnoremap <leader>pd :Phpdoc %<cr>
+
+" php 
+nnoremap <leader>phd :Phpdoc %<cr>
+nnoremap <Leader>phr :!php -f <c-r>=expand('%:p')<cr><cr>
+nnoremap <leader>cx :Dox<cr>
+nnoremap <leader>cw :DoxAuthor<cr>
+nnoremap <leader>cp :call PhpDoc()<cr>
 
 
 " make and run
-nnoremap <Leader>ru :!php -f <c-r>=expand('%:p')<cr><cr>
-nnoremap <Leader>ru2 :!python <c-r>=expand('%:p')<cr><cr>
+nnoremap <Leader>pyr :!python <c-r>=expand('%:p')<cr><cr>
 nnoremap <Leader>mk :make<cr>
 
 " encode
@@ -238,10 +198,10 @@ nnoremap <Leader>pa :set paste<cr>
 nnoremap <Leader>np :set nopaste<cr>
 
 "" surround
-nmap <Leader>'  ysiw'
-nmap <Leader>"  ysiw"
-nmap <Leader>[  ysiw[
-nmap <Leader>]  ysiw]
+nmap <Leader>' ysiw'
+nmap <Leader>" ysiw"
+nmap <Leader>[ ysiw[
+nmap <Leader>]' ysiw]lysiw'
 
 
 ""jslint
@@ -251,10 +211,25 @@ noremap <leader>jl :call JsonLint()<cr>
 nnoremap <Leader>dt :diffthis<cr>
 nnoremap <Leader>do :diffoff <cr>
 
-""tidy
 
 nmap <S-CR> O<Esc>j
 nmap <CR> o<Esc>k
+nnoremap Y y$
+nnoremap j gj
+cmap w!! %!sudo tee > /dev/null %
+" use very magic pattern
+nnoremap / /\v
+vnoremap / /\v
+nnoremap ? ?\v
+vnoremap ? ?\v
+cnoremap s/ s/\v
+cnoremap %s/ %s/\v
+inoremap jk <esc>
+cnoremap <C-j> <t_kd>
+cnoremap <C-k> <t_ku>
+cnoremap <C-a> <Home>
+cnoremap <C-e> <End>
+
 
 
 let mapleader=oldleader
@@ -275,10 +250,13 @@ nnoremap <Leader>cG :VCSGotoOriginal!<cr>
 nnoremap <Leader>ci :VCSInfo<cr>
 nnoremap <Leader>cL :VCSLock<cr>
 nnoremap <Leader>cr :VCSReview<cr>
-nnoremap <Leader>cU :VCSUnlock<cr>
 
 vnoremap <c-insert> "*y
 vnoremap cp         "*y
 
 
-""
+"" disable arrows
+map <up>    <nop>
+map <down>  <nop>
+map <left>  <nop>
+map <right> <nop>

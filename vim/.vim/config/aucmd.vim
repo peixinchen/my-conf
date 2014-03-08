@@ -7,6 +7,24 @@ if('g:autocmd_loaded')
     finish
 endif 
 let g:autocmd_loaded = 1
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""
+" set filetype 
+"""""""""""""""""""""""""""""""""""""""""""""""""""
+if has("autocmd") 
+  autocmd BufRead,BufNewFile *.phtml setlocal filetype=php
+  autocmd BufRead,BufNewFile *.coffee setlocal filetype=coffee
+  autocmd BufRead,BufNewFile *.less setlocal filetype=less
+  autocmd BufRead,BufNewFile *.as setlocal filetype=actionscript
+endif
+
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""
+" set compiler 
+"""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
 if has("autocmd") 
     "delete all autocmd for redefine
     au BufNewFile,BufRead *.plan                    setf plan
@@ -25,9 +43,6 @@ if has("autocmd")
     autocmd BufRead,BufNewFile *.cpp  setlocal makeprg=/usr/bin/g++\ -m32\ -c\ %:p
     autocmd BufRead,BufNewFile *.c  setlocal makeprg=/usr/bin/gcc\ -c\ %:p
     autocmd BufRead,BufNewFile *.py setlocal makeprg=python\ -c\ \"import\ py_compile,sys;sys.stderr=sys.stdout;py_compile.compile(r'%')\"
-
-    autocmd BufRead,BufNewFile *.coffee setlocal filetype=coffee
-    autocmd BufRead,BufNewFile *.less setlocal filetype=less
     
     autocmd BufRead,BufNewFile *.php 
                \ setlocal makeprg     =/usr/bin/php\ -l\ -d\ html_errors=off\ -f\ %:p |
@@ -37,11 +52,9 @@ if has("autocmd")
                "\ setlocal equalprg    =phpCB\ --space-after-switch\ --space-after-while\ --space-after-if\ --space-after-start-bracket\ --space-before-end-bracket\ --space-before-start-angle-bracket\ --space-after-end-angle-bracket\ --extra-padding-for-case-statement\ --change-shell-comment-to-double-slashes-comment\ --force-large-php-code-tag\ --force-true-false-null-contant-lowercase\ --align-equal-statements\ --comment-rendering-style\ PEAR\ --equal-align-position\ 50\ --padding-char-count\ 4 |
     autocmd BufRead,BufNewFile *.as,*.mxml compiler flex |
                 \ nnoremap ,mk :!start mxmlc %
-    autocmd BufRead,BufNewFile *.as setlocal filetype=actionscript
     autocmd BufRead,BufNewFile *.mxml setlocal filetype=mxml |
                 \ nnoremap ,ns :%s/<\/\?\zs\(mx:\)\@!\(\w\+\)\ze/mx:\2/g<CR>
 
-    autocmd BufRead,BufNewFile *.phtml set filetype=php
 " xml autocmd
     autocmd BufRead,BufNewFile *.xml,*.mxml
                 \ exe 'setlocal equalprg =tidy\ -imq\ -raw\ -xml\ --tidy-mark\ 0\ -f\ ' . &errorfile
@@ -78,4 +91,5 @@ if has("autocmd")
     autocmd FileType php set omnifunc=phpcomplete#CompletePHP
 
 
+    au InsertLeave * set nopaste
 endif " has("autocmd") 
