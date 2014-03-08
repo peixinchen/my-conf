@@ -19,7 +19,7 @@ Bundle 'matchit.zip'
 Bundle 'EasyMotion'
 Bundle 'Align'
 Bundle 'dimasg/vim-mark'
-Bundle "easygrep"
+Bundle "EasyGrep"
 Bundle "textobj-user"
 Bundle "textobj-line"
 Bundle "textobj-indent"
@@ -50,12 +50,12 @@ Bundle "word_complete.vim"
 "" for coding and project
 """"""""""""""""""""""""""""""""""""""""""
 " -- commentary.vim to replace nerd-commenter
-Bundle 'commentary.vim'
+Bundle 'tpope/vim-commentary'
 Bundle "The-NERD-Commenter"
 Bundle "scrooloose/syntastic"
 "Bundle 'camelcasemotion'
 "use tagbar to replace taglist
-Bundle "tagbar"
+Bundle "Tagbar"
 Bundle 'vimprj'
 "Bundle "chazy/cscope_maps"
 
