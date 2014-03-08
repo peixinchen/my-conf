@@ -30,10 +30,18 @@ Bundle "textobj-indent"
 "" for auto complete
 """"""""""""""""""""""""""""""""""""""""""
 Bundle "SuperTab"
+"YCM can replace others
+"Bundle "Valloric/YouCompleteMe"
 Bundle "AutoComplPop"
 Bundle "neocomplcache"
 Bundle "CmdlineComplete"
+
+let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsSnippetDirectories=["snippets", "bundle/ultisnips/UltiSnips"]
 Bundle 'UltiSnips'
+
+"Bundle 'honza/vim-snippets'
 Bundle 'Emmet.vim'
 "textmate like snipptes AutoComplete plugins
 "Bundle "xptemplate"
@@ -84,7 +92,7 @@ Bundle 'haml.zip'
 Bundle "jsbeautify"
 
 "" -- php
-Bundle 'tagbar-phpctags'
+"Bundle 'tagbar-phpctags'
 
 "" -- python
 "Bundle "vim-django"
@@ -114,6 +122,28 @@ Bundle "scrooloose/syntastic"
 Bundle "FencView.vim"
 Bundle "vcscommand.vim"
 Bundle "tpope/vim-fugitive"
+"括号显示增强
+Bundle 'kien/rainbow_parentheses.vim'
+let g:rbpt_colorpairs = [
+    \ ['brown',       'RoyalBlue3'],
+    \ ['Darkblue',    'SeaGreen3'],
+    \ ['darkgray',    'DarkOrchid3'],
+    \ ['darkgreen',   'firebrick3'],
+    \ ['darkcyan',    'RoyalBlue3'],
+    \ ['darkred',     'SeaGreen3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['brown',       'firebrick3'],
+    \ ['gray',        'RoyalBlue3'],
+    \ ['black',       'SeaGreen3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['Darkblue',    'firebrick3'],
+    \ ['darkgreen',   'RoyalBlue3'],
+    \ ['darkcyan',    'SeaGreen3'],
+    \ ['darkred',     'DarkOrchid3'],
+    \ ['red',         'firebrick3'],
+    \ ]
+let g:rbpt_max = 40
+let g:rbpt_loadcmd_toggle = 0
 
 
 

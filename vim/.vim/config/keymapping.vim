@@ -222,6 +222,7 @@ vnoremap ? ?\v
 cnoremap s/ s/\v
 cnoremap %s/ %s/\v
 inoremap jk <esc>
+inoremap kj <esc>
 cnoremap <C-j> <t_kd>
 cnoremap <C-k> <t_ku>
 cnoremap <C-a> <Home>

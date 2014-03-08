@@ -132,7 +132,7 @@ let g:netrw_liststyle       = 1
 let g:netrw_list_hide       = "\.bak,\.ecgi"
 let g:netrw_menu            = 0
 let g:netrw_use_errorwindow = 0
-let g:netrw_browse_split    = 3
+let g:netrw_browse_split    = 2
 if has("win32")
   let g:netrw_ftp_cmd         = '"' . $vim . '/program/ftp.exe"'
   let g:netrw_sftp_cmd        = '"' . $vim . '/program/putty/psftp.exe"'
