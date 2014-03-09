@@ -237,3 +237,34 @@ let g:ctrlp_custom_ignore = {
 ""django
 "let g:project_directory=expand('~/workspace/python-dev')
 "let g:django_projects=expand('~/workspace/python-dev')
+"
+"" project
+let g:ProjFileBrowser='off'
+
+"UltiSnips
+let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+let g:UltiSnipsSnippetDirectories=["snippets", "bundle/ultisnips/UltiSnips"]
+
+"rbpt
+let g:rbpt_colorpairs = [
+    \ ['3',         '808000'],
+    \ ['6',         '008080'],
+    \ ['202',       'ff5f00'],
+    \ ['11',        'ffff00'],
+    \ ['13',        'ff00ff'],
+    \ ['10',        '00ff00'],
+    \ ['45',        '00dfff'],
+    \ ['9',         'ff0000'],
+    \ ]
+let g:rbpt_max = 16
+let g:rbpt_bold = 0
+let g:rbpt_loadcmd_toggle = 0
+augroup RainbowParentheses
+    au!
+    au VimEnter * RainbowParenthesesToggle
+    au Syntax * RainbowParenthesesLoadRound
+    au Syntax * RainbowParenthesesLoadSquare
+    au Syntax * RainbowParenthesesLoadBraces
+augroup END

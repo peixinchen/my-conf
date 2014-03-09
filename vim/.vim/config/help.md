@@ -10,7 +10,9 @@ vimer世界,易水的博客,水木清华社区
 ## vimrc设置技巧网站
 [vimbits](http://www.vimbits.com/)
 
-
+# 非常好的技巧
+* w!!
+* Project \C 快速创建项目文件
 
 
 # 常用插件帮助

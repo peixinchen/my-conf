@@ -10,7 +10,7 @@ Bundle "DfrankUtil"
 
 
 """"""""""""""""""""""""""""""""""""""""""
-"" plugin for core functions
+"" plugin for core edit
 """"""""""""""""""""""""""""""""""""""""""
 " -- add repeat.vim to make (.) works for cs,ds,ys
 Bundle 'repeat.vim' 
@@ -36,9 +36,6 @@ Bundle "AutoComplPop"
 Bundle "neocomplcache"
 Bundle "CmdlineComplete"
 
-let g:UltiSnipsExpandTrigger = "<tab>"
-let g:UltiSnipsJumpForwardTrigger = "<tab>"
-let g:UltiSnipsSnippetDirectories=["snippets", "bundle/ultisnips/UltiSnips"]
 Bundle 'UltiSnips'
 
 "Bundle 'honza/vim-snippets'
@@ -53,19 +50,6 @@ Bundle "word_complete.vim"
 
 
 
-
-""""""""""""""""""""""""""""""""""""""""""
-"" for coding and project
-""""""""""""""""""""""""""""""""""""""""""
-" -- commentary.vim to replace nerd-commenter
-Bundle 'tpope/vim-commentary'
-Bundle "The-NERD-Commenter"
-Bundle "scrooloose/syntastic"
-"Bundle 'camelcasemotion'
-"use tagbar to replace taglist
-Bundle "Tagbar"
-Bundle 'vimprj'
-"Bundle "chazy/cscope_maps"
 
 
 
@@ -116,35 +100,22 @@ Bundle "TxtBrowser"
 """"""""""""""""""""""""""""""""""""""""""
 "" for coding
 """"""""""""""""""""""""""""""""""""""""""
+" -- commentary.vim to replace nerd-commenter
+Bundle 'tpope/vim-commentary'
 Bundle "The-NERD-Commenter"
 Bundle "scrooloose/syntastic"
+"Bundle 'camelcasemotion'
+"use tagbar to replace taglist
+Bundle "Tagbar"
+
+"Bundle "chazy/cscope_maps"
 "Bundle 'camelcasemotion'
 Bundle "FencView.vim"
 Bundle "vcscommand.vim"
 Bundle "tpope/vim-fugitive"
 "括号显示增强
-Bundle 'kien/rainbow_parentheses.vim'
-let g:rbpt_colorpairs = [
-    \ ['brown',       'RoyalBlue3'],
-    \ ['Darkblue',    'SeaGreen3'],
-    \ ['darkgray',    'DarkOrchid3'],
-    \ ['darkgreen',   'firebrick3'],
-    \ ['darkcyan',    'RoyalBlue3'],
-    \ ['darkred',     'SeaGreen3'],
-    \ ['darkmagenta', 'DarkOrchid3'],
-    \ ['brown',       'firebrick3'],
-    \ ['gray',        'RoyalBlue3'],
-    \ ['black',       'SeaGreen3'],
-    \ ['darkmagenta', 'DarkOrchid3'],
-    \ ['Darkblue',    'firebrick3'],
-    \ ['darkgreen',   'RoyalBlue3'],
-    \ ['darkcyan',    'SeaGreen3'],
-    \ ['darkred',     'DarkOrchid3'],
-    \ ['red',         'firebrick3'],
-    \ ]
-let g:rbpt_max = 40
-let g:rbpt_loadcmd_toggle = 0
-
+Bundle 'masukomi/rainbow_parentheses.vim'
+Bundle "PDV--phpDocumentor-for-Vim"
 
 
 """"""""""""""""""""""""""""""""""""""""""
@@ -155,7 +126,7 @@ Bundle "Vimball"
 
 
 """"""""""""""""""""""""""""""""""""""""""
-"" for file structure
+"" for file management and  orgnization
 """"""""""""""""""""""""""""""""""""""""""
 Bundle "netrw.vim"
 " -- user ctrlp to replace FuzzyFinder
@@ -163,9 +134,10 @@ Bundle "ctrlp.vim"
 Bundle "FuzzyFinder"
 
 "Bundle "Command-T"
-"Bundle "Tagbar"
+Bundle 'The-NERD-tree'
 Bundle 'project.tar.gz'
-Bundle "PDV--phpDocumentor-for-Vim"
+Bundle 'oinksoft/proj.vim'
+
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""

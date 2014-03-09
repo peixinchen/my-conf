@@ -16,6 +16,7 @@ if has("autocmd")
   autocmd BufRead,BufNewFile *.coffee setlocal filetype=coffee
   autocmd BufRead,BufNewFile *.less setlocal filetype=less
   autocmd BufRead,BufNewFile *.as setlocal filetype=actionscript
+  autocmd BufRead,BufNewFile *.htm setlocal filetype=html
 endif
 
 
