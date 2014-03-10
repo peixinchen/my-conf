@@ -27,9 +27,17 @@ alias df="df -h"
 alias free='free -m'
 alias bc='bc -l'
 
-alias gc="git commit"
-alias ga="git add"
-alias gs="git status"
+# git alias
+alias ga='git add '
+alias gc='git commit -m'
+alias gs='git status'
+alias gss='git status -s'
+alias gl="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset' --abbrev-commit"
+alias gd='git diff'
+alias gdc='git diff --cached'
+
+# mysql alias
+alias m="mysql -uroot -p"
 
 used(){
     if [ $1 ]
