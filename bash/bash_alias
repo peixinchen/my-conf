@@ -2,6 +2,8 @@ alias v='vim'
 alias vp='vim +Project'
 alias py='python'
 alias ipy='ipython'
+alias sl='screen -ls'
+alias sr='screen -D -R'
 
 alias ..="cd .."
 alias ...="cd ../.."

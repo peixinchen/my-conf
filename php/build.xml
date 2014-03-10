@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<project name="CakeTest" basedir="." default="main">
+	
+	<property name="src" value="/path/to/source/code" />
+	<property name="output" value="reports" />
+
+
+	<target name="main" depends="init,phpmd,phpcpd,phpcs,caketest"></target>
+	
+	<!-- init -->
+	<target name="init">
+		<delete dir="./reports" includeemptydirs="true" />
+		<mkdir dir="./reports" />
+	</target>
+	
+	
+	<!-- PHPMD -->
+	<target name="phpmd">
+		<phpmd rulesets="codesize,unusedcode,design,naming">
+			<fileset dir="${src}/app">
+				<include name="**/*.php" />
+				<exclude name="Test/**/*.php" />
+				<exclude name="tmp/**/*.php" />
+			</fileset>
+			<formatter type="xml" outfile="${output}/pmd.xml"/>
+		</phpmd>
+	</target>
+	
+	<!-- PHPCPD -->
+	<target name="phpcpd">
+		<phpcpd>
+			<fileset dir="${src}/app">
+				<include name="**/*.php" />
+				<exclude name="Test/**/*.php" />
+				<exclude name="tmp/**/*.php" />
+			</fileset>
+			<formatter type="pmd" outfile="${output}/cpd.xml"/>
+		</phpcpd>
+	</target>
+	
+	<!-- PHPCS -->
+	<target name="phpcs" description="Find coding standard violations using PHP_CodeSniffer creating a log file for the continuous integration server">
+		<phpcodesniffer standard="CakePHP" allowedFileExtensions="php" showSniffs="true" showWarnings="true">
+			<fileset dir="${src}/app">
+				<include name="**/*.php" />
+				<exclude name="Test/**/*.php" />
+				<exclude name="tmp/**/*.php" />
+			</fileset>
+			<formatter type="checkstyle" outfile="${output}/checkstyle.xml" />
+		</phpcodesniffer>
+	</target>
+	
+	<!-- CakePHP Test -->
+	<target name="caketest">
+		<exec command="${src}/lib/Cake/Console/cake testsuite --log-junit ${application.startdir}/${output}/phpunit.xml --coverage-clover ${application.startdir}/${output}/coverage.xml app Model/Post" logoutput="true" checkreturn="true" dir="${src}/app" />
+		<echo msg="CakeTest Complete!" />
+	</target>
+</project>
