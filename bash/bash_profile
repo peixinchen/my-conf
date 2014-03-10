@@ -1,20 +1,40 @@
-alias ..='cd ..'
-alias ...="cd ../.."
-alias ....="cd ../../.."
-
-alias ll='ls -l'
-alias lp='ls -p'
-
-alias jl='jobs -l'
-
-alias apti='apt-get install'
-alias apts='apt-cache search'
-
 export EDITOR=vim
 export PYTHONDONTWRITEBYTECODE=1
 export PATH=$PATH:~/bin
 export PAGER='less'
 export PS1="\u@\h:\w$ "
+
+if [ "$PS1" ]
+then
+    if [ -f /etc/bash_completion ]
+    then
+        if [ -r /etc/bash_completion ]
+        then
+            . /etc/bash_completion
+        fi
+    fi
+fi
+
+if [ -f ~/.markrc ]; then
+        . ~/.markrc
+fi
+
+
+export PATH=/bin:/sbin:/usr/sbin:/usr/bin:/usr/local/bin:~/bin
+export LD_LIBRARY_PATH=/usr/local/lib:/usr/lib
+
+#export JAVA_HOME=/home/reedboat/java/current
+#export JRE_HOME=${JAVA_HOME}/jre
+#export CLASSPATH=$HADOOP_HOME/lib:$JAVA_HOME/lib:$JRE_HOME/lib
+
+export HOSTSHORT=`hostname`
+export OS=`uname`;
+export LC_ALL='en_US.UTF-8'
+export LANG='en_US.UTF-8'
+
+export EDITOR='vim'
+export SVN_EDITOR=vim
+
 
 function run_cmd_with_password {
     expect -c "\
