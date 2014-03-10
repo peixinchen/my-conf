@@ -61,7 +61,8 @@ nnoremap <silent> <leader>rc :call SwitchToBuf($vim."/.vimrc")<cr>
 nnoremap <silent> <leader>erb :call SwitchToBuf($vim."/.vim/config/bundle.vim")<cr>
 nnoremap <silent> <leader>erk :call SwitchToBuf($vim."/.vim/config/keymapping.vim")<cr>
 nnoremap <silent> <leader>erh :call SwitchToBuf($vim."/.vim/config/help.md")<cr>
-nnoremap <silent> <leader>ec :call SwitchToBuf($tmp.'/scratch.txt')<cr>
+nnoremap <silent> <leader>es :call SwitchToBuf($tmp.'/scratch.txt')<cr>
+nnoremap <silent> <leader>ec :call SwitchToBuf($HOME. '/cheatsheet.md')<cr>
 
 nnoremap <silent> <leader>nu :call ToogleOption('nu')<cr>
 nnoremap <silent> <leader>sw <esc>:set wrap! <cr>0
@@ -219,10 +220,9 @@ nnoremap / /\v
 vnoremap / /\v
 nnoremap ? ?\v
 vnoremap ? ?\v
-cnoremap s/ s/\v
-cnoremap %s/ %s/\v
 inoremap jk <esc>
 inoremap kj <esc>
+cnoremap %s/ %s/\v
 cnoremap <C-j> <t_kd>
 cnoremap <C-k> <t_ku>
 cnoremap <C-a> <Home>

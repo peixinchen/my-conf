@@ -4,6 +4,7 @@ alias py='python'
 alias ipy='ipython'
 alias sl='screen -ls'
 alias sr='screen -D -R'
+alias curlnp="curl --proxy ''"
 
 alias ..="cd .."
 alias ...="cd ../.."
@@ -11,6 +12,7 @@ alias ....="cd ../../.."
 alias .4="cd ../../../.."
 alias aliyun='ssh reedboat@www.hiweiye.com'
 alias ll='ls -al'
+alias cs='vim ~/cheatsheet.md'
 
 alias iconvgu='iconv -f gbk -t utf-8'  #两种类型编码转换
 alias iconvug='iconv -f utf-8 -t gbk'
@@ -40,6 +42,8 @@ alias gss='git status -s'
 alias gl="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset' --abbrev-commit"
 alias gd='git diff'
 alias gdc='git diff --cached'
+alias gsr='git svn rebase'
+alias gsd='git svn dcommit'
 
 # mysql alias
 alias m="mysql -uroot -p"
