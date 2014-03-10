@@ -1,5 +1,5 @@
-vim/.vim/bundle
-vim/.vim/doc/tags
+vimconfig/vim/bundle
+vimconfig/vim/doc/tags
 *~
 .netrwhist
 Powerline_distinguished_distinguished_compatible.cache
