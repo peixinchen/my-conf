@@ -254,3 +254,13 @@ function! SqlKeywordToUpper()
         execute cmd
     endfor
 endfunction
+
+function! CreateProject()
+    let proj_name=input('Project Name: ')
+    if !empty(proj_name)
+        let cmd = "Project " . $HOME . '/.vimprj/'.proj_name. '.vimprj'
+        setlocal noautochdir
+        exec cmd
+    endif
+endfunction
+nnoremap <silent> <leader>cp :call CreateProject()<cr>
