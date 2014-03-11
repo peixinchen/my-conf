@@ -22,7 +22,7 @@ alias t100='tail -n 100'
 alias pong='ping -c 5 '   #ping，限制
 alias myip='curl ifconfig.me'
 
-alias apti='apt-get install'
+alias apti='sudo apt-get install'
 alias apts='apt-cache search'
 
 alias ls='ls --color'

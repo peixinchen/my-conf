@@ -4,16 +4,20 @@ export PATH=$PATH:~/bin
 export PAGER='less'
 export PS1="\u@\h:\w$ "
 
-if [ "$PS1" ]
+if [[ -z "$ZSH" ]]
 then
-    if [ -f /etc/bash_completion ]
+    if [ "$PS1" ]
     then
-        if [ -r /etc/bash_completion ]
+        if [ -f /etc/bash_completion ]
         then
-            . /etc/bash_completion
+            if [ -r /etc/bash_completion ]
+            then
+                . /etc/bash_completion
+            fi
         fi
     fi
 fi
+
 
 if [ -f ~/.markrc ]; then
         . ~/.markrc

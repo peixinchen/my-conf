@@ -94,7 +94,6 @@ map <leader>tb <ESC>:TagbarToggle<cr>
 nnoremap <leader>qf  :q!<cr>
 nnoremap <leader>qa  :qa<cr>
 nnoremap <leader>wf  :w!<cr>
-nnoremap <unique> <c-x> :q<cr>
 nnoremap <leader>zz :x<cr>
 nnoremap <leader>q :q<cr>
 nnoremap <leader>n :new<cr>
