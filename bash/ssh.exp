@@ -1,0 +1,81 @@
+#!/usr/bin/expect
+
+proc usage {} {
+    puts stderr "usage: ssh.exp <ip> <user> <password> [port]";
+    exit 1;
+}
+
+if { $argc < 3 } {
+    usage
+}
+
+set ip [lindex $argv 0]
+set user [lindex $argv 1]
+set password [lindex $argv 2]
+set port 22
+if {$argc == 4} {
+    set port [lindex $argv 3]
+}
+puts $port
+
+# Create the ssh session using the username, password and ip of the machine selected.
+
+spawn /usr/local/bin/ssh -q -p $port -l $user $ip
+
+
+expect {
+    -re ".*Are you sure you want to continue connecting.*" {
+        send "yes\n";
+# Restart expect block.
+        exp_continue
+    }
+
+    -re ".*assword:" {
+        send $password;
+        send "\n";
+        interact
+    } 
+}
+expect {
+    -nocase "*Connection Refused*" {
+        send_log "\n${ip},connectionrefused\n";
+        exit 1;
+    }
+    -nocase "*tcsetattr failed*" {
+        send_log "\n${ip},sshsyscallerror\n";
+#set needagain 1;
+        exit 2;
+    }
+    -nocase "*Authentication failed*" {
+#set needagain 1;
+        exit 3;
+    }
+    "*yes/no*" {
+        send "yes\n"
+    }
+    -nocase "*password: " {
+        send "$password\n";
+    }
+    timeout {
+        send_log "\n${ip},logintimeout\n";
+        exit 4;
+    }
+    -re ".*[>#]\[^\n\]*$" {
+        log_user 1;
+        send_user "btool:-> # ";
+        set timeout 0;
+        send_log "\n${ip},loginsuccess\n";
+##what do you want this script to do for you?
+##get the prompt to you,uncomment the interact
+        interact;
+        exit 0;
+##change the $USER's password?
+##send "echo 'test:password'|chpasswd;exit;\n"
+##or something else
+##send "netstat -lnp;exit;\n"
+        expect eof {
+            exit 0;
+        }
+    }
+}
+# Exit expect script.
