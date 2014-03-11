@@ -1,26 +1,8 @@
 export EDITOR=vim
-export PYTHONDONTWRITEBYTECODE=1
-export PATH=$PATH:~/bin
 export PAGER='less'
-export PS1="\u@\h:\w$ "
+export PYTHONDONTWRITEBYTECODE=1
 
-if [ "$PS1" ]
-then
-    if [ -f /etc/bash_completion ]
-    then
-        if [ -r /etc/bash_completion ]
-        then
-            . /etc/bash_completion
-        fi
-    fi
-fi
-
-if [ -f ~/.markrc ]; then
-        . ~/.markrc
-fi
-
-
-export PATH=/bin:/sbin:/usr/sbin:/usr/bin:/usr/local/bin:~/bin
+export PATH=$PATH:~/bin
 export LD_LIBRARY_PATH=/usr/local/lib:/usr/lib
 
 #export JAVA_HOME=/home/reedboat/java/current
@@ -34,6 +16,24 @@ export LANG='en_US.UTF-8'
 
 export EDITOR='vim'
 export SVN_EDITOR=vim
+
+if [[ -z "$ZSH" ]]
+then
+    if [ "$PS1" ]
+    then
+        if [ -f /etc/bash_completion ]
+        then
+            if [ -r /etc/bash_completion ]
+            then
+                . /etc/bash_completion
+            fi
+        fi
+    fi
+fi
+
+if [ -f ~/.markrc ]; then
+        . ~/.markrc
+fi
 
 
 function run_cmd_with_password {
@@ -57,8 +57,4 @@ function interact_cmd_with_password {
     interact
   "
 }
-
-
-export PAGER='less'
-export PS1="\u@\h:\w$ "
 
