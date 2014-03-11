@@ -3,8 +3,8 @@
 basedir=`pwd`
 
 function build_vim(){
-  [[ ! -d ~/.vim ]] && ln -s $basedir/vimfiles/vim ~/.vim
-  [[ ! -f ~/.vimrc ]] && ln -s $basedir/vimfiles/vimrc ~/.vimrc
+  [[ ! -d ~/.vim ]] && ln -s $basedir/vimconfig/vim ~/.vim
+  [[ ! -f ~/.vimrc ]] && ln -s $basedir/vimconfig/vimrc ~/.vimrc
 
   [[ ! -d ~/.vim/bundle ]] && mkdir -p ~/.vim/bundle
   [[ ! -d ~/.vim/bundle/vundle ]] && git clone http://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
