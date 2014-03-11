@@ -29,6 +29,7 @@ function build_bash(){
    [[ ! -f ~/.markrc ]] && ln -s $basedir/bash/markrc ~/.markrc
    [[ ! -f ~/.zshrc ]] && ln -s $basedir/bash/zshrc ~/.zshrc
    [[ ! -f ~/.screenrc ]] && ln -s $basedir/screen/screenrc ~/.screenrc
+   [[ ! -f ~/.gitconfig ]] && ln -s $basedir/git/gitconfig ~/.gitconfig
    echo "install zsh"
    # install zsh
    cd ~
