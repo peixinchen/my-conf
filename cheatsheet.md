@@ -12,6 +12,7 @@
 ## Bash Operation
 * `man ascii` : 查看ASCII表
 * `watch cmd` : 
+* open $file 智能根据文件类型打开文件
 
 ## Screen
 
