@@ -61,7 +61,8 @@ Bundle "word_complete.vim"
 "" for filetype 
 """"""""""""""""""""""""""""""""""""""""""
 Bundle "c.vim"
-Bundle 'Markdown'
+"Bundle 'Markdown'
+Bundle "hallison/vim-markdown"
 Bundle "xml.vim"
 Bundle 'JSON.vim'
 
@@ -93,7 +94,7 @@ Bundle "UltraBlog"
 " -- edit encrypted files
 Bundle 'openssl.vim'
 Bundle "calendar.vim"
-Bundle "vimwiki"
+"Bundle "vimwiki"
 Bundle "TxtBrowser"
 
 
@@ -116,6 +117,7 @@ Bundle "tpope/vim-fugitive"
 "括号显示增强
 Bundle 'masukomi/rainbow_parentheses.vim'
 Bundle "PDV--phpDocumentor-for-Vim"
+Bundle "SingleCompile"
 
 
 """"""""""""""""""""""""""""""""""""""""""

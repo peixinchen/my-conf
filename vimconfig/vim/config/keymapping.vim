@@ -51,7 +51,6 @@ nnoremap <silent> <leader>qp :cp<cr>
 cnoremap d <c-r>=expand('%:p:h').'/'<cr>
 cnoremap p <c-r>=expand('%:p')<cr>
 
-nnoremap <leader>ss   :so %<CR>
 nnoremap <leader>cd   :cd %:p:h<CR>
 "nnoremap gf :e <c-r><c-f><cr>
 
@@ -230,6 +229,9 @@ cnoremap <C-e> <End>
 nnoremap ,hp :help<space> 
 nnoremap ,hw :help<space><c-r><c-w>
 
+nnoremap <Leader>ss :SCCompile<cr>
+nnoremap <Leader>sr :SCCompileRun<cr>
+
 
 
 let mapleader=oldleader
@@ -237,19 +239,10 @@ let mapleader=oldleader
 " svn
 nnoremap <Leader>ca :VCSAdd<cr>
 nnoremap <Leader>cc :VCSCommit<cr>
-nnoremap <leader>cf :VCSCommit!<cr>
 nnoremap <Leader>cd :VCSDiff<cr>
 nnoremap <Leader>cl :VCSLog<cr>
-nnoremap <Leader>cu :VCSUpdate<cr>
-nnoremap <Leader>cv :VCSVimDiff<cr>
 nnoremap <Leader>cs :VCSStatus<cr>
 nnoremap <Leader>cn :VCSAnnotate<cr>
-nnoremap <Leader>cD :VCSDelete<cr>
-nnoremap <Leader>cg :VCSGotoOriginal<cr>
-nnoremap <Leader>cG :VCSGotoOriginal!<cr>
-nnoremap <Leader>ci :VCSInfo<cr>
-nnoremap <Leader>cL :VCSLock<cr>
-nnoremap <Leader>cr :VCSReview<cr>
 
 vnoremap <c-insert> "*y
 vnoremap cp         "*y

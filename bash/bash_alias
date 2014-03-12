@@ -5,6 +5,7 @@ alias ipy='ipython'
 alias sl='screen -ls'
 alias sr='screen -D -R'
 alias curlnp="curl --proxy ''"
+alias psg='ps -ef|egrep -v "grep"|grep'
 
 alias ..="cd .."
 alias ...="cd ../.."
