@@ -37,7 +37,9 @@ alias bc='bc -l'
 
 # git alias
 alias ga='git add '
+alias gau='git add -u'
 alias gc='git commit -m'
+alias gca='git commit --amend'
 alias gs='git status'
 alias gss='git status -s'
 alias gl="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset' --abbrev-commit"
@@ -47,6 +49,13 @@ alias gco='git checkout --'
 alias gdc='git diff --cached'
 alias gsr='git svn rebase'
 alias gsd='git svn dcommit'
+alias gar='git archive --format="tar.gz" -o'
+
+# php
+alias 'pu'='phpunit'
+alias 'puf'='phpunit --filter'
+alias 'ph'='phing'
+
 
 # mysql alias
 alias m="mysql -uroot -p"
