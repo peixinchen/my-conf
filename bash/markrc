@@ -51,6 +51,12 @@ function jump
     fi
 }
 
+function expand
+{
+    local name=$1
+    realpath $MARKPATH/$1
+}
+
 # Mark a directory
 function mark
 {
@@ -155,6 +161,8 @@ alias m=mark
 
 # Think: list marks or print marks
 alias l=marks
+
+alias e=expand
 #alias p=marks
 
 # Set auto complete
