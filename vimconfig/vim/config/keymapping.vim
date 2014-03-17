@@ -209,7 +209,6 @@ nnoremap <Leader>do :diffoff <cr>
 
 
 nmap <S-CR> O<Esc>j
-nmap <CR> o<Esc>k
 nnoremap Y y$
 nnoremap j gj
 cmap w!! %!sudo tee > /dev/null %
@@ -246,6 +245,7 @@ nnoremap <Leader>cn :VCSAnnotate<cr>
 
 vnoremap <c-insert> "*y
 vnoremap cp         "*y
+vnoremap <bs>  x
 
 nmap + <c-a>
 nmap - <c-x>

@@ -4,7 +4,7 @@ set ignorecase
 set tags           +=tags;
 set sessionoptions -=curdir
 set sessionoptions +=sesdir
-set cul
+"set cul
 
 filetype plugin indent on
 set autoindent
@@ -31,3 +31,5 @@ set fileformats=unix,dos,mac
 set list
 set listchars=tab:▸\ ,eol:¬,trail:⋅,extends:❯,precedes:❮
 set showbreak=↪
+set wildmenu
+set wildmode=list:longest,full

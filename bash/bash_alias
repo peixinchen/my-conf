@@ -1,5 +1,6 @@
 alias v='vim'
 alias vp='vim +Project'
+alias sv='sudo vim'
 alias py='python'
 alias ipy='ipython'
 alias sl='screen -ls'
