@@ -21,7 +21,7 @@ set fileencodings=utf-8,gb2312,ucs-bom,cp936,big5,latin1
 set termencoding=utf-8,gb2312
 set laststatus=2
 set cmdheight=2
-set acd
+"set acd
 set foldmethod=syntax
 set foldlevel=6
 set foldcolumn=0
@@ -33,3 +33,4 @@ set listchars=tab:▸\ ,eol:¬,trail:⋅,extends:❯,precedes:❮
 set showbreak=↪
 set wildmenu
 set wildmode=list:longest,full
+set path+=$HOME/workspace/,

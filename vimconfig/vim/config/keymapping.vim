@@ -251,7 +251,11 @@ nmap + <c-a>
 nmap - <c-x>
 
 "" disable arrows
-map <up>    <nop>
-map <down>  <nop>
-map <left>  <nop>
-map <right> <nop>
+nmap <up>    <nop>
+nmap <down>  <nop>
+nmap <left>  <nop>
+nmap <right> <nop>
+
+nmap \ ,
+
+cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h') . '/' : '%%'
