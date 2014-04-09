@@ -156,20 +156,6 @@ nnoremap <silent> <leader>mc :FufMruCmd<CR>
 nnoremap <silent> <leader>mb :FufBookmark<CR>
 nnoremap <silent> <leader>ma :FufBookmarkFileAdd<CR>
 nnoremap <silent> <C-p>      :FufFileWithCurrentBufferDir<CR>
-nnoremap <silent> <C-f><C-p> :FufFileWithFullCwd<CR>
-nnoremap <silent> <C-f><C-d> :FufDirWithCurrentBufferDir<CR>
-nnoremap <silent> <C-f>d     :FufDirWithFullCwd<CR>
-nnoremap <silent> <C-f>D     :FufDir<CR>
-nnoremap <silent> <C-f><C-t> :FufTag<CR>
-nnoremap <silent> <C-f>t     :FufTag!<CR> noremap  <silent> g]         :FufTagWithCursorWord!<CR>
-"nnoremap <silent> <C-f><C-f> :FufTaggedFile<CR>
-nnoremap <silent> <C-f><C-j> :FufJumpList<CR>
-nnoremap <silent> <C-f><C-g> :FufChangeList<CR>
-nnoremap <silent> <C-f><C-q> :FufQuickfix<CR>
-"vnoremap <silent> <C-f><C-b> :FufAddBookmarkAsSelectedText<CR>
-nnoremap <silent> <C-f><C-e> :FufEditInfo<CR>
-nnoremap <silent> <C-f><C-r> :FufRenewCache<CR>
-
 
 " php 
 nnoremap <leader>phd :Phpdoc %<cr>
