@@ -144,7 +144,7 @@ Bundle 'oinksoft/proj.vim'
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " test
 """"""""""""""""""""""""""""""""""""""""""""""""""
-Bundle 'evervim'
+Bundle 'kakkyz81/evervim'
 
 
 

@@ -247,6 +247,10 @@ let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 let g:UltiSnipsSnippetDirectories=["snippets", "bundle/UltiSnips/UltiSnips"]
 
+" Evervim {{{
+let g:evervim_devtoken='S=s5:U=704dc:E=14cb2d6016a:C=1455b24d570:P=1cd:A=en-devtoken:V=2:H=25f31b8eff7e56c9dbb770cd722fc4b2'
+" }}}
+
 "rbpt
 let g:rbpt_colorpairs = [
     \ ['3',         '808000'],
@@ -268,3 +272,5 @@ let g:rbpt_loadcmd_toggle = 0
     "au Syntax * RainbowParenthesesLoadSquare
     "au Syntax * RainbowParenthesesLoadBraces
 "augroup END
+
+" vi: fdm=marker ts=2

@@ -43,4 +43,4 @@ if filereadable($HOME . "/.vimrc.local")
 endif
 """"""""""""""""""""""""""""""""""""""""""""""""""
 
-
+" set vim=
