@@ -148,8 +148,8 @@ function marks
 # Create aliases for convenience
 
 # Think: jump or go to
-alias j=jump
-#alias g=jump
+#alias j=jump
+alias g=jump
 
 # Think: unmark or delete
 alias u=unmark
