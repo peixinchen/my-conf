@@ -18,6 +18,7 @@ if has("autocmd")
   autocmd BufRead,BufNewFile *.as setlocal filetype=actionscript
   autocmd BufRead,BufNewFile *.htm setlocal filetype=html
   autocmd BufRead,BufNewFile *.md,*.mkd,*.markdown setlocal filetype=markdown
+  autocmd BufRead,BufNewFile *.gradle setlocal filetype=groovy
 endif
 
 
