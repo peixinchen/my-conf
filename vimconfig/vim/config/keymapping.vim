@@ -14,15 +14,16 @@ else
     let mapleader=','
 endif
 
-" Buffers
+" Buffers {{{
 nnoremap <silent> <leader>bp :bprev<cr>
 nnoremap <silent> <leader>bn :bnext<cr>
 nnoremap <silent> <leader>bl :blast<cr>
 nnoremap <silent> <leader>bf :bfirst<cr>
 nnoremap <silent> <leader>b3 :b #<cr>
 nnoremap <silent> <leader>bd :bdelete<cr>
+" }}}
 
-" Windows
+" Windows {{{
 nnoremap <unique> <c-k> <C-W><Up>
 nnoremap <unique> <c-j> <C-W><Down>
 nnoremap <unique> <c-h> <C-W><Left>
@@ -31,20 +32,24 @@ nnoremap <unique> <leader>wl <C-W><Right>
 nnoremap <unique> <leader>wk <C-W><Up>
 nnoremap <unique> <leader>wj <C-W><Down>
 nnoremap <unique> <leader>wh <C-W><Left>
+" }}}
 
 
-" Tabs 
+" Tabs {{{
 nnoremap <leader>tn   :tabnew <CR>
 nnoremap g0 :tabfirst <cr>
 nnoremap g$ :tablast <cr>
+" }}}
 
-" Quickfix
+
+" Quickfix {{{
 nnoremap <silent> <leader>ms :w<cr>:make %<cr>
 nnoremap <silent> <leader>qo :cw<cr>
 nnoremap <silent> <leader>ql :cl<cr>
 nnoremap <silent> <leader>qn :cn<cr>
 nnoremap <silent> <leader>qp :cp<cr>
 
+" }}}
 
 
 " Paths & File
@@ -55,29 +60,30 @@ nnoremap <leader>cd   :cd %:p:h<CR>
 "nnoremap gf :e <c-r><c-f><cr>
 
 
-
+" special files {{{
 nnoremap <silent> <leader>rc :call SwitchToBuf($vim."/.vimrc")<cr>
 nnoremap <silent> <leader>erb :call SwitchToBuf($vim."/.vim/config/bundle.vim")<cr>
 nnoremap <silent> <leader>erk :call SwitchToBuf($vim."/.vim/config/keymapping.vim")<cr>
 nnoremap <silent> <leader>erh :call SwitchToBuf($vim."/.vim/config/help.md")<cr>
 nnoremap <silent> <leader>es :call SwitchToBuf($tmp.'/scratch.txt')<cr>
 nnoremap <silent> <leader>ec :call SwitchToBuf($HOME. '/cheatsheet.md')<cr>
+" }}}
+
 
 nnoremap <silent> <leader>nu :call ToogleOption('nu')<cr>
+nnoremap <silent> <leader>li :call ToogleOption('list')<cr>
 nnoremap <silent> <leader>sw <esc>:set wrap! <cr>0
-
-
 nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<cr>
 
 
 
 nnoremap <F11> :call ToggleFullScreen()<CR>
 
-" Align
-vnoremap <leader>al :Align 
-nnoremap <leader>ac :AlignCtrl 
-vnoremap <leader>a= :Align = <cr>
-vnoremap <leader>a> :Align => <cr>
+" Align {{{
+vnoremap <leader>al :EasyAlign 
+vnoremap <leader>a= :EasyAlign = <cr>
+vnoremap <leader>a> :EasyAlign => <cr>
+" }}}
 
 
 " vertically split and generate a previewwindow
@@ -89,7 +95,7 @@ vnoremap <leader>a> :Align => <cr>
 "plugins
 map <leader>tb <ESC>:TagbarToggle<cr>
 
-" Save & Exit
+" Save & Exit {{{
 nnoremap <leader>qf  :q!<cr>
 nnoremap <leader>qa  :qa<cr>
 nnoremap <leader>wf  :w!<cr>
@@ -97,6 +103,7 @@ nnoremap <leader>zz :x<cr>
 nnoremap <leader>q :q<cr>
 nnoremap <leader>n :new<cr>
 "autocmd! bufwritepost _vimrc source $vim/_vimrc
+" }}}
 
 
 " Search
@@ -156,20 +163,6 @@ nnoremap <silent> <leader>mc :FufMruCmd<CR>
 nnoremap <silent> <leader>mb :FufBookmark<CR>
 nnoremap <silent> <leader>ma :FufBookmarkFileAdd<CR>
 nnoremap <silent> <C-p>      :FufFileWithCurrentBufferDir<CR>
-nnoremap <silent> <C-f><C-p> :FufFileWithFullCwd<CR>
-nnoremap <silent> <C-f><C-d> :FufDirWithCurrentBufferDir<CR>
-nnoremap <silent> <C-f>d     :FufDirWithFullCwd<CR>
-nnoremap <silent> <C-f>D     :FufDir<CR>
-nnoremap <silent> <C-f><C-t> :FufTag<CR>
-nnoremap <silent> <C-f>t     :FufTag!<CR> noremap  <silent> g]         :FufTagWithCursorWord!<CR>
-"nnoremap <silent> <C-f><C-f> :FufTaggedFile<CR>
-nnoremap <silent> <C-f><C-j> :FufJumpList<CR>
-nnoremap <silent> <C-f><C-g> :FufChangeList<CR>
-nnoremap <silent> <C-f><C-q> :FufQuickfix<CR>
-"vnoremap <silent> <C-f><C-b> :FufAddBookmarkAsSelectedText<CR>
-nnoremap <silent> <C-f><C-e> :FufEditInfo<CR>
-nnoremap <silent> <C-f><C-r> :FufRenewCache<CR>
-
 
 " php 
 nnoremap <leader>phd :Phpdoc %<cr>
@@ -262,3 +255,5 @@ nnoremap <leader>p :Proj<space>
 nmap \ ,
 
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h') . '/' : '%%'
+
+" vim: fdm=marker ts=4 sw=4

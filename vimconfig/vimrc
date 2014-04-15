@@ -36,11 +36,11 @@ colorscheme solarized
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
-" project
+" local
 """"""""""""""""""""""""""""""""""""""""""""""""""
-if filereadable($HOME . "/project.vim")
-    source $HOME/project.vim
+if filereadable($HOME . "/.vimrc.local")
+    source $HOME/.vimrc.local
 endif
 """"""""""""""""""""""""""""""""""""""""""""""""""
 
-
+" set vim=

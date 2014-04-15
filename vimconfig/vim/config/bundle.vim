@@ -13,33 +13,40 @@ Bundle "DfrankUtil"
 "" plugin for core edit
 """"""""""""""""""""""""""""""""""""""""""
 " -- add repeat.vim to make (.) works for cs,ds,ys
-Bundle 'repeat.vim' 
-Bundle 'surround.vim'
+Bundle 'tpope/vim-repeat' 
+Bundle 'tpope/vim-surround'
 Bundle 'matchit.zip'
-Bundle 'EasyMotion'
-Bundle 'Align'
+Bundle 'Lokaltog/vim-easymotion'
+
+"Bundle 'Align'
+"replace algin
+"godlygeek/tabular
+Bundle 'junegunn/vim-easy-align'
+
 Bundle 'dimasg/vim-mark'
 Bundle "EasyGrep"
-Bundle "textobj-user"
-Bundle "textobj-line"
-Bundle "textobj-indent"
+Bundle "kana/vim-textobj-user"
+Bundle "kana/vim-textobj-line"
+Bundle "kana/vim-textobj-indent"
+Bundle "kana/vim-textobj-function"
 
 
 
 """"""""""""""""""""""""""""""""""""""""""
 "" for auto complete
 """"""""""""""""""""""""""""""""""""""""""
-Bundle "SuperTab"
+Bundle "ervandew/supertab"
 "YCM can replace others
 "Bundle "Valloric/YouCompleteMe"
 Bundle "AutoComplPop"
-Bundle "neocomplcache"
+"Bundle "Shougo/neocomplete.vim"
+Bundle "Shougo/neocompletecache.vim"
 Bundle "CmdlineComplete"
 
-Bundle 'UltiSnips'
+Bundle 'SirVer/ultisnips'
 
 "Bundle 'honza/vim-snippets'
-Bundle 'Emmet.vim'
+Bundle 'mattn/emmet-vim'
 "textmate like snipptes AutoComplete plugins
 "Bundle "xptemplate"
 "Bundle "snipMate"
@@ -67,12 +74,11 @@ Bundle "xml.vim"
 Bundle 'JSON.vim'
 
 "" -- web
-"Bundle "vim-coffee-script"
 Bundle "JavaScript-Indent"
 Bundle 'vim-less'
-Bundle 'coffee.vim'
+Bundle 'kchmck/vim-coffee-script'
 Bundle 'jslint.vim'
-Bundle 'vim-javascript'
+Bundle 'pangloss/vim-javascript'
 Bundle 'haml.zip'
 Bundle "jsbeautify"
 
@@ -103,11 +109,11 @@ Bundle "TxtBrowser"
 """"""""""""""""""""""""""""""""""""""""""
 " -- commentary.vim to replace nerd-commenter
 Bundle 'tpope/vim-commentary'
-Bundle "The-NERD-Commenter"
+Bundle "scrooloose/nerdcommenter"
 Bundle "scrooloose/syntastic"
 "Bundle 'camelcasemotion'
 "use tagbar to replace taglist
-Bundle "Tagbar"
+Bundle "majutsushi/tagbar"
 
 "Bundle "chazy/cscope_maps"
 "Bundle 'camelcasemotion'
@@ -116,8 +122,9 @@ Bundle "vcscommand.vim"
 Bundle "tpope/vim-fugitive"
 "括号显示增强
 Bundle 'masukomi/rainbow_parentheses.vim'
-Bundle "PDV--phpDocumentor-for-Vim"
-Bundle "SingleCompile"
+"Bundle "PDV--phpDocumentor-for-Vim"
+Bundle "tobyS/pdv"
+Bundle "xuhdev/SingleCompile"
 
 
 """"""""""""""""""""""""""""""""""""""""""
@@ -132,22 +139,37 @@ Bundle "Vimball"
 """"""""""""""""""""""""""""""""""""""""""
 Bundle "netrw.vim"
 " -- user ctrlp to replace FuzzyFinder
-Bundle "ctrlp.vim"
+Bundle "kien/ctrlp.vim"
 Bundle "FuzzyFinder"
 
 "Bundle "Command-T"
-Bundle 'The-NERD-tree'
+Bundle 'scrooloose/nerdtree'
 Bundle 'project.tar.gz'
 Bundle 'oinksoft/proj.vim'
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""
+" test
+""""""""""""""""""""""""""""""""""""""""""""""""""
+Bundle 'kakkyz81/evervim'
 
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " color
 """"""""""""""""""""""""""""""""""""""""""""""""""
-Bundle "Color-Sampler-Pack"
+Bundle "flazz/vim-colorschemes"
 Bundle "altercation/vim-colors-solarized"
 Bundle "molokai"
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""
+" color
+""""""""""""""""""""""""""""""""""""""""""""""""""
+"https://github.com/trending?l=vim&since=weekly
+"https://github.com/search?q=stars%3A200+stars%3A%3E200&type=Repositories&ref=advsearch&l=VimL"
+"Bundle "christoomey/vim-tmux-navigator"
+
 
 
 filetype plugin indent on 
