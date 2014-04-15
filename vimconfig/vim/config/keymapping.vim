@@ -80,9 +80,8 @@ nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<cr>
 nnoremap <F11> :call ToggleFullScreen()<CR>
 
 " Align {{{
-vnoremap <leader>al :EasyAlign 
-vnoremap <leader>a= :EasyAlign = <cr>
-vnoremap <leader>a> :EasyAlign => <cr>
+vmap <Enter>   <Plug>(EasyAlign)
+nmap <Leader>a <Plug>(EasyAlign)
 " }}}
 
 
