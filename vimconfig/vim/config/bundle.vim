@@ -40,12 +40,12 @@ Bundle "ervandew/supertab"
 "Bundle "Valloric/YouCompleteMe"
 Bundle "AutoComplPop"
 "Bundle "Shougo/neocomplete.vim"
-Bundle "Shougo/neocompletecache.vim"
+Bundle "Shougo/neocomplcache.vim"
 Bundle "CmdlineComplete"
 
 Bundle 'SirVer/ultisnips'
+Bundle 'honza/vim-snippets'
 
-"Bundle 'honza/vim-snippets'
 Bundle 'mattn/emmet-vim'
 "textmate like snipptes AutoComplete plugins
 "Bundle "xptemplate"
@@ -122,8 +122,8 @@ Bundle "vcscommand.vim"
 Bundle "tpope/vim-fugitive"
 "括号显示增强
 Bundle 'masukomi/rainbow_parentheses.vim'
-"Bundle "PDV--phpDocumentor-for-Vim"
-Bundle "tobyS/pdv"
+Bundle "PDV--phpDocumentor-for-Vim"
+"Bundle "tobyS/pdv"
 Bundle "xuhdev/SingleCompile"
 
 

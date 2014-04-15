@@ -82,21 +82,9 @@ let php_alt_comparisons       = 0
 let php_alt_assignByReference = 0
 let php_noShortTags           = 1
 
-" PHPDoc
-function! MakePhpdoc(file)
-  let cmd = "d:/webroot/cn/weiye/lib/PhpDoc/phpdoc.bat" 
-  let args = " -t D:/webroot/cn/weiye/doc -o HTML:default:default"
-  if a:0 == 0 || a:file == '%'
-    let args .= " -f " . expand("%:p")
-  elseif stridx(a:file,'.php') > 0
-    let args .= " -f " . a:file
-  else 
-    let args .= " -d " . a:file
-  endif
-  exec '!' . cmd . args
-endfunction
+let g:pdv_template_dir = $HOME ."/.vim/bundle/templates"
+nnoremap <buffer> ,pd :call pdv#DocumentWithSnip()<CR>
 
-:command! -nargs=* Phpdoc silent :call MakePhpdoc(<f-args>)
 
 
 " BufExplorer
@@ -245,7 +233,8 @@ let g:ProjFileBrowser='off'
 let g:UltiSnipsExpandTrigger = "<tab>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-let g:UltiSnipsSnippetDirectories=["snippets", "bundle/UltiSnips/UltiSnips"]
+"let g:UltiSnipsSnippetDirectories=["snippets", "bundle/vim-snippets/UltiSnips"]
+
 
 " Evervim {{{
 let g:evervim_devtoken='S=s5:U=704dc:E=14cb2d6016a:C=1455b24d570:P=1cd:A=en-devtoken:V=2:H=25f31b8eff7e56c9dbb770cd722fc4b2'
