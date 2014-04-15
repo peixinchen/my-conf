@@ -258,3 +258,7 @@ map <right> <nop>
 
 "" Proj
 nnoremap <leader>p :Proj<space>
+
+nmap \ ,
+
+cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h') . '/' : '%%'

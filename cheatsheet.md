@@ -78,6 +78,18 @@ q: <CR>执行当前行
 <c-f>从命令行切到命令行窗口
 :2,$!sort
 
+### files ###
+:find命令，通过path设置查找路径, Tab补全
+%%, nochdir, <c-w>T, [N]<c-w>_
+* Tab 
+
+### Traverse ###
+ve选择单词 S" 加引号
+:jumps <c-o> <c-i>
+:changes g; g, gi
+
+
+
 
 
 ## Bash Operation
