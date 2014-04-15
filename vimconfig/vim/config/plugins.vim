@@ -82,7 +82,8 @@ let php_alt_comparisons       = 0
 let php_alt_assignByReference = 0
 let php_noShortTags           = 1
 
-let g:pdv_template_dir = $HOME ."/.vim/bundle/templates"
+" PDV
+let g:pdv_template_dir = $vim ."/.vim/bundle/pdv/templates_snip"
 nnoremap <buffer> ,pd :call pdv#DocumentWithSnip()<CR>
 
 
@@ -134,7 +135,8 @@ let g:DoxygenToolkit_briefTag_pre=""
 let g:DoxygenToolkit_returnTag="@return "
 "let g:DoxygenToolkit_blockHeader="--------------------------------------------------------------------------"
 "let g:DoxygenToolkit_blockFooter="----------------------------------------------------------------------------"
-let g:DoxygenToolkit_authorName="weiyezhou (leafboat@foxmail.com)"
+let g:DoxygenToolkit_authorName="reedboat <zhqm03@gmail.com>"
+let g:DoxygenToolkit_licenseTag="My Licence"
 
 
 " dbext plugin
