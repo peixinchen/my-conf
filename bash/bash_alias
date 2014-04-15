@@ -1,6 +1,9 @@
+# vim related
 alias v='vim'
-alias vp='vim +Project'
+alias vp='vim -S project.vim'
+alias vimp='vim -S project.vim'
 alias sv='sudo vim'
+
 alias py='python'
 alias ipy='ipython'
 alias sl='screen -ls'

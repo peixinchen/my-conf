@@ -244,10 +244,13 @@ nmap + <c-a>
 nmap - <c-x>
 
 "" disable arrows
-nmap <up>    <nop>
-nmap <down>  <nop>
-nmap <left>  <nop>
-nmap <right> <nop>
+map <up>    <nop>
+map <down>  <nop>
+map <left>  <nop>
+map <right> <nop>
+
+"" Proj
+nnoremap <leader>p :Proj<space>
 
 nmap \ ,
 
