@@ -1,5 +1,9 @@
-" Last Change: 2009-06-28 12:43:54
-""""""""""""""""""""""""""""""
+let mapleader=','
+
+
+
+
+
 " About Ctags
 """"""""""""""""""""""""""""""
 "let Tlist_Ctags_Cmd             = $ctags
@@ -13,9 +17,15 @@
 "let Tlist_Show_One_File        = 1
 "let Tlist_Auto_Update           = 0
 "let tlist_php_settings          = 'php;c:class;d:constant;f:function'
+" mapleader setting
+"
 
 " -- Tagbar
 let g:tagbar_width = 25
+nmap <localleader>tb <ESC>:TagbarToggle<cr>
+
+
+map <leader>tb <ESC>:TagbarToggle<cr>
 
 " -- cscope
 if has('cscope')
@@ -82,7 +92,8 @@ let php_alt_comparisons       = 0
 let php_alt_assignByReference = 0
 let php_noShortTags           = 1
 
-let g:pdv_template_dir = $HOME ."/.vim/bundle/templates"
+" PDV
+let g:pdv_template_dir = $vim ."/.vim/bundle/pdv/templates_snip"
 nnoremap <buffer> ,pd :call pdv#DocumentWithSnip()<CR>
 
 
@@ -93,14 +104,20 @@ let g:BufExplorerReverseSort = 1
 let g:BufExplorerShowRelativePath = 1
 
 
-" xml-plugin
+" xml-plugin {{{
 "let xml_tag_completion_map = "<C+l>" 
 let g:xml_syntax_folding=1 
+" }}}
 
 
-" Fencview plugin
+" Fencview  {{{
 let g:fencview_autodetect=1
 let g:fencview_checklines=20
+nnoremap <leader>fv :FencView<cr>
+nnoremap <leader>fu :exec "edit! ++enc=utf-8"<cr>
+nnoremap <leader>fg :exec "edit! ++enc=gb18030"<cr>
+nnoremap <leader>su :set fenc=utf-8<cr>
+" }}}
 
 " SuperTab
 let g:SuperTabRetainCompletionType = 2
@@ -134,7 +151,10 @@ let g:DoxygenToolkit_briefTag_pre=""
 let g:DoxygenToolkit_returnTag="@return "
 "let g:DoxygenToolkit_blockHeader="--------------------------------------------------------------------------"
 "let g:DoxygenToolkit_blockFooter="----------------------------------------------------------------------------"
-let g:DoxygenToolkit_authorName="weiyezhou (leafboat@foxmail.com)"
+let g:DoxygenToolkit_authorName="reedboat <zhqm03@gmail.com>"
+let g:DoxygenToolkit_licenseTag="My Licence"
+nnoremap <leader>cx :Dox<cr>
+nnoremap <leader>cw :DoxAuthor<cr>
 
 
 " dbext plugin
@@ -156,32 +176,63 @@ let showmarks_ignore_type  = "hqm"
 let showmarks_hlline_lower = 1
 let showmarks_hiline_upper = 1
 
-" vimwiki
-let g:vimwiki_list = [{
-      \'path':'/Users/zhqm03/workspace/codes/cn/weiye/wiki/cocm/',
-      \'path_html':'/Users/zhqm03/workspace/codes/cn/weiye/wiki/cocm_html/',
-      \'html_header':'',
-      \'html_footer':'',
-      \'maxhi':'1',
-      \'index':'Index',
-      \'gohome':'split',
-      \'ext':'.wiki',
-      \'folding':'1',
-      \'syntax':'default',
-      \'css_name':'cocm.css'
-      \},
-      \{}]
-let g:vimwiki_camel_case = 0
+" vimwiki {{{
+if isdirectory($vim . "/bundle/vimwiki")
+    let g:vimwiki_list = [{
+          \'path':'/Users/zhqm03/workspace/codes/cn/weiye/wiki/cocm/',
+          \'path_html':'/Users/zhqm03/workspace/codes/cn/weiye/wiki/cocm_html/',
+          \'html_header':'',
+          \'html_footer':'',
+          \'maxhi':'1',
+          \'index':'Index',
+          \'gohome':'split',
+          \'ext':'.wiki',
+          \'folding':'1',
+          \'syntax':'default',
+          \'css_name':'cocm.css'
+          \},
+          \{}]
+    let g:vimwiki_camel_case = 0
+    nnoremap <leader>wo :Vimwiki2HTML<cr>
+    nnoremap <leader>wa :VimwikiAll2HTML<cr>
+    nnoremap <leader>ww :VimwikiGoHome<cr>
+    nnoremap <leader>wp :VimwikiGoBackWord<cr>
+endif
+" }}}
+
 " ex
 "
 let g:ex_usr_name = 'weiye'
 
-" fuzzyfinder
-let g:FufOptions = { 'Base':{}, 'Buffer':{}, 'File':{'excluded_path':'\.bak$|\.svn$'}, 'Dir':{},
-            \                'MruFile':{}, 'MruCmd':{}, 'Bookmark':{},
-            \                'Tag':{}, 'TaggedFile':{},
-            \                'GivenFile':{}, 'GivenDir':{},
-            \                'CallbackFile':{}, 'CallbackItem':{}, }
+" fuzzyfinder {{{
+if isdirectory($vim."/bundle/fuzzyfinder")
+    let g:FufOptions = { 'Base':{}, 'Buffer':{}, 
+                \ 'File':{'excluded_path':'\.bak$|\.svn$'}, 'Dir':{},
+                \ 'MruFile':{}, 'MruCmd':{}, 'Bookmark':{},
+                \ 'Tag':{}, 'TaggedFile':{},
+                \ 'GivenFile':{}, 'GivenDir':{},
+                \ 'CallbackFile':{}, 'CallbackItem':{}, }
+
+  let g:fuf_modesDisable = []
+  let g:fuf_abbrevMap = {
+        \   '^vr:' : map(filter(split(&runtimepath, ','), 'v:val !~ "after$"'), 'v:val . ''/**/'''),
+        \   '^m0:' : [ '/mnt/d/0/', '/mnt/j/0/' ],
+        \ }
+
+  let g:fuf_mrufile_maxItem = 300
+  let g:fuf_mrucmd_maxItem = 400
+  nnoremap <silent> <leader>fb :FufBuffer<CR>
+  nnoremap <silent> <leader>ff :FufFile<CR>
+  nnoremap <silent> <leader>mr :FufMruFile<CR>
+  nnoremap <silent> <leader>mc :FufMruCmd<CR>
+  nnoremap <silent> <leader>mb :FufBookmark<CR>
+  nnoremap <silent> <leader>ma :FufBookmarkFileAdd<CR>
+  nnoremap <silent> <C-p>      :FufFileWithCurrentBufferDir<CR>
+
+endif
+" }}}
+
+
 
 " neocomplcache
 "let g:NeoComplCache_EnableAtStartup = 1 
@@ -196,70 +247,105 @@ let g:vimpress_blog_url = 'http://weiye.info/xmlrpc.php'
 let g:xptemplate_brace_complete=1
 let g:xptemplate_vars = "SPop=&SParg=&author=reedboat&email=zhqm03@gmail.com&..."
 
-""Powerline
+" Powerline {{{
 let g:Powerline_symbols = 'fancy'
 let g:Powerline_cache_dir=$tmp 
+" }}}
 
-""Command-t
+" vcscommand {{{
+nnoremap <Leader>ca :VCSAdd<cr>
+nnoremap <Leader>cc :VCSCommit<cr>
+nnoremap <Leader>cd :VCSDiff<cr>
+nnoremap <Leader>cl :VCSLog<cr>
+nnoremap <Leader>cs :VCSStatus<cr>
+nnoremap <Leader>cn :VCSAnnotate<cr>
+" }}}
+
+" Command-t {{{
 let g:CommandTMatchWindowAtTop = 1
+" }}}
 
-""surround
-""yss-
+" surround {{{
 let g:surround_{char2nr('-')} = "<{\r}>"
 let g:surround_{char2nr('=')} = "['\r']"
 let g:surround_{char2nr('?')} = "<?php \r ?>"
 let g:surround_{char2nr('!')} = "<!-- \r -->"
 let g:surround_{char2nr('C')} = "<![CDATA[ \r ]]>"
 
-""vundle
-let g:vundle_log_file = $tmp . "/vundle.log"
+nmap <Leader>' ysiw'
+nmap <Leader>" ysiw"
+nmap <Leader>[ ysiw[
+nmap <Leader>]' ysiw]lysiw'
+" }}}
 
-""ctrlp
+" vundle {{{
+let g:vundle_log_file = $tmp . "/vundle.log"
+" }}}
+
+" ctrlp {{{
 let g:ctrlp_map=',,'
 set wildignore+=*.swp,*.zip,*.tgz
 let g:ctrlp_custom_ignore = {
     \ 'dir': '\v[\/]\.(git)$',
     \ 'file': '\v\.(log|jpg|png|jpeg)$',
     \}
+" }}}
 
-""django
+" django {{{
 "let g:project_directory=expand('~/workspace/python-dev')
 "let g:django_projects=expand('~/workspace/python-dev')
-"
-"" project
-let g:ProjFileBrowser='off'
+" }}} 
 
-"UltiSnips
+"" project {{{
+let g:ProjFileBrowser='off'
+nnoremap <leader>p :Proj<space>
+" }}}
+
+" UltiSnips {{{
 let g:UltiSnipsExpandTrigger = "<tab>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 "let g:UltiSnipsSnippetDirectories=["snippets", "bundle/vim-snippets/UltiSnips"]
-
+" }}}
+ 
+" Align {{{
+vmap <Enter>   <Plug>(EasyAlign)
+nmap <Leader>a <Plug>(EasyAlign)
+" }}}
 
 " Evervim {{{
 let g:evervim_devtoken='S=s5:U=704dc:E=14cb2d6016a:C=1455b24d570:P=1cd:A=en-devtoken:V=2:H=25f31b8eff7e56c9dbb770cd722fc4b2'
 " }}}
 
-"rbpt
-let g:rbpt_colorpairs = [
-    \ ['3',         '808000'],
-    \ ['6',         '008080'],
-    \ ['202',       'ff5f00'],
-    \ ['11',        'ffff00'],
-    \ ['13',        'ff00ff'],
-    \ ['10',        '00ff00'],
-    \ ['45',        '00dfff'],
-    \ ['9',         'ff0000'],
-    \ ]
-let g:rbpt_max = 16
-let g:rbpt_bold = 0
-let g:rbpt_loadcmd_toggle = 0
-"augroup RainbowParentheses
-    "au!
-    "au VimEnter * RainbowParenthesesToggle
-    "au Syntax * RainbowParenthesesLoadRound
-    "au Syntax * RainbowParenthesesLoadSquare
-    "au Syntax * RainbowParenthesesLoadBraces
-"augroup END
+" rbpt {{{
+if isdirectory($vimdir . '/bundle/rainbow_parentheses.vim')
+    let g:rbpt_colorpairs = [
+        \ ['3',         '808000'],
+        \ ['6',         '008080'],
+        \ ['202',       'ff5f00'],
+        \ ['11',        'ffff00'],
+        \ ['13',        'ff00ff'],
+        \ ['10',        '00ff00'],
+        \ ['45',        '00dfff'],
+        \ ['9',         'ff0000'],
+        \ ]
+    let g:rbpt_max = 16
+    let g:rbpt_bold = 0
+    let g:rbpt_loadcmd_toggle = 0
+    augroup RainbowParentheses
+        "au!
+        "au VimEnter * RainbowParenthesesToggle
+        "au Syntax * RainbowParenthesesLoadRound
+        "au Syntax * RainbowParenthesesLoadSquare
+        "au Syntax * RainbowParenthesesLoadBraces
+    augroup END
+endif
+" }}}
+
+" jslint {{{
+noremap <leader>jl :call JsonLint()<cr>
+" }}}
+
+let mapleader='\'
 
 " vi: fdm=marker ts=2

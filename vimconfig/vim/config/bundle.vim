@@ -108,8 +108,6 @@ Bundle "TxtBrowser"
 "" for coding
 """"""""""""""""""""""""""""""""""""""""""
 " -- commentary.vim to replace nerd-commenter
-Bundle 'tpope/vim-commentary'
-Bundle "scrooloose/nerdcommenter"
 Bundle "scrooloose/syntastic"
 "Bundle 'camelcasemotion'
 "use tagbar to replace taglist
@@ -122,9 +120,17 @@ Bundle "vcscommand.vim"
 Bundle "tpope/vim-fugitive"
 "括号显示增强
 Bundle 'masukomi/rainbow_parentheses.vim'
-Bundle "PDV--phpDocumentor-for-Vim"
-"Bundle "tobyS/pdv"
 Bundle "xuhdev/SingleCompile"
+
+
+""""""""""""""""""""""""""""""""""""""""""
+"" comment, doxygen {{{
+Bundle 'tpope/vim-commentary'
+Bundle "scrooloose/nerdcommenter"
+Bundle "DoxygenToolkit.vim"
+Bundle "tobyS/vmustache"
+Bundle "tobyS/pdv"
+"" }}}
 
 
 """"""""""""""""""""""""""""""""""""""""""

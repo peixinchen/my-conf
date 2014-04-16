@@ -61,10 +61,10 @@ nnoremap <leader>cd   :cd %:p:h<CR>
 
 
 " special files {{{
-nnoremap <silent> <leader>rc :call SwitchToBuf($vim."/.vimrc")<cr>
-nnoremap <silent> <leader>erb :call SwitchToBuf($vim."/.vim/config/bundle.vim")<cr>
-nnoremap <silent> <leader>erk :call SwitchToBuf($vim."/.vim/config/keymapping.vim")<cr>
-nnoremap <silent> <leader>erh :call SwitchToBuf($vim."/.vim/config/help.md")<cr>
+nnoremap <silent> <leader>rc :call SwitchToBuf($vim."/../.vimrc")<cr>
+nnoremap <silent> <leader>erb :call SwitchToBuf($vim."/config/bundle.vim")<cr>
+nnoremap <silent> <leader>erk :call SwitchToBuf($vim."/config/keymapping.vim")<cr>
+nnoremap <silent> <leader>erh :call SwitchToBuf($vim."/config/help.md")<cr>
 nnoremap <silent> <leader>es :call SwitchToBuf($tmp.'/scratch.txt')<cr>
 nnoremap <silent> <leader>ec :call SwitchToBuf($HOME. '/cheatsheet.md')<cr>
 " }}}
@@ -76,24 +76,11 @@ nnoremap <silent> <leader>sw <esc>:set wrap! <cr>0
 nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<cr>
 
 
-
-nnoremap <F11> :call ToggleFullScreen()<CR>
-
-" Align {{{
-vnoremap <leader>al :EasyAlign 
-vnoremap <leader>a= :EasyAlign = <cr>
-vnoremap <leader>a> :EasyAlign => <cr>
-" }}}
-
-
 " vertically split and generate a previewwindow
 "map <leader>w :vert split . \| wincmd p \| set previewwindow \| wincmd p \|
 ":vert resize 15 \| exec "normal m"<cr>
 
 
-
-"plugins
-map <leader>tb <ESC>:TagbarToggle<cr>
 
 " Save & Exit {{{
 nnoremap <leader>qf  :q!<cr>
@@ -102,7 +89,6 @@ nnoremap <leader>wf  :w!<cr>
 nnoremap <leader>zz :x<cr>
 nnoremap <leader>q :q<cr>
 nnoremap <leader>n :new<cr>
-"autocmd! bufwritepost _vimrc source $vim/_vimrc
 " }}}
 
 
@@ -139,62 +125,16 @@ noremap <unique> <Down> gj
 nnoremap <leader>gu gUw
 
 
-nnoremap <leader>ef :call EchoFunc("<cword>")<cr>
-nnoremap <leader>tr :tag <c-r>"<cr>
-
-" vimwiki
-nnoremap <leader>wo :Vimwiki2HTML<cr>
-nnoremap <leader>wa :VimwikiAll2HTML<cr>
-nnoremap <leader>ww :VimwikiGoHome<cr>
-nnoremap <leader>wp :VimwikiGoBackWord<cr>
-
-"fuzzyFinder
-  let g:fuf_modesDisable = []
-  let g:fuf_abbrevMap = {
-        \   '^vr:' : map(filter(split(&runtimepath, ','), 'v:val !~ "after$"'), 'v:val . ''/**/'''),
-        \   '^m0:' : [ '/mnt/d/0/', '/mnt/j/0/' ],
-        \ }
-let g:fuf_mrufile_maxItem = 300
-let g:fuf_mrucmd_maxItem = 400
-nnoremap <silent> <leader>fb :FufBuffer<CR>
-nnoremap <silent> <leader>ff :FufFile<CR>
-nnoremap <silent> <leader>mr :FufMruFile<CR>
-nnoremap <silent> <leader>mc :FufMruCmd<CR>
-nnoremap <silent> <leader>mb :FufBookmark<CR>
-nnoremap <silent> <leader>ma :FufBookmarkFileAdd<CR>
-nnoremap <silent> <C-p>      :FufFileWithCurrentBufferDir<CR>
-
-" php 
-nnoremap <leader>phd :Phpdoc %<cr>
-nnoremap <Leader>phr :!php -f <c-r>=expand('%:p')<cr><cr>
-nnoremap <leader>cx :Dox<cr>
-nnoremap <leader>cw :DoxAuthor<cr>
-nnoremap <leader>cp :call PhpDoc()<cr>
-
 
 " make and run
-nnoremap <Leader>pyr :!python <c-r>=expand('%:p')<cr><cr>
 nnoremap <Leader>mk :make<cr>
 
 " encode
-nnoremap <leader>fv :FencView<cr>
-nnoremap <leader>fu :exec "edit! ++enc=utf-8"<cr>
-nnoremap <leader>fg :exec "edit! ++enc=gb18030"<cr>
-nnoremap <leader>su :set fenc=utf-8<cr>
 
 " paste
 nnoremap <Leader>pa :set paste<cr>
 nnoremap <Leader>np :set nopaste<cr>
 
-"" surround
-nmap <Leader>' ysiw'
-nmap <Leader>" ysiw"
-nmap <Leader>[ ysiw[
-nmap <Leader>]' ysiw]lysiw'
-
-
-""jslint
-noremap <leader>jl :call JsonLint()<cr>
 
 ""diff
 nnoremap <Leader>dt :diffthis<cr>
@@ -228,14 +168,6 @@ nnoremap <Leader>sr :SCCompileRun<cr>
 
 let mapleader=oldleader
 
-" svn
-nnoremap <Leader>ca :VCSAdd<cr>
-nnoremap <Leader>cc :VCSCommit<cr>
-nnoremap <Leader>cd :VCSDiff<cr>
-nnoremap <Leader>cl :VCSLog<cr>
-nnoremap <Leader>cs :VCSStatus<cr>
-nnoremap <Leader>cn :VCSAnnotate<cr>
-
 vnoremap <c-insert> "*y
 vnoremap cp         "*y
 vnoremap <bs>  x
@@ -249,8 +181,6 @@ map <down>  <nop>
 map <left>  <nop>
 map <right> <nop>
 
-"" Proj
-nnoremap <leader>p :Proj<space>
 
 nmap \ ,
 

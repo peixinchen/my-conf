@@ -1,7 +1,7 @@
 set nocompatible
 syntax on
 
-let $vim=$HOME 
+let $vim=$HOME."/.vim"
 let $php=system("whereis -b php|awk '{print $2}'")
 let $ctags='/usr/bin/ctags'
 let $tmp='/tmp'
