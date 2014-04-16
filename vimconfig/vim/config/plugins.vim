@@ -1,5 +1,9 @@
-" Last Change: 2009-06-28 12:43:54
-""""""""""""""""""""""""""""""
+let mapleader=','
+
+
+
+
+
 " About Ctags
 """"""""""""""""""""""""""""""
 "let Tlist_Ctags_Cmd             = $ctags
@@ -13,21 +17,14 @@
 "let Tlist_Show_One_File        = 1
 "let Tlist_Auto_Update           = 0
 "let tlist_php_settings          = 'php;c:class;d:constant;f:function'
+" mapleader setting
+"
 
 " -- Tagbar
 let g:tagbar_width = 25
-nmap <leader>tb <ESC>:TagbarToggle<cr>
+nmap <localleader>tb <ESC>:TagbarToggle<cr>
 
-" mapleader setting
-if !exists("mapleader")
-    let oldleader='\'
-    let mapleader=','
-else
-    let oldleader=mapleader
-    let mapleader=','
-endif
 
-let 
 map <leader>tb <ESC>:TagbarToggle<cr>
 
 " -- cscope
@@ -232,6 +229,7 @@ if isdirectory($vim."/bundle/fuzzyfinder")
   nnoremap <silent> <leader>ma :FufBookmarkFileAdd<CR>
   nnoremap <silent> <C-p>      :FufFileWithCurrentBufferDir<CR>
 
+endif
 " }}}
 
 
@@ -278,7 +276,7 @@ nmap <Leader>' ysiw'
 nmap <Leader>" ysiw"
 nmap <Leader>[ ysiw[
 nmap <Leader>]' ysiw]lysiw'
-}}}
+" }}}
 
 " vundle {{{
 let g:vundle_log_file = $tmp . "/vundle.log"
@@ -348,5 +346,6 @@ endif
 noremap <leader>jl :call JsonLint()<cr>
 " }}}
 
-let mapleader=oldleader
+let mapleader='\'
+
 " vi: fdm=marker ts=2
