@@ -53,6 +53,7 @@ alias gco='git checkout --'
 alias gdc='git diff --cached'
 alias gsr='git svn rebase'
 alias gsd='git svn dcommit'
+alias gsl='git svn log|less'
 alias gar='git archive --format="tar.gz" -o'
 
 # php
@@ -60,6 +61,8 @@ alias 'pu'='phpunit'
 alias 'puf'='phpunit --filter'
 alias 'ph'='phing'
 
+# tmux
+alias ta="tmux attach"
 
 # mysql alias
 alias m="mysql -uroot -p"

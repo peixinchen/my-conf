@@ -45,7 +45,8 @@ function run_cmd_with_password {
   "
 }
 
-function interact_cmd_with_password {
+function interact_cmd_with_password 
+{
     expect -c "\
     set timeout 90
     set env(TERM)
