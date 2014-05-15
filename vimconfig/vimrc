@@ -12,7 +12,7 @@ let $tmp='/tmp'
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " plugins
 """"""""""""""""""""""""""""""""""""""""""""""""""
-set rtp+=$HOME/.vim/bundle/vundle/ 
+set rtp+=$vim/bundle/vundle/ 
 call vundle#rc()
 Bundle 'gmarik/vundle'
 source $HOME/.vim/config/bundle.vim

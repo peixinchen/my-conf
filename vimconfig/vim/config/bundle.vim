@@ -152,6 +152,7 @@ Bundle "FuzzyFinder"
 Bundle 'scrooloose/nerdtree'
 Bundle 'project.tar.gz'
 Bundle 'oinksoft/proj.vim'
+Bundle 'danro/rename.vim'
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
@@ -179,3 +180,5 @@ Bundle "molokai"
 
 
 filetype plugin indent on 
+
+" vim: fdm=marker

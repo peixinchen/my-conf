@@ -205,7 +205,7 @@ endif
 let g:ex_usr_name = 'weiye'
 
 " fuzzyfinder {{{
-if isdirectory($vim."/bundle/fuzzyfinder")
+if isdirectory($vim."/bundle/FuzzyFinder")
     let g:FufOptions = { 'Base':{}, 'Buffer':{}, 
                 \ 'File':{'excluded_path':'\.bak$|\.svn$'}, 'Dir':{},
                 \ 'MruFile':{}, 'MruCmd':{}, 'Bookmark':{},

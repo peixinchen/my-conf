@@ -56,17 +56,18 @@ nnoremap <silent> <leader>qp :cp<cr>
 cnoremap d <c-r>=expand('%:p:h').'/'<cr>
 cnoremap p <c-r>=expand('%:p')<cr>
 
-nnoremap <leader>cd   :cd %:p:h<CR>
+nnoremap <leader>cd   :lcd %:p:h<CR>
 "nnoremap gf :e <c-r><c-f><cr>
 
 
 " special files {{{
-nnoremap <silent> <leader>rc :call SwitchToBuf($vim."/../.vimrc")<cr>
+nnoremap <silent> <leader>rc :call SwitchToBuf($HOME."/.vimrc")<cr>
 nnoremap <silent> <leader>erb :call SwitchToBuf($vim."/config/bundle.vim")<cr>
 nnoremap <silent> <leader>erk :call SwitchToBuf($vim."/config/keymapping.vim")<cr>
+nnoremap <silent> <leader>erp :call SwitchToBuf($vim."/config/plugin.vim")<cr>
 nnoremap <silent> <leader>erh :call SwitchToBuf($vim."/config/help.md")<cr>
 nnoremap <silent> <leader>es :call SwitchToBuf($tmp.'/scratch.txt')<cr>
-nnoremap <silent> <leader>ec :call SwitchToBuf($HOME. '/cheatsheet.md')<cr>
+nnoremap <silent> <leader>ec :call SwitchToBuf($HOME.'/cheatsheet.md')<cr>
 " }}}
 
 
