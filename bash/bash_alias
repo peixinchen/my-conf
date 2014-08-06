@@ -31,7 +31,7 @@ alias apti='sudo apt-get install'
 alias apts='apt-cache search'
 
 alias ls='ls --color'
-alias grep="grep -nE --color"
+alias grep="grep --color"
 alias egrep="egrep --color=auto"
 alias fgrep="fgrep --color=auto"
 alias mkdir="mkdir -pv"
