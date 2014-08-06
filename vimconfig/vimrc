@@ -30,8 +30,13 @@ source $HOME/.vim/config/abbreviation.vim
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " color scheme
-set background=dark
-colorscheme solarized
+if has('gui_running')
+    set background=light
+else
+"    set background=dark
+    set background=light
+endif
+    colorscheme solarized
 
 
 
