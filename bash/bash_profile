@@ -1,6 +1,5 @@
 export EDITOR=vim
 export PAGER='less'
-export PATH=$PATH:~/bin
 export LD_LIBRARY_PATH=/usr/local/lib:/usr/lib
 
 #export JAVA_HOME=/home/reedboat/java/current
@@ -57,5 +56,27 @@ function interact_cmd_with_password
   "
 }
 
-export PATH=/Applications/MacVim.app/Contents/MacOS/:$PATH
+platform='unknown'
+unamestr=`uname`
+if [[ "$unamestr" == 'Linux' ]]; then
+    platform='linux'
+elif [[ "$unamestr" == 'FreeBSD' ]]; then
+    platform='freebsd'
+elif [[ "$unamestr" == 'Darwin' ]]; then
+    platform="osx"
+fi
 
+export PATH=$PATH::~/bin:~/local/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin
+export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+export PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting 
+
+if [[ "$platform" == "osx" ]];then
+    export PATH=/Applications/MacVim.app/Contents/MacOS:$PATH
+    export PATH="$(brew --prefix josegonzalez/php/php55)/bin:$PATH"
+    alias service="brew services"
+    export PATH=$PATH:/Users/zhqm03/apps/adt/sdk/tools:/Users/zhqm03/apps/adt/sdk/platform-tools
+    export PATH=/usr/local/Cellar/php/5.3.10/bin:$PATH
+    export PATH=/usr/local/Cellar/gettext/0.18.3.2/bin:$PATH
+    export PATH=/usr/local/share/npm/bin:$PATH
+fi
+export PATH=/usr/local/bin:$PATH

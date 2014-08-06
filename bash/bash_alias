@@ -67,6 +67,10 @@ alias ta="tmux attach"
 # mysql alias
 alias m="mysql -uroot -p"
 
+# telnet
+alias tn="telnet"
+alias tnl="telnet 127.0.0.1"
+
 used(){
     if [ $1 ]
     then
