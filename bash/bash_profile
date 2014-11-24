@@ -80,3 +80,9 @@ if [[ "$platform" == "osx" ]];then
     export PATH=/usr/local/share/npm/bin:$PATH
 fi
 export PATH=/usr/local/bin:$PATH
+
+
+# 本机的配置,不想提交到其他环境
+if [ -f ~/.bash_local ]; then
+    . ~/.bash_local
+fi

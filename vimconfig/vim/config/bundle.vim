@@ -77,7 +77,7 @@ Bundle 'JSON.vim'
 Bundle "JavaScript-Indent"
 Bundle 'vim-less'
 Bundle 'kchmck/vim-coffee-script'
-Bundle 'jslint.vim'
+"Bundle 'jslint.vim'
 Bundle 'pangloss/vim-javascript'
 Bundle 'haml.zip'
 Bundle "jsbeautify"
