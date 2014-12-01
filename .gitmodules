@@ -1,3 +1,6 @@
 [submodule "vim/.vim/bundle/vundle"]
 	path = vim/.vim/bundle/vundle
 	url = https://github.com/gmarik/vundle.git
+[submodule "docker/ubuntu/net/openvpn"]
+	path = docker/ubuntu/net/openvpn
+	url = https://github.com/kylemanna/docker-openvpn
