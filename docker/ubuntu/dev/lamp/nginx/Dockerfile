@@ -1,4 +1,4 @@
-FROM debian:wheezy
+FROM dl.dockerpool.com:5000/ubuntu:14.04
 
 ENV DEBIAN_FRONTEND noninteractive
 
