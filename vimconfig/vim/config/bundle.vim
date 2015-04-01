@@ -45,6 +45,7 @@ Bundle "CmdlineComplete"
 
 Bundle 'SirVer/ultisnips'
 Bundle 'honza/vim-snippets'
+Bundle 'rizzatti/dash.vim'
 
 Bundle 'mattn/emmet-vim'
 "textmate like snipptes AutoComplete plugins
@@ -72,6 +73,9 @@ Bundle "c.vim"
 Bundle "hallison/vim-markdown"
 Bundle "xml.vim"
 Bundle 'JSON.vim'
+Bundle 'Go-Syntax'
+Bundle 'go.vim'
+Bundle 'golang'
 
 "" -- web
 Bundle "JavaScript-Indent"

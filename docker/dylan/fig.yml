@@ -1,0 +1,48 @@
+db:  
+  image: dylanlindgren/docker-mariadb
+  volumes:
+    - /mariadb:/data/mariadb
+  ports:
+    - "3306:3306"
+  privileged: true
+
+data:  
+  image: dylanlindgren/docker-laravel-data
+  volumes:
+    - /laravel:/data
+  privileged: true
+
+php:  
+  image: dylanlindgren/docker-laravel-phpfpm
+  volumes_from:
+    - data
+  links:
+    - db:db
+  privileged: true
+
+web:  
+  image: dylanlindgren/docker-laravel-nginx
+  volumes_from:
+    - data
+  links:
+    - php:fpm
+  ports:
+    - "8080:80"
+  privileged: true
+
+composer:  
+  image: dylanlindgren/docker-laravel-composer
+  volumes_from:
+    - data
+
+artisan:  
+  image: dylanlindgren/docker-laravel-artisan
+  volumes_from:
+    - data
+  links:
+    - db:db
+
+bower:  
+  image: dylanlindgren/docker-laravel-bower
+  volumes_from:
+    - data
