@@ -187,7 +187,7 @@ let g:this_project_base_dir = "./"
 let g:LookupFile_TagExpr = '"./filenametags"'
 
 
-function! g:ex_CustomHighlight()
+function! s:ex_CustomHighlight()
 
     " ======================================================== 
     " ShowMarks
