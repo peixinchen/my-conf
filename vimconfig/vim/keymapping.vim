@@ -70,6 +70,11 @@ nnoremap <silent> <leader>es :call SwitchToBuf($tmp.'/scratch.txt')<cr>
 nnoremap <silent> <leader>ec :call SwitchToBuf($HOME.'/cheatsheet.md')<cr>
 " }}}
 
+"golang
+nnoremap <silent> <leader>gor :GoRun<cr>
+nnoremap <silent> <leader>gob :GoBuild<cr>
+nnoremap <silent> <leader>got :GoTest<cr>
+
 
 nnoremap <silent> <leader>nu :call ToogleOption('nu')<cr>
 nnoremap <silent> <leader>li :call ToogleOption('list')<cr>

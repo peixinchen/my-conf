@@ -235,8 +235,8 @@ endif
 
 
 " neocomplcache
-"let g:NeoComplCache_EnableAtStartup = 1 
-"let g:NeoComplCache_DisableAutoComplete = 1
+source $HOME/.vim/plugins/neocomplete.vim
+
 "
 ""vimpress
 let g:vimpress_blog_username = 'reedboat'
@@ -346,6 +346,9 @@ endif
 " jslint {{{
 noremap <leader>jl :call JsonLint()<cr>
 " }}}
+
+" plugin vim-go
+let g:go_snippet_engine = "neosnippet"
 
 let mapleader='\'
 
