@@ -91,7 +91,9 @@ if has("autocmd")
     autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
     autocmd FileType css set omnifunc=csscomplete#CompleteCSS
     autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
-    autocmd FileType php set omnifunc=phpcomplete#CompletePHP
+    "autocmd FileType php set omnifunc=phpcomplete#CompletePHP
+    autocmd  FileType  php setlocal omnifunc=phpcomplete_extended#CompletePHP
+
 
 
     au InsertLeave * set nopaste
