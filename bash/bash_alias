@@ -15,8 +15,10 @@ alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
 alias .4="cd ../../../.."
-alias aliyun='ssh reedboat@www.hiweiye.com'
+
 alias ll='ls -al'
+
+alias aliyun='ssh reedboat@www.hiweiye.com'
 alias cs='vim ~/cheatsheet.md'
 
 alias iconvgu='iconv -f gbk -t utf-8'  #两种类型编码转换
@@ -25,15 +27,13 @@ alias iconvug='iconv -f utf-8 -t gbk'
 alias tf='tail -f'  #动态查看文件变化
 alias t100='tail -n 100'
 alias pong='ping -c 5 '   #ping，限制
-alias myip='curl ifconfig.me'
+alias myip='ifconfig|grep "inet "|grep -v 127.0.0.1|cut -d" " -f2'
+
+alias cpzt="cp -t ~/workspace/transfer"
 
 alias apti='sudo apt-get install'
 alias apts='apt-cache search'
 
-alias ls='ls --color'
-alias grep="grep --color"
-alias egrep="egrep --color=auto"
-alias fgrep="fgrep --color=auto"
 alias mkdir="mkdir -pv"
 alias df="df -h"
 alias free='free -m'
