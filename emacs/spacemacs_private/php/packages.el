@@ -28,9 +28,12 @@ which require an initialization must be listed explicitly in the list.")
 
 ;; For each package, define a function php/init-<package-php>
 ;;
-;; (defun php/init-my-package ()
-;;   "Initialize my package"
-;;   )
+(defun php/init-my-package ()
+  (use-package php-mode
+    :defer t
+    :mode ("\\.php\\'" . php-mode)
+  )
+)
 ;;
 ;; Often the body of an initialize function uses `use-package'
 ;; For more info on `use-package', see readme:
