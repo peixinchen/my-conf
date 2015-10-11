@@ -1,4 +1,6 @@
 vimconfig/vim/bundle
+vimconfig/vim/vundle
+vimconfig/vim/.bundle
 vimconfig/vim/doc/tags
 *~
 .netrwhist
