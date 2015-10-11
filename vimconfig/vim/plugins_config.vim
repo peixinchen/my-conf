@@ -297,8 +297,9 @@ let g:ctrlp_custom_ignore = {
 " }}} 
 
 "" project {{{
-let g:ProjFileBrowser='off'
-nnoremap <leader>p :Proj<space>
+let g:ProjFileBrowser='NerdTree'
+let g:ProjMapLeader='<Leader>p'
+" nnoremap <leader>p :Proj<space>
 " }}}
 
 " UltiSnips {{{

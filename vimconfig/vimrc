@@ -14,8 +14,6 @@ source $HOME/.vim/plugins.vim
 source $HOME/.vim/plugins_config.vim
 """"""""""""""""""""""""""""""""""""""""""""""""""
 
-filetype plugin indent on 
-
 
 " Platform (windows, Mac, etc.) Configuration
 source $HOME/.vim/platforms.vim 
@@ -31,8 +29,10 @@ source $HOME/.vim/abbreviation.vim
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " color scheme
-set background=dark
-colorscheme desert
+"set background=dark
+"set background=light
+color solarized
+"color molokai
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " local
