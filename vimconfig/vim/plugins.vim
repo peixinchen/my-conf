@@ -6,7 +6,7 @@ if has('vim_starting')
     set rtp+=~/.vim/bundle/neobundle.vim/
 endif
 
-call neobundle#begin(expand('~/.vim/.bundle/'))
+call neobundle#begin(expand('~/.vim/bundle/'))
 filetype off
  " Let NeoBundle manage NeoBundle
  " Required:
@@ -34,7 +34,7 @@ NeoBundle 'Lokaltog/vim-easymotion'
 
 "NeoBundle 'Align'
 "replace algin
-"godlygeek/tabular
+NeoBundle 'godlygeek/tabular'
 NeoBundle 'junegunn/vim-easy-align'
 
 NeoBundle 'dimasg/vim-mark'
@@ -72,20 +72,11 @@ NeoBundle 'mattn/emmet-vim'
 NeoBundle 'word_complete.vim'
 
 
-
-
-
-
-
-
-
-
 """"""""""""""""""""""""""""""""""""""""""
 "" for filetype 
 """"""""""""""""""""""""""""""""""""""""""
 NeoBundle 'c.vim'
-"NeoBundle 'Markdown'
-NeoBundle 'hallison/vim-markdown'
+NeoBundle 'plasticboy/vim-markdown'
 NeoBundle 'xml.vim'
 NeoBundle 'JSON.vim'
 NeoBundle 'fatih/vim-go'
@@ -99,7 +90,8 @@ let g:android_sdk_path = '/usr/local/var/lib/android-sdk'
 "NeoBundle 'shawncplus/phpcomplete.vim'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/vimproc'
-NeoBundle 'm2mdas/phpcomplete-extended'
+"NeoBundle 'm2mdas/phpcomplete-extended'
+NeoBundle 'spf13/PIV'
 
 "" -- web
 NeoBundle 'JavaScript-Indent'
@@ -149,6 +141,7 @@ NeoBundle 'tpope/vim-fugitive'
 "括号显示增强
 NeoBundle 'masukomi/rainbow_parentheses.vim'
 NeoBundle 'xuhdev/SingleCompile'
+NeoBundle 'bling/vim-airline'
 
 
 """"""""""""""""""""""""""""""""""""""""""
