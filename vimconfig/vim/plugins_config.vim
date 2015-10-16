@@ -72,6 +72,10 @@ endfunc
 :command! -nargs=* CtagsJava  call CtagsR('java',<f-args>)
 
 
+nmap ,jia <Plug>(JavaComplete-Imports-Add)
+nmap ,jir <Plug>(JavaComplete-Imports-RemoveUnused)
+
+
 " Php Syntax
 " remore cr at end of lines
 let PHP_removeCRwhenUnix      = 1

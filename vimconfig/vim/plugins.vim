@@ -84,12 +84,22 @@ NeoBundle 'fatih/vim-go'
 "
 " android development
 NeoBundle 'hsanson/vim-android' 
-let g:android_sdk_path = '/usr/local/var/lib/android-sdk'
+let g:android_adb_tool=$ANDROID_HOME"/platform-tools/adb"
+NeoBundle 'artur-shaik/vim-javacomplete2' 
+NeoBundle 'airblade/vim-rooter' 
 
 
 "NeoBundle 'shawncplus/phpcomplete.vim'
 NeoBundle 'Shougo/unite.vim'
-NeoBundle 'Shougo/vimproc'
+NeoBundle 'Shougo/vimproc', {
+\ 'build' : {
+\     'windows' : 'tools\\update-dll-mingw',
+\     'cygwin' : 'make -f make_cygwin.mak',
+\     'mac' : 'make',
+\     'linux' : 'make',
+\     'unix' : 'gmake',
+\    },
+\ }
 "NeoBundle 'm2mdas/phpcomplete-extended'
 NeoBundle 'spf13/PIV'
 

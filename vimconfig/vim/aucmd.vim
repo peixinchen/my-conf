@@ -72,8 +72,7 @@ if has("autocmd")
     autocmd BufRead,BufNewFile *.c,*.cpp compiler gcc
     autocmd BufRead,BufNewFile *.tcl  compiler tcl
     autocmd BufRead,BufNewFile *.java compiler javac |
-      \ setlocal omnifunc=javacomplete#CompleteParamsInfo
-      "\ setlocal omnifunc=javacomplete#Complete
+      \ setlocal omnifunc=javacomplete#Complete
 
 
     autocmd BufRead,BufNewFile *.viki setlocal filetype=viki |
