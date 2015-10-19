@@ -171,6 +171,8 @@ nnoremap <Leader>ss :SCCompile<cr>
 nnoremap <Leader>sr :SCCompileRun<cr>
 
 
+command W w !sudo tee % > /dev/null
+
 
 let mapleader=oldleader
 

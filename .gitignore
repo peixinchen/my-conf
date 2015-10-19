@@ -3,5 +3,6 @@ vimconfig/vim/vundle
 vimconfig/vim/.bundle
 vimconfig/vim/doc/tags
 *~
+*.sw*
 .netrwhist
 Powerline_distinguished_distinguished_compatible.cache

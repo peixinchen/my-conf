@@ -44,6 +44,7 @@ NeoBundle 'kana/vim-textobj-line'
 NeoBundle 'kana/vim-textobj-indent'
 NeoBundle 'kana/vim-textobj-function'
 
+NeoBundle 'ag.vim'
 
 
 """"""""""""""""""""""""""""""""""""""""""
@@ -191,6 +192,10 @@ NeoBundle 'Proj'
 " test
 """"""""""""""""""""""""""""""""""""""""""""""""""
 NeoBundle 'kakkyz81/evervim'
+" 快速启用/禁用 箭头/hjkl/pageuppagedown/
+"NeoBundle 'wikitopian/hardmode' 
+NeoBundle 'takac/vim-hardtime' 
+NeoBundle 'Shougo/vimshell.vim'
 
 
 
