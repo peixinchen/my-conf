@@ -48,7 +48,7 @@ endif
 " -- ctags
 " $home/ctags.conf
 function! CtagsR(language, ...)
-    let cmd = $ctags . " -R --exclude=.svn --exclude=.hg --exclude=.git "
+    let cmd = "ctags -R --exclude=.svn --exclude=.hg --exclude=.git "
     if a:language == 'php'
       let cmd .= " --fields=+ailKSz --extra=+q --languages=".a:language 
     endif
@@ -287,12 +287,12 @@ let g:vundle_log_file = $tmp . "/vundle.log"
 " }}}
 
 " ctrlp {{{
-let g:ctrlp_map=',,'
-set wildignore+=*.swp,*.zip,*.tgz
-let g:ctrlp_custom_ignore = {
-    \ 'dir': '\v[\/]\.(git)$',
-    \ 'file': '\v\.(log|jpg|png|jpeg)$',
-    \}
+"let g:ctrlp_map=''
+"set wildignore+=*.swp,*.zip,*.tgz
+"let g:ctrlp_custom_ignore = {
+"    \ 'dir': '\v[\/]\.(git)$',
+"    \ 'file': '\v\.(log|jpg|png|jpeg)$',
+"    \}
 " }}}
 
 " django {{{
@@ -317,6 +317,23 @@ let g:snips_author = "kufazhang"
 " Align {{{
 vmap <Enter>   <Plug>(EasyAlign)
 nmap <Leader>a <Plug>(EasyAlign)
+" }}}
+
+
+" EasyMotion {{{
+"
+let g:EasyMotion_smartcase = 1
+let g:EasyMotion_startofline = 0 " keep cursor colum when JK motion
+map <Leader><leader>w <Plug>(easymotion-w)
+map <Leader><Leader>b <Plug>(easymotion-b)
+map <Leader><leader>f <Plug>(easymotion-f)
+map <Leader><Leader>t <Plug>(easymotion-t)
+map <Leader><leader>h <Plug>(easymotion-linebackward)
+map <Leader><Leader>j <Plug>(easymotion-j)
+map <Leader><Leader>k <Plug>(easymotion-k)
+map <Leader><leader>l <Plug>(easymotion-lineforward)
+" 重复上一次操作, 类似repeat插件, 很强大
+map <Leader><leader>. <Plug>(easymotion-repeat)
 " }}}
 
 " Evervim {{{
@@ -354,6 +371,9 @@ noremap <leader>jl :call JsonLint()<cr>
 
 " plugin vim-go
 let g:go_snippet_engine = "neosnippet"
+
+" enable hardtime
+let g:hardtime_default_on = 1
 
 let mapleader='\'
 
