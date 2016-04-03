@@ -143,6 +143,9 @@ NeoBundle 'scrooloose/syntastic'
 "NeoBundle 'camelcasemotion'
 "use tagbar to replace taglist
 NeoBundle 'majutsushi/tagbar'
+"NeoBundle 'xolox/vim-easytags'
+NeoBundle 'oepn/vim-easytags' " fix dectection for universe-ctags
+NeoBundle 'xolox/vim-misc'
 
 "NeoBundle 'chazy/cscope_maps'
 "NeoBundle 'camelcasemotion'
