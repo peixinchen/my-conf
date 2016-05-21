@@ -127,7 +127,6 @@ NeoBundle 'indentpython.vim'
 """"""""""""""""""""""""""""""""""""""""""
 "" network tools 
 """"""""""""""""""""""""""""""""""""""""""
-NeoBundle 'UltraBlog'
 " -- edit encrypted files
 NeoBundle 'openssl.vim'
 NeoBundle 'calendar.vim'
