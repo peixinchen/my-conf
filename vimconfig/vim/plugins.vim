@@ -38,7 +38,7 @@ NeoBundle 'godlygeek/tabular'
 NeoBundle 'junegunn/vim-easy-align'
 
 NeoBundle 'dimasg/vim-mark'
-NeoBundle 'EasyGrep'
+NeoBundle 'dkprice/vim-easygrep'
 NeoBundle 'kana/vim-textobj-user'
 NeoBundle 'kana/vim-textobj-line'
 NeoBundle 'kana/vim-textobj-indent'
@@ -127,7 +127,7 @@ NeoBundle 'indentpython.vim'
 """"""""""""""""""""""""""""""""""""""""""
 "" network tools 
 """"""""""""""""""""""""""""""""""""""""""
-NeoBundle 'UltraBlog'
+"NeoBundle 'UltraBlog'
 " -- edit encrypted files
 NeoBundle 'openssl.vim'
 NeoBundle 'calendar.vim'
@@ -180,11 +180,14 @@ NeoBundle 'Vimball'
 """"""""""""""""""""""""""""""""""""""""""
 NeoBundle 'netrw.vim'
 " -- user ctrlp to replace FuzzyFinder
-NeoBundle 'kien/ctrlp.vim'
+NeoBundle 'ctrlpvim/ctrlp.vim'
 NeoBundle 'FuzzyFinder'
 
 "NeoBundle 'Command-T'
 NeoBundle 'scrooloose/nerdtree'
+"NeoBundle 'ryanoasis/vim-devicons'
+NeoBundle 'jistr/vim-nerdtree-tabs'
+"NeoBundle 'Xuyuanp/nerdtree-git-plugin'
 NeoBundle 'danro/rename.vim'
 
 "project
