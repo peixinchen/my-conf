@@ -147,8 +147,17 @@ if has("win32")
   let g:netrw_sftp_cmd        = '"' . $vim . '/program/putty/psftp.exe"'
   let g:netrw_scp_cmd         = '"' . $vim . '/program/putty/pscp.exe" -q -batch'
 endif
+
 "NerdTree 
-map <F10> :NERDTreeToggle<CR>
+map <Leader>n <plug>NERDTreeTabsToggle<CR>
+let NERDTreeShowLineNumbers=1
+let NERDTreeAutoCenter = 1
+let NERDTreeShowHidden = 0
+let NERDTreeWinSize = 31
+let g:nerdtree_tabs_open_on_console_startup = 1
+let NERDTreeIgnore=['\.pyc', '\~$', '\.swp']
+let NERDTreeShowBookmarks=1
+
 
 "DoxygenTookit plugin
 let g:DoxygenToolkit_briefTag_pre=""
@@ -288,11 +297,18 @@ let g:vundle_log_file = $tmp . "/vundle.log"
 
 " ctrlp {{{
 "let g:ctrlp_map=''
-"set wildignore+=*.swp,*.zip,*.tgz
+set wildignore+=*.swp,*.zip,*.tgz,*.tar.gz
 "let g:ctrlp_custom_ignore = {
 "    \ 'dir': '\v[\/]\.(git)$',
 "    \ 'file': '\v\.(log|jpg|png|jpeg)$',
 "    \}
+let g:ctrlp_user_command = 'ag %s -l --nocolor --nogroup --hidden 
+            \ --ignore .git 
+            \ --ignore out 
+            \ --ignore .svn 
+            \ --ignore .hg 
+            \ --ignore .DS_Store
+            \ -g ""'
 " }}}
 
 " django {{{
@@ -319,6 +335,14 @@ vmap <Enter>   <Plug>(EasyAlign)
 nmap <Leader>a <Plug>(EasyAlign)
 " }}}
 
+" EasyGrep {{{
+"let g:EasyGrepMode = 2     " All:0, Open Buffers:1, TrackExt:2, 
+let g:EasyGrepCommand = 1  " Use vimgrep:0, grepprg:1
+"let g:EasyGrepRecursive  = 1 " Recursive searching
+"let g:EasyGrepIgnoreCase = 1 " not ignorecase:0
+let g:EasyGrepFilesToExclude = "*.bak, *~, cscope.*, *.a, *.o, *.pyc, *.bak, *.sw*"
+set grepprg=ag\ --nogroup\ --nocolor
+" }}}
 
 " EasyMotion {{{
 "
