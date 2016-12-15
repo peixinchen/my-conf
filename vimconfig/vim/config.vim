@@ -34,3 +34,4 @@ set showbreak=↪
 set wildmenu
 set wildmode=list:longest,full
 set path+=$HOME/workspace/,
+set relativenumber

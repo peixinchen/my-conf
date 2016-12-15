@@ -155,6 +155,7 @@ let NERDTreeAutoCenter = 1
 let NERDTreeShowHidden = 0
 let NERDTreeWinSize = 31
 let g:nerdtree_tabs_open_on_console_startup = 1
+let g:nerdtree_tabs_synchronize_view = 0
 let NERDTreeIgnore=['\.pyc', '\~$', '\.swp']
 let NERDTreeShowBookmarks=1
 
