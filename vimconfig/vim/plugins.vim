@@ -3,96 +3,96 @@ if has('vim_starting')
     if &compatible 
         set nocompatible 
     endif
-    set rtp+=~/.vim/bundle/neobundle.vim/
 endif
 
-call neobundle#begin(expand('~/.vim/bundle/'))
+call plug#begin(expand('~/.vim/bundle/'))
 filetype off
- " Let NeoBundle manage NeoBundle
- " Required:
- NeoBundleFetch 'Shougo/neobundle.vim'
 
+"""install vim-plug
+"curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+"    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 """"""""""""""""""""""""""""""""""""""""""
 "" plugins base functions
 """"""""""""""""""""""""""""""""""""""""""
-NeoBundle 'L9'
-NeoBundle 'cecutil'
-NeoBundle 'tlib'
-NeoBundle 'genutils'
-NeoBundle 'DfrankUtil'
+Plug 'L9'
+Plug 'cecutil'
+Plug 'tlib'
+Plug 'genutils'
+Plug 'DfrankUtil'
 
 
 """"""""""""""""""""""""""""""""""""""""""
 "" plugin for core edit
 """"""""""""""""""""""""""""""""""""""""""
 " -- add repeat.vim to make (.) works for cs,ds,ys
-NeoBundle 'tpope/vim-repeat' 
-NeoBundle 'tpope/vim-surround'
-NeoBundle 'matchit.zip'
-NeoBundle 'Lokaltog/vim-easymotion'
+Plug 'tpope/vim-repeat' 
+Plug 'tpope/vim-surround'
+Plug 'matchit.zip'
+Plug 'Lokaltog/vim-easymotion'
 
-"NeoBundle 'Align'
+"Plug 'Align'
 "replace algin
-NeoBundle 'godlygeek/tabular'
-NeoBundle 'junegunn/vim-easy-align'
+Plug 'godlygeek/tabular'
+Plug 'junegunn/vim-easy-align'
 
-NeoBundle 'dimasg/vim-mark'
-NeoBundle 'dkprice/vim-easygrep'
-NeoBundle 'kana/vim-textobj-user'
-NeoBundle 'kana/vim-textobj-line'
-NeoBundle 'kana/vim-textobj-indent'
-NeoBundle 'kana/vim-textobj-function'
+Plug 'dimasg/vim-mark'
+Plug 'dkprice/vim-easygrep'
+Plug 'kana/vim-textobj-user'
+Plug 'kana/vim-textobj-line'
+Plug 'kana/vim-textobj-indent'
+Plug 'kana/vim-textobj-function'
 
-NeoBundle 'ag.vim'
+Plug 'mhinz/vim-grepper'
+
 
 
 """"""""""""""""""""""""""""""""""""""""""
 "" for auto complete
 """"""""""""""""""""""""""""""""""""""""""
-NeoBundle 'ervandew/supertab'
+Plug 'ervandew/supertab'
 "YCM can replace others
-"NeoBundle 'Valloric/YouCompleteMe'
-NeoBundle 'AutoComplPop'
-NeoBundle 'Shougo/neocomplete'
-NeoBundle 'Shougo/neosnippet'
-NeoBundle 'Shougo/neosnippet-snippets'
-NeoBundle 'CmdlineComplete'
+"Plug 'Valloric/YouCompleteMe'
+Plug 'AutoComplPop'
+Plug 'Shougo/neocomplete'
+Plug 'Shougo/neosnippet'
+Plug 'Shougo/neosnippet-snippets'
+Plug 'CmdlineComplete'
 
-NeoBundle 'SirVer/ultisnips'
-NeoBundle 'honza/vim-snippets'
-NeoBundle 'rizzatti/dash.vim'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+Plug 'rizzatti/dash.vim'
 
-NeoBundle 'mattn/emmet-vim'
+Plug 'mattn/emmet-vim'
 "textmate like snipptes AutoComplete plugins
-"NeoBundle 'xptemplate"
-"NeoBundle 'snipMate'
+"Plug 'xptemplate"
+"Plug 'snipMate'
 ""Plugin 'ZenCoding.vim'
 "" more powerful than zencoding written in python
-"NeoBundle "rstacruz/sparkup" {'rtp' : 'vim/'}
-NeoBundle 'word_complete.vim'
+"Plug "rstacruz/sparkup" {'rtp' : 'vim/'}
+Plug 'word_complete.vim'
 
 
 """"""""""""""""""""""""""""""""""""""""""
 "" for filetype 
 """"""""""""""""""""""""""""""""""""""""""
-NeoBundle 'c.vim'
-NeoBundle 'plasticboy/vim-markdown'
-NeoBundle 'xml.vim'
-NeoBundle 'JSON.vim'
-NeoBundle 'fatih/vim-go'
+Plug 'c.vim'
+Plug 'plasticboy/vim-markdown'
+Plug 'xml.vim'
+Plug 'JSON.vim'
+Plug 'fatih/vim-go'
 "android development plugin for vim 
 "
 " android development
-NeoBundle 'hsanson/vim-android' 
+Plug 'hsanson/vim-android' 
 let g:android_adb_tool=$ANDROID_HOME"/platform-tools/adb"
-NeoBundle 'artur-shaik/vim-javacomplete2' 
-NeoBundle 'airblade/vim-rooter' 
+Plug 'artur-shaik/vim-javacomplete2' 
+Plug 'airblade/vim-rooter' 
 
 
-"NeoBundle 'shawncplus/phpcomplete.vim'
-NeoBundle 'Shougo/unite.vim'
-NeoBundle 'Shougo/vimproc', {
+"Plug 'shawncplus/phpcomplete.vim'
+Plug 'Shougo/unite.vim'
+Plug 'Shougo/vimproc', {
 \ 'build' : {
 \     'windows' : 'tools\\update-dll-mingw',
 \     'cygwin' : 'make -f make_cygwin.mak',
@@ -101,25 +101,25 @@ NeoBundle 'Shougo/vimproc', {
 \     'unix' : 'gmake',
 \    },
 \ }
-"NeoBundle 'm2mdas/phpcomplete-extended'
-NeoBundle 'spf13/PIV'
+"Plug 'm2mdas/phpcomplete-extended'
+Plug 'spf13/PIV'
 
 "" -- web
-NeoBundle 'JavaScript-Indent'
-NeoBundle 'vim-less'
-NeoBundle 'kchmck/vim-coffee-script'
-"NeoBundle 'jslint.vim'
-NeoBundle 'pangloss/vim-javascript'
-NeoBundle 'haml.zip'
-NeoBundle 'jsbeautify'
+Plug 'JavaScript-Indent'
+Plug 'vim-less'
+Plug 'kchmck/vim-coffee-script'
+"Plug 'jslint.vim'
+Plug 'pangloss/vim-javascript'
+Plug 'haml.zip'
+Plug 'jsbeautify'
 
 "" -- php
-"NeoBundle 'tagbar-phpctags'
+"Plug 'tagbar-phpctags'
 
 "" -- python
-"NeoBundle 'vim-django'
+"Plug 'vim-django'
 ""Plugin 'kevinw/pyflakes-vim'
-NeoBundle 'indentpython.vim'
+Plug 'indentpython.vim'
 
 
 
@@ -129,57 +129,59 @@ NeoBundle 'indentpython.vim'
 """"""""""""""""""""""""""""""""""""""""""
 "NeoBundle 'UltraBlog'
 " -- edit encrypted files
-NeoBundle 'openssl.vim'
-NeoBundle 'calendar.vim'
-"NeoBundle 'vimwiki'
-NeoBundle 'TxtBrowser'
+Plug 'openssl.vim'
+Plug 'calendar.vim'
+"Plug 'vimwiki'
+Plug 'TxtBrowser'
 
 
 """"""""""""""""""""""""""""""""""""""""""
 "" for coding
 """"""""""""""""""""""""""""""""""""""""""
 " -- commentary.vim to replace nerd-commenter
-NeoBundle 'scrooloose/syntastic'
-"NeoBundle 'camelcasemotion'
+Plug 'scrooloose/syntastic'
+"Plug 'camelcasemotion'
 "use tagbar to replace taglist
-NeoBundle 'majutsushi/tagbar'
-"NeoBundle 'xolox/vim-easytags'
-NeoBundle 'oepn/vim-easytags' " fix dectection for universe-ctags
-NeoBundle 'xolox/vim-misc'
+Plug 'majutsushi/tagbar'
+"Plug 'xolox/vim-easytags'
+Plug 'oepn/vim-easytags' " fix dectection for universe-ctags
+Plug 'xolox/vim-misc'
 
-"NeoBundle 'chazy/cscope_maps'
-"NeoBundle 'camelcasemotion'
-NeoBundle 'FencView.vim'
-NeoBundle 'vcscommand.vim'
-NeoBundle 'tpope/vim-fugitive'
+"Plug 'chazy/cscope_maps'
+"Plug 'camelcasemotion'
+Plug 'FencView.vim'
+Plug 'vcscommand.vim'
+Plug 'tpope/vim-fugitive'
 "括号显示增强
-NeoBundle 'masukomi/rainbow_parentheses.vim'
-NeoBundle 'xuhdev/SingleCompile'
-NeoBundle 'bling/vim-airline'
+Plug 'masukomi/rainbow_parentheses.vim'
+Plug 'xuhdev/SingleCompile'
+Plug 'bling/vim-airline'
+Plug 'metakirby5/codi.vim'
 
 
 """"""""""""""""""""""""""""""""""""""""""
 "" comment, doxygen {{{
-NeoBundle 'tpope/vim-commentary'
-NeoBundle 'scrooloose/nerdcommenter'
-NeoBundle 'DoxygenToolkit.vim'
-NeoBundle 'tobyS/vmustache'
-NeoBundle 'tobyS/pdv'
+Plug 'tpope/vim-commentary'
+Plug 'scrooloose/nerdcommenter'
+Plug 'DoxygenToolkit.vim'
+Plug 'tobyS/vmustache'
+Plug 'tobyS/pdv'
 "" }}}
 
 
 """"""""""""""""""""""""""""""""""""""""""
 "" for vim native settings
 """"""""""""""""""""""""""""""""""""""""""
-NeoBundle 'Lokaltog/vim-powerline'
-NeoBundle 'Vimball'
+Plug 'Lokaltog/vim-powerline'
+Plug 'Vimball'
 
 
 """"""""""""""""""""""""""""""""""""""""""
 "" for file management and  orgnization
 """"""""""""""""""""""""""""""""""""""""""
-NeoBundle 'netrw.vim'
+Plug 'netrw.vim'
 " -- user ctrlp to replace FuzzyFinder
+<<<<<<< HEAD
 NeoBundle 'ctrlpvim/ctrlp.vim'
 NeoBundle 'FuzzyFinder'
 
@@ -189,29 +191,37 @@ NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'jistr/vim-nerdtree-tabs'
 "NeoBundle 'Xuyuanp/nerdtree-git-plugin'
 NeoBundle 'danro/rename.vim'
+=======
+Plug 'kien/ctrlp.vim'
+Plug 'FuzzyFinder'
+
+"Plug 'Command-T'
+Plug 'scrooloose/nerdtree'
+Plug 'danro/rename.vim'
+>>>>>>> e1d7cee590e6fcaf8fc9e54b6309c99055cde4c4
 
 "project
-NeoBundle 'reedboat/project.tar.gz'
-NeoBundle 'Proj'
+Plug 'reedboat/project.tar.gz'
+Plug 'Proj'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " test
 """"""""""""""""""""""""""""""""""""""""""""""""""
-NeoBundle 'kakkyz81/evervim'
+Plug 'kakkyz81/evervim'
 " 快速启用/禁用 箭头/hjkl/pageuppagedown/
-"NeoBundle 'wikitopian/hardmode' 
-NeoBundle 'takac/vim-hardtime' 
-NeoBundle 'Shougo/vimshell.vim'
+"Plug 'wikitopian/hardmode' 
+Plug 'takac/vim-hardtime' 
+Plug 'Shougo/vimshell.vim'
 
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " color
 """"""""""""""""""""""""""""""""""""""""""""""""""
-NeoBundle 'flazz/vim-colorschemes'
-NeoBundle 'altercation/vim-colors-solarized'
-NeoBundle 'tomasr/molokai'
-NeoBundle 'thinkpixellab/flatland'
+Plug 'flazz/vim-colorschemes'
+Plug 'altercation/vim-colors-solarized'
+Plug 'tomasr/molokai'
+Plug 'thinkpixellab/flatland'
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
@@ -219,12 +229,11 @@ NeoBundle 'thinkpixellab/flatland'
 """"""""""""""""""""""""""""""""""""""""""""""""""
 "https://github.com/trending?l=vim&since=weekly
 "https://github.com/search?q=stars%3A200+stars%3A%3E200&type=Repositories&ref=advsearch&l=VimL"
-"NeoBundle 'christoomey/vim-tmux-navigator'
+"Plug 'christoomey/vim-tmux-navigator'
 
 
 
-call neobundle#end()
+call plug#end()
 filetype plugin indent on
-NeoBundleCheck
 
 " vim: fdm=marker

@@ -59,14 +59,6 @@ if has("autocmd")
                 \ nnoremap ,ns :%s/<\/\?\zs\(mx:\)\@!\(\w\+\)\ze/mx:\2/g<CR>
 
 " xml autocmd
-    autocmd BufRead,BufNewFile *.xml,*.mxml
-                \ exe 'setlocal equalprg =tidy\ -imq\ -raw\ -xml\ --tidy-mark\ 0\ -f\ ' . &errorfile
-" html autocmd
-    autocmd BufRead,BufNewFile *.html
-                \ setlocal omnifunc=htmlcomplete#CompleteTags|
-                \ setlocal makeprg=tidy\ -quiet\ -errors\ %|
-                \ setlocal errorformat=line\ %l\ column\ %v\ -\ %m|
-                \ setlocal equalprg =tidy\ -imq\ -raw\ -asxhtml\ --indent\ 1\ --tidy-mark\ 0\ --show-errors\ 0\ --drop-empty-elements\ 0\ -wrap\ 300
 
     " About FileType autocmd BufEnter * call CHANGE_CURR_DIR() " same as ":set autochdir"
     autocmd BufRead,BufNewFile *.c,*.cpp compiler gcc
